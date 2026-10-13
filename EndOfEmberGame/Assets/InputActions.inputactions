@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "e4bafb15-ff9b-425f-ae7f-eb1ab890f459",
+            "actions": [
+                {
+                    "name": "CursorLeftDown",
+                    "type": "Button",
+                    "id": "8165e26e-a16e-441e-a3eb-d8dfbc581d8d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e5629528-2a0f-4075-a3e8-73ebbfdaed8b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CursorLeftDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
