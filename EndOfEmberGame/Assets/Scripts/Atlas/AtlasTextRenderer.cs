@@ -336,9 +336,9 @@ public class AtlasTextRenderer : MonoBehaviour
                 worldPivotsAndSizes[spriteIndex] = worldPivSize;
 
                 Vector4 custom = new Vector4();
-                custom.x = 0;
-                custom.y = 0;
-                custom.z = 0;
+                custom.x = 1;
+                custom.y = 1;
+                custom.z = 1;
                 custom.w = alpha;
                 customs[spriteIndex] = custom;
 
@@ -774,6 +774,14 @@ public class AtlasTextRendererEditor : Editor
             Undo.RecordObject(textRenderer, "Change Color Bits");
             textRenderer.customBit = (int)colorBits;
             EditorUtility.SetDirty(textRenderer);
+
+            GameObject prefabRoot = PrefabUtility.GetOutermostPrefabInstanceRoot(textRenderer);
+            if (prefabRoot != null)
+            {
+                Debug.Log("found parent pregab");
+                PrefabUtility.ApplyPrefabInstance(prefabRoot, InteractionMode.UserAction);
+                AssetDatabase.SaveAssets();
+            }
         }
     }
 }

@@ -16,9 +16,10 @@ public static class Atlas
     [Flags] public enum ColorBits
     {
         None = 0,
-        RedChannel = 1 << 8,
-        GreenChannel = 1 << 9,
-        BlueChannel = 1 << 10,
+        RedChannel = 1 << 0,
+        GreenChannel = 1 << 1,
+        BlueChannel = 1 << 2,
+        Invert = 1 << 3,
     }
     public enum ClipType
     {
@@ -41,8 +42,12 @@ public static class Atlas
     {
         None,
     }
-
-
+    public enum ButtonState
+    {
+        Unhovered,
+        Hovered,
+        Clicked,
+    }
     [Serializable] public struct SimpleSprite
     {
         public Vector2[] customPositions;

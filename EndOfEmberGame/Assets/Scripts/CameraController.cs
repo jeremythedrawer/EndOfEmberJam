@@ -3,17 +3,9 @@ using UnityEngine;
 using static Atlas;
 public class CameraController : MonoBehaviour
 {
-
-    public enum State
-    { 
-        None,
-        Room,
-        Microscope,
-        Wiki,
-    }
-
     public CameraSO camData;
     public ActionSO actionData;
+    public PlayerSO playerData;
 
     [Header("Generated")]
     
@@ -22,7 +14,7 @@ public class CameraController : MonoBehaviour
     public Vector3 rawCurWorldPos;
     public Vector3 targetWorldPos;
 
-    public State curState;
+
     private void Start()
     {
         Init();
@@ -62,11 +54,11 @@ public class CameraController : MonoBehaviour
         camData.bounds = new Bounds();
         camData.bounds.size = boundsSize;
     }
-    public void SetState(State newState)
+    public void SetState(PlayerSO.State newState)
     {
-        if (curState == newState) return;
+        if (playerData.curState == newState) return;
         ExitState();
-        curState = newState;
+        playerData.curState = newState;
         EnterState();
     }
 
@@ -77,21 +69,21 @@ public class CameraController : MonoBehaviour
 
     public void EnterState()
     {
-        switch(curState)
+        switch(playerData.curState)
         {
-            case State.Room:
+            case PlayerSO.State.Room:
             {
                 transform.position = camData.roomWorldPos;
             }
             break;
 
-            case State.Microscope:
+            case PlayerSO.State.Microscope:
             {
                 transform.position = camData.microscopeWorldPos;
             }
             break;
 
-            case State.Wiki:
+            case PlayerSO.State.Wiki:
             {
                 transform.position = camData.wikiWorldPos;
             }
@@ -105,17 +97,17 @@ public class CameraController : MonoBehaviour
 
     public void EnterRoomView()
     {
-        SetState(State.Room);
+        SetState(PlayerSO.State.Room);
     }
 
     public void EnterMicroscopeView()
     {
-        SetState(State.Microscope);
+        SetState(PlayerSO.State.Microscope);
     }
 
     public void EnterWikiView()
     {
-        SetState(State.Wiki);
+        SetState(PlayerSO.State.Wiki);
     }
 
     private void SmoothMove()

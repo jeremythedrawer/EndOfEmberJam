@@ -4,4 +4,7 @@ using UnityEngine;
 public class AudioSO : ScriptableObject
 {
     public float soundEffectsVolume;
+
+    public AudioClip cursorClick;
+    public AudioClip cursorHover;
 }
