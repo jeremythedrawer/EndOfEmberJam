@@ -184,9 +184,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475311027947114554, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.x
+      value: 4.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 475311027947114554, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.y
+      value: -2.1596668
+      objectReference: {fileID: 0}
+    - target: {fileID: 475311027947114554, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.z
+      value: 11.488227
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676658923871486679, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.x
+      value: 0.29236573
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676658923871486679, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.y
+      value: -1.8182611
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676658923871486679, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.z
+      value: 10.488227
+      objectReference: {fileID: 0}
     - target: {fileID: 2476751310764349548, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204362235180420674, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.x
+      value: 0.22292127
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204362235180420674, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.y
+      value: 2.2161837
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204362235180420674, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.z
+      value: 11.488227
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427137612456992117, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.x
+      value: -4.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427137612456992117, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.y
+      value: -2.1596668
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427137612456992117, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: bounds.m_Center.z
+      value: 11.488227
       objectReference: {fileID: 0}
     - target: {fileID: 6604807244815944321, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
       propertyPath: m_LocalPosition.x
@@ -198,7 +246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6604807244815944321, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6604807244815944321, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
       propertyPath: m_LocalRotation.w
@@ -241,29 +289,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1157640623974403497, guid: 749f9ffa1c5274f44bfb7fdd8ebfabcf, type: 3}
-      propertyPath: inputData
-      value: 
-      objectReference: {fileID: 11400000, guid: a27eb58b0365642479d3c9871386c36f, type: 2}
-    - target: {fileID: 1157640623974403497, guid: 749f9ffa1c5274f44bfb7fdd8ebfabcf, type: 3}
-      propertyPath: playerInput
-      value: 
-      objectReference: {fileID: 6798151466510099479}
-    - target: {fileID: 1157640623974403497, guid: 749f9ffa1c5274f44bfb7fdd8ebfabcf, type: 3}
-      propertyPath: cursorLeftDownAction.m_Name
-      value: Cursor Left Down
-      objectReference: {fileID: 0}
     - target: {fileID: 1572543415501932356, guid: 749f9ffa1c5274f44bfb7fdd8ebfabcf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.52048707
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1572543415501932356, guid: 749f9ffa1c5274f44bfb7fdd8ebfabcf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5272185
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1572543415501932356, guid: 749f9ffa1c5274f44bfb7fdd8ebfabcf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.041651
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1572543415501932356, guid: 749f9ffa1c5274f44bfb7fdd8ebfabcf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -300,46 +336,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3958151409944333774, guid: 749f9ffa1c5274f44bfb7fdd8ebfabcf, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 6798151466510099479}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 749f9ffa1c5274f44bfb7fdd8ebfabcf, type: 3}
---- !u!1 &6798151466510099478 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3958151409944333774, guid: 749f9ffa1c5274f44bfb7fdd8ebfabcf, type: 3}
-  m_PrefabInstance: {fileID: 6798151466510099477}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6798151466510099479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6798151466510099478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 78d8796666ea0b440a75c071ca2f8822, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1001 &6871489072402916565
 PrefabInstance:
   m_ObjectHideFlags: 0
