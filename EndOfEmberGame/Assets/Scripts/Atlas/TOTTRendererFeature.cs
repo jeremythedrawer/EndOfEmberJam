@@ -13,12 +13,12 @@ public class TOTTRendererFeature : ScriptableRendererFeature
     public CameraData cameraStats;
     public Mesh quad;
 
-    public Material matrixMaterial;
-    public Material pixelPerfectMaterial;
+    public Material preProcessMaterial;
+    public Material postProcessMaterial;
 
     private AtlasBatchPass batchPass;
-    private MatrixPass matrixPass;
-    private PixelPerfectPass pixelPerfectPass;
+    private PreProcessPass preProcessPass;
+    private PostProcessPass postProcessPass;
     private class AtlasPassData
     {
         public CameraData cameraStats;
@@ -29,15 +29,15 @@ public class TOTTRendererFeature : ScriptableRendererFeature
     {
         if (quad == null) quad = AtlasRendering.SetQuad();
         batchPass = new AtlasBatchPass(cameraStats, quad);
-        matrixPass = new MatrixPass(this);
-        pixelPerfectPass = new PixelPerfectPass(this);
+        preProcessPass = new PreProcessPass(this);
+        postProcessPass = new PostProcessPass(this);
     }
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
         RefreshFrame();
         renderer.EnqueuePass(batchPass);
-        renderer.EnqueuePass(matrixPass);
-        renderer.EnqueuePass(pixelPerfectPass);
+        renderer.EnqueuePass(preProcessPass);
+        renderer.EnqueuePass(postProcessPass);
     }
     private class AtlasBatchPass : ScriptableRenderPass
     {
@@ -189,10 +189,10 @@ public class TOTTRendererFeature : ScriptableRendererFeature
             }
         }
     }
-    private class PixelPerfectPass : ScriptableRenderPass
+    private class PostProcessPass : ScriptableRenderPass
     {
         private static TOTTRendererFeature rendererFeature;
-        public PixelPerfectPass(TOTTRendererFeature srf)
+        public PostProcessPass(TOTTRendererFeature srf)
         {
             renderPassEvent = RenderPassEvent.AfterRenderingTransparents;
             rendererFeature = srf;
@@ -210,7 +210,7 @@ public class TOTTRendererFeature : ScriptableRendererFeature
             UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
             if (cameraData.cameraType != CameraType.Game) return;
             if (!resourceData.cameraColor.IsValid()) return;
-            if (rendererFeature.pixelPerfectMaterial == null) return;
+            if (rendererFeature.postProcessMaterial == null) return;
 
             TextureDesc camColorTexDesc = resourceData.cameraColor.GetDescriptor(renderGraph);
             camColorTexDesc.name = "PixelPerfectTexture";
@@ -222,7 +222,7 @@ public class TOTTRendererFeature : ScriptableRendererFeature
             {
                 passData.curSourceColor = resourceData.cameraColor;
                 passData.targetColor = texHandle;
-                passData.material = rendererFeature.pixelPerfectMaterial;
+                passData.material = rendererFeature.postProcessMaterial;
                 passData.depthTexture = resourceData.activeDepthTexture;
 
                 builder.UseTexture(passData.curSourceColor);
@@ -243,10 +243,10 @@ public class TOTTRendererFeature : ScriptableRendererFeature
             passData.material.SetTexture("_CameraDepthTexture", passData.depthTexture);
         }
     }
-    private class MatrixPass : ScriptableRenderPass
+    private class PreProcessPass : ScriptableRenderPass
     {
         private static TOTTRendererFeature rendererFeature;
-        public MatrixPass(TOTTRendererFeature srf)
+        public PreProcessPass(TOTTRendererFeature srf)
         {
             renderPassEvent = RenderPassEvent.BeforeRenderingOpaques;
             rendererFeature = srf;
@@ -262,7 +262,7 @@ public class TOTTRendererFeature : ScriptableRendererFeature
         {
             UniversalResourceData resourceData = frameData.Get<UniversalResourceData>();
             UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
-            if (rendererFeature.matrixMaterial == null) return;
+            if (rendererFeature.preProcessMaterial == null) return;
             if (cameraData.cameraType != CameraType.Game) return;
             if (resourceData.cameraColor.IsValid())
             {
@@ -275,7 +275,7 @@ public class TOTTRendererFeature : ScriptableRendererFeature
                 using IRasterRenderGraphBuilder builder = renderGraph.AddRasterRenderPass<MatrixPassData>("Matrix Pass", out MatrixPassData passData);
                 passData.sourceColor = resourceData.cameraColor;
                 passData.targetColor = matrixTexHandle;
-                passData.material = rendererFeature.matrixMaterial;
+                passData.material = rendererFeature.preProcessMaterial;
                 passData.depthTexture = resourceData.activeDepthTexture;
 
                 builder.UseTexture(passData.sourceColor);
