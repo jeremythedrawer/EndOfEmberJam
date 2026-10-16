@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1572543415501932356}
-  - component: {fileID: 393958621331228120}
+  - component: {fileID: 9201992610596857641}
   - component: {fileID: 1157640623974403497}
   m_Layer: 0
   m_Name: InputManager
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &393958621331228120
+--- !u!114 &9201992610596857641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputData: {fileID: 11400000, guid: a27eb58b0365642479d3c9871386c36f, type: 2}
-  playerInput: {fileID: 393958621331228120}
+  playerInput: {fileID: 9201992610596857641}
   cursorLeftDownAction:
     m_Name: Cursor Left Down
     m_Type: 0
