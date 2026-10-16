@@ -45,12 +45,8 @@ Shader "Custom/s_atlasStandard"
             TEXTURE2D(_AtlasTexture);
             SAMPLER(sampler_AtlasTexture);
 
-            float3 _BlackColor;
-            float3 _WhiteColor;
-            float _DayNight;
-            float _DayNightFactor;
-            float4 _TrainBoundsMin;
-            float4 _TrainBoundsSize;
+            float3 _DarkColor;
+            float3 _LightColor;
 
             Varyings vert(Attributes v)
             {

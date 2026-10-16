@@ -38,8 +38,8 @@ Shader "Custom/s_atlasUI"
             TEXTURE2D(_AtlasTexture);
             SAMPLER(sampler_AtlasTexture);
 
-            float3 _BlackColor;
-            float3 _WhiteColor;
+            float3 _DarkColor;
+            float3 _LightColor;
 
 
             Varyings vert(Attributes v)
@@ -59,10 +59,6 @@ Shader "Custom/s_atlasUI"
 
                 objPos *= size * scale;
                 objPos += pivot;
-
-                int hoverMask = saturate(spriteData.customBit & OSCILLATE_BIT);
-                float hoverOffset = (sin(_Time.y * 2) * 0.5 + 0.5) * 0.1;
-                objPos.y += hoverOffset * hoverMask;
                 
                 float3 worldPos = float3(position.xy + objPos, position.z);
                 o.worldPos = worldPos;
@@ -82,11 +78,11 @@ Shader "Custom/s_atlasUI"
                 float2 uv = SpriteUV(i.uv, i.uvSizeAndPos, i.scaleAndFlip);
                 half4 tex = SAMPLE_TEXTURE2D(_AtlasTexture, sampler_AtlasTexture, uv);
 
-                half4 finalColor = UIColor(i.customBit, tex, i.custom, _BlackColor, _WhiteColor);
+                half4 finalColor = UIColor(i.customBit, tex, i.custom, _DarkColor, _LightColor);
 
                 clip(finalColor.a - 0.001);
 
-                return finalColor;
+                return half4(finalColor.rgb,1 );
             }
             ENDHLSL
         }

@@ -1,19 +1,7 @@
-#define METERS_TRAVELLED_DIVISOR 1000
-
-#define COLOR_KEY_BIT_0 1 << 0
-#define COLOR_KEY_BIT_1 1 << 1
-#define COLOR_KEY_BIT_2 1 << 2
-#define DIAGONAL_TEXTURE_BIT 1 << 3
-#define MERIDIA_COLOR_BIT 1 << 4
-#define INVERT_BIT 1 << 5
-#define VINROSE_BIT 1 << 6
-#define OSCILLATE_BIT 1 << 7
-
-#define RED_BIT 1 << 8
-#define GREEN_BIT 1 << 9
-#define BLUE_BIT 1 << 10
-#define INVERT_NOTEPAD_BIT 1 << 11
-
+#define RED_BIT 1 << 0
+#define GREEN_BIT 1 << 1
+#define BLUE_BIT 1 << 2
+#define INVERT_BIT 1 << 3
 #include "Assets/Shaders/Atlas/HLSL/ColorSpace.hlsl"
 
 static const float2 BOX_BLUR_OFFSET[4] =
@@ -35,7 +23,7 @@ struct AtlasSprite
 };
 
 
-half4 UIColor(int bitMask, half4 tex, float4 custom, float3 blackColor, float3 whiteColor)
+half4 UIColor(int bitMask, half4 tex, float4 custom, float3 darkColor, float3 lightColor)
 {
 
     int redMask = saturate(bitMask & RED_BIT);
@@ -57,10 +45,10 @@ half4 UIColor(int bitMask, half4 tex, float4 custom, float3 blackColor, float3 w
 
     half useCol = saturate(ceil(custom.r + custom.g + custom.b));
 
-    half3 darkCol = lerp(custom.rgb, blackColor, tCol);
-    half3 lightCol = lerp(whiteColor, custom.rgb, tCol);
-    darkCol = lerp(blackColor, darkCol, useCol);
-    lightCol = lerp(whiteColor, lightCol, useCol);
+    half3 darkCol = lerp(custom.rgb, darkColor, tCol);
+    half3 lightCol = lerp(lightColor, custom.rgb, tCol);
+    darkCol = lerp(darkColor, darkCol, useCol);
+    lightCol = lerp(lightColor, lightCol, useCol);
     half3 finalColor = lerp(darkCol, lightCol, t);
     
     return half4(finalColor, tex.a);
