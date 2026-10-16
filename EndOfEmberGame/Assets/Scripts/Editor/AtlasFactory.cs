@@ -542,7 +542,7 @@ public class AtlasFactory : EditorWindow
             if (markerPixels != null)
             {
                 Color m = markerPixels[index];
-                isMarker = m == pivotColor;
+                isMarker = m == connectColor;
             }
 
             if (!isSolid && !isMarker) continue;
