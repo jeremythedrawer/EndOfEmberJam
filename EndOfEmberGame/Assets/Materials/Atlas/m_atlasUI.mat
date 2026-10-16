@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: m_atlasUI
-  m_Shader: {fileID: 4800000, guid: 82918ff810884be4394fe787c22f424f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 4bbdf37b8e3adb44389ddc7fe5d3445f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
