@@ -1,0 +1,639 @@
+using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
+
+using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.IMGUI.Controls;
+#endif
+
+using static Atlas;
+using static AtlasRendering;
+
+[ExecuteAlways]
+public class AtlasRenderer : MonoBehaviour
+{
+    [Header("Required Inputs")]
+    public AtlasRendererType rendererType;
+    public BatchKey batchKey;
+    public AtlasSO atlas;
+
+    [Header("Collisions")]
+    public BoxCollider2D boxCollider;
+
+    [Header("Settings")]
+    public int spriteIndex;
+
+    public bool flipX;
+    public bool flipY;
+
+    public float width = 1;
+    public float height = 1;
+
+    [Header("Generated")]
+    public Camera cam;
+    public SimpleSprite sprite;
+    public Bounds bounds = new Bounds();
+    public Vector4 worldPivotAndSize;
+    public Vector4 uvSizeAndPosition;
+    public Vector4 scaleAndFlip;
+    public Vector4 custom;
+    public int customBit;
+
+
+    public Vector3 boundsOffset;
+
+    public Vector4[] worldPivotsAndSizes;
+    public Vector4[] uvSizesAndPositions;
+    public Vector4[] scalesAndFlips;
+    public Vector4[] customs;
+
+    [Header("Motion Generated")]
+    public float keyframeClock;
+    public int curFrameIndex;
+    public int prevFrameIndex;
+    public int curMotionIndex;
+    public int prevSpriteIndexFlipH;
+    public int prevSpriteIndexFlipV;
+    public bool isAnimating;
+
+    public CancellationTokenSource ctsOneShot;
+    public CancellationTokenSource ctsChangeCustom;
+
+    public delegate void OnFinishOneShot();
+    public event Action<MotionSprite> onChangeKeyframe;
+
+    [Header("Sliced Generated")]
+    public int quadCount;
+
+    private void OnValidate()
+    {
+        if (atlas == null) return;
+
+        switch (rendererType)
+        {
+            case AtlasRendererType.Simple:
+            {
+                if (atlas.simpleSprites.Length == 0) { Debug.LogWarning("Atlas does not have Simple Sprites at: " + name); return; }
+                spriteIndex = Mathf.Clamp(spriteIndex, 0, atlas.simpleSprites.Length - 1);
+                UpdateSpriteInputsByIndex(spriteIndex);
+            }
+            break;
+            
+            case AtlasRendererType.Motion:
+            {
+                if (atlas.motionSprites.Length == 0) { Debug.LogWarning("Atlas does not have Motion Sprites at: " + name); return; }
+                spriteIndex = Mathf.Clamp(spriteIndex, 0, atlas.motionSprites.Length - 1);
+                sprite = atlas.motionSprites[spriteIndex].sprite;
+                UpdateSpriteInputs(sprite);
+                atlas.clipDict = BuildClipKeys(atlas.clips);
+            }
+            break;
+
+            case AtlasRendererType.Slice:
+            {
+                if (atlas.slicedSprites.Length == 0) { Debug.LogWarning("Atlas does not have Sliced Sprites at: " + name); return; }
+                spriteIndex = Mathf.Clamp(spriteIndex, 0, atlas.slicedSprites.Length - 1);
+                InitSlice();
+                UpdateSlicedSpriteInputs(atlas.slicedSprites[spriteIndex]);
+            }
+            break;
+        }
+        
+        batchKey.texture = atlas.texture;
+        RegisterRenderer(this);
+    }
+    private void Awake()
+    {
+        switch (rendererType)
+        {
+            case AtlasRendererType.Motion:
+            {
+                atlas.clipDict = BuildClipKeys(atlas.clips);
+            }
+            break;
+        }
+    }
+    private void Start()
+    {
+        switch (rendererType)
+        {
+            case AtlasRendererType.Motion:
+            {
+                atlas.clipDict = BuildClipKeys(atlas.clips);
+            }
+            break;
+        }
+    }
+    private void OnEnable()
+    {
+        if (batchKey.texture == null) return;
+        batchKey.texture = atlas.texture;
+        RegisterRenderer(this);
+    }
+    private void OnDisable()
+    {
+        ctsOneShot?.Cancel();
+        ctsChangeCustom?.Cancel();
+        UnregisterRenderer(this);
+    }
+    private void OnDestroy()
+    {
+        UnregisterRenderer(this);
+    }
+    public void UpdateSpriteInputsByIndex(int index)
+    {
+        switch (rendererType)
+        { 
+            case AtlasRendererType.Simple:
+            {
+                UpdateSpriteInputs(atlas.simpleSprites[index]);
+            }
+            break;
+
+            case AtlasRendererType.Motion:
+            {
+                UpdateSpriteInputs(atlas.motionSprites[index].sprite);
+            }
+            break;
+
+            case AtlasRendererType.Slice:
+            {
+                UpdateSlicedSpriteInputs(atlas.slicedSprites[index]);
+            }
+            break;
+        }
+    }
+    public void UpdateSpriteInputs(SimpleSprite newSprite)
+    {
+        sprite = newSprite;
+        spriteIndex = newSprite.index;
+        worldPivotAndSize.z = newSprite.worldSize.x;
+        worldPivotAndSize.w = newSprite.worldSize.y;
+        uvSizeAndPosition = newSprite.uvSizeAndPos;
+        
+        scaleAndFlip.x = width;
+        scaleAndFlip.y = height;
+
+        FlipHSimple(flipX);
+        FlipVSimple(flipY);
+        SetBounds();
+
+
+        if (boxCollider == null) return;
+        boxCollider.size = bounds.size;
+        boxCollider.offset = bounds.center - transform.position;
+        spriteIndex = sprite.index;
+    }
+    public void SetBounds()
+    {
+        switch(rendererType)
+        {
+            case AtlasRendererType.Slice:
+            {
+                SliceSprite sliceSprite = atlas.slicedSprites[spriteIndex];
+                Vector4 centerWorldPivot = worldPivotsAndSizes[4];
+
+                FlipHSlice(flipX, atlas.slicedSprites[spriteIndex]);
+                FlipVSlice(flipY, atlas.slicedSprites[spriteIndex]);
+
+                bounds.center = new Vector3(transform.position.x + boundsOffset.x, transform.position.y + boundsOffset.y, transform.position.z);
+                bounds.size = new Vector3(sliceSprite.worldSlices.x + (centerWorldPivot.z * width) + sliceSprite.worldSlices.y, sliceSprite.worldSlices.z + (centerWorldPivot.w * height) + sliceSprite.worldSlices.w, 0.2f);
+            }
+            break;
+            case AtlasRendererType.Motion:
+            case AtlasRendererType.Simple:
+            {
+                bounds.center = new Vector3(transform.position.x + boundsOffset.x, transform.position.y + boundsOffset.y, transform.position.z);
+                bounds.size = new Vector3(scaleAndFlip.x * worldPivotAndSize.z, scaleAndFlip.y * worldPivotAndSize.w, 0.2f);
+            }
+            break;
+        }
+    }
+    public Bounds GetBounds()
+    {
+        SetBounds();
+        return bounds;
+    }
+    public void SetWorldDepth(float newDepth)
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, newDepth);
+    }
+    public void FlipHSimple(bool flipLeft)
+    {
+        flipX = flipLeft;
+        scaleAndFlip.z = flipLeft ? -1 : 1;
+        float flipPivot = flipLeft ? 1 - sprite.uvPivot.x : sprite.uvPivot.x;
+        worldPivotAndSize.x = -flipPivot * scaleAndFlip.x * worldPivotAndSize.z;
+        boundsOffset.x = (scaleAndFlip.x * worldPivotAndSize.z * 0.5f) + worldPivotAndSize.x;
+        prevSpriteIndexFlipH = sprite.index;
+    }
+    public void FlipVSimple(bool flipDown)
+    {
+        flipY = flipDown;
+        scaleAndFlip.w = flipDown ? -1 : 1;
+        float flipPivot = flipDown ? 1 - sprite.uvPivot.y : sprite.uvPivot.y;
+        worldPivotAndSize.y = -flipPivot * scaleAndFlip.y * worldPivotAndSize.w;
+        boundsOffset.y = (scaleAndFlip.y * worldPivotAndSize.w * 0.5f) + worldPivotAndSize.y;
+        prevSpriteIndexFlipV = sprite.index;
+    }
+
+    public void FlipHSlice(bool flipLeft, SliceSprite sliceSprite)
+    {
+        flipX = flipLeft;
+        float ndcPivot = sliceSprite.sprite.uvPivot.x * 2 - 1;
+        float flipPivot = flipLeft ? ndcPivot : -ndcPivot;
+        boundsOffset.x = bounds.size.x * flipPivot * 0.5f;
+        prevSpriteIndexFlipH = sprite.index;
+    }
+    public void FlipVSlice(bool flipDown, SliceSprite sliceSprite)
+    {
+        flipY = flipDown;
+
+        float ndcPivot = sliceSprite.sprite.uvPivot.y * 2 - 1;
+
+        float flipPivot = flipDown ? ndcPivot : -ndcPivot;
+
+        boundsOffset.y = bounds.size.y * flipPivot * 0.5f;
+        prevSpriteIndexFlipV = sprite.index;
+    }
+    public void UpdateBounds()
+    {        
+        bounds.center = transform.position + boundsOffset;
+    }
+    public void UpdateSliceSpriteInputsSelf()
+    {
+        UpdateSlicedSpriteInputs(atlas.slicedSprites[spriteIndex]);
+    }
+    public void UpdateSlicedSpriteInputs(SliceSprite sliceSprite)
+    {
+        sprite = sliceSprite.sprite;
+
+        scaleAndFlip.x = width;
+        scaleAndFlip.y = height;
+
+        Array.Copy(sliceSprite.uvSizeAndPos, uvSizesAndPositions, sliceSprite.uvSizeAndPos.Length);
+        
+        FlipHSlice(flipX, sliceSprite);
+        FlipVSlice(flipY, sliceSprite);
+
+        SetScaleAndFlipSliceNineSliceArray(width, height, flipX ? -1 : 1, flipY ? -1 : 1, ref scalesAndFlips);
+
+        SetWorldPivotAndSizes(sliceSprite, width, height, flipX, flipY, ref worldPivotsAndSizes);
+
+        for (int i = 0;  i < customs.Length; i++) customs[i] = custom;
+
+        Vector4 centerWorldPivot = worldPivotsAndSizes[4];
+        bounds.size = new Vector3(sliceSprite.worldSlices.x + (centerWorldPivot.z * width) + sliceSprite.worldSlices.y, sliceSprite.worldSlices.z + (centerWorldPivot.w * height) + sliceSprite.worldSlices.w, 0.2f);
+
+        if (boxCollider == null) return;
+        boxCollider.size = bounds.size;
+        boxCollider.offset = boundsOffset;
+    }
+    public void InitSlice()
+    {
+        scalesAndFlips = new Vector4[9];
+        worldPivotsAndSizes = new Vector4[9];
+        uvSizesAndPositions = new Vector4[9];
+        customs = new Vector4[9];
+    }
+    public void SetSliceCustom(float x = 0, float y = 0, float z = 0, float w = 0)
+    {
+        custom.x = x;
+        custom.y = y;
+        custom.z = z;
+        custom.w = w;
+
+        if (customs.Length == 0) customs = new Vector4[9];
+        for (int i = 0; i < customs.Length; i++)
+        {
+            customs[i] = custom;
+        }
+    }
+    public void SetWidthFromWorldSpace(float worldWidth, SimpleSprite sprite)
+    {
+        width = worldWidth / sprite.worldSize.x;
+        UpdateSpriteInputs(sprite);
+    }
+    public void SetNineSliceSizeFromWorldSpace(Vector2 worldSize)
+    {
+        SliceSprite sliceSprite = atlas.slicedSprites[spriteIndex];
+        float centerWorldSliceWidth = sliceSprite.sprite.worldSize.x - sliceSprite.worldSlices.x - sliceSprite.worldSlices.y;
+        float centerWorldSliceHeight = sliceSprite.sprite.worldSize.y - sliceSprite.worldSlices.z - sliceSprite.worldSlices.w;
+        width = worldSize.x / centerWorldSliceWidth;
+        height = worldSize.y / centerWorldSliceHeight;
+        UpdateSlicedSpriteInputs(sliceSprite);
+    }
+    public void PlayClip(AtlasClip clip, Transform markerTransform = null, AudioSource audioSource = null, AudioSO audioData = null)
+    {
+        if (clip.motionIndex != curMotionIndex)
+        {
+            curFrameIndex = clip.keyframeStartIndex;
+            curMotionIndex = clip.motionIndex;
+        }
+        MotionSprite motionSprite = GetNextKeyframeIndex(atlas, clip, ref keyframeClock, ref curFrameIndex, ref prevFrameIndex);
+
+        if (motionSprite.sprite.index == sprite.index) return;
+        
+        sprite = motionSprite.sprite;
+
+        onChangeKeyframe?.Invoke(motionSprite);
+
+        if (markerTransform != null && sprite.customPositions.Length > 0)
+        {
+            Vector3 markerPos = sprite.customPositions[0];
+            if (flipX) markerPos.x *= -1;
+            markerPos.z = markerTransform.localPosition.z;
+            markerTransform.localPosition = markerPos;
+        }
+
+        if (motionSprite.audioIndex != -1)
+        {
+            audioSource.volume = audioData.soundEffectsVolume;
+            audioSource.PlayOneShot(clip.audioClips[motionSprite.audioIndex]);
+            
+        }
+
+        UpdateSpriteInputs(sprite);
+        isAnimating = true;
+    }
+    public void PlayClipOneShot(AtlasClip clip, Transform markerTransform = null, OnFinishOneShot callback = null, AudioSource audioSource = null, AudioSO audioData = null)
+    {
+        ctsOneShot?.Cancel();
+        ctsOneShot = null;
+        ctsOneShot = new CancellationTokenSource();
+
+        PlayingClipOneShot(clip, markerTransform, callback, audioSource, audioData).Forget();
+    }
+    public void ChangeCustom(float time, float newValue, int customChannel)
+    {
+        ctsChangeCustom?.Cancel();
+        ctsChangeCustom = new CancellationTokenSource();
+
+        switch(customChannel)
+        {
+            case 1:
+            {
+                ChangingCustomX(time, newValue).Forget();
+            }
+            break;
+            case 2:
+            {
+                ChangingCustomY(time, newValue).Forget();
+
+            }
+            break;
+            case 3:
+            {
+                ChangingCustomZ(time, newValue).Forget();
+
+            }
+            break;
+            case 4:
+            {
+                ChangingCustomW(time, newValue).Forget();
+
+            }
+            break;
+        }
+    }
+    private async UniTask PlayingClipOneShot(AtlasClip clip, Transform markerTransform = null, OnFinishOneShot callback = null, AudioSource audioSource = null, AudioSO audioData = null)
+    {
+        keyframeClock = 0;
+        int lastIndex = clip.keyframeEndIndex;
+        try
+        {
+            curFrameIndex = clip.keyframeStartIndex;
+            isAnimating = true;
+            while (curFrameIndex < lastIndex)
+            {
+                MotionSprite motionSprite = GetNextKeyframeIndex(atlas, clip, ref keyframeClock, ref curFrameIndex, ref prevFrameIndex);
+
+                if (motionSprite.sprite.index == sprite.index) await UniTask.Yield(ctsOneShot.Token);
+
+                sprite = motionSprite.sprite;
+                onChangeKeyframe?.Invoke(motionSprite);
+               
+                if (markerTransform != null && sprite.customPositions.Length > 0)
+                {
+                    Vector3 markerPos = sprite.customPositions[0];
+                    if (flipX) markerPos.x *= -1;
+                    markerPos.z = markerTransform.localPosition.z;
+                    markerTransform.localPosition = markerPos;
+                }
+                if (motionSprite.audioIndex != -1)
+                {
+                    audioSource.volume = audioData.soundEffectsVolume;
+                    audioSource.PlayOneShot(clip.audioClips[motionSprite.audioIndex]);
+                }
+                UpdateSpriteInputs(sprite);
+
+                onChangeKeyframe?.Invoke(motionSprite);
+                await UniTask.Yield(ctsOneShot.Token);
+            }
+            isAnimating = false;
+            if (callback != null)
+            {
+                callback();
+            }
+        }
+        catch (OperationCanceledException)
+        { 
+            isAnimating = false;
+        }
+    }
+    private async UniTask ChangingCustomX(float time, float newValue)
+    {
+        float elapsed = 0;
+        float startValue = custom.x;
+        try
+        {
+            while (elapsed < time)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / time;
+                await UniTask.Yield(ctsChangeCustom.Token);
+                custom.x = Mathf.Lerp(startValue, newValue, t);
+            }
+            custom.x = newValue;
+        }
+        catch (OperationCanceledException)
+        {            
+            custom.x = newValue;
+        }
+    }
+    private async UniTask ChangingCustomY(float time, float newValue)
+    {
+        float elapsed = 0;
+        float startValue = custom.y;
+        try
+        {
+            while (elapsed < time)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / time;
+                await UniTask.Yield(ctsChangeCustom.Token);
+                custom.y = Mathf.Lerp(startValue, newValue, t);
+            }
+            custom.y = newValue;
+        }
+        catch (OperationCanceledException)
+        {
+            custom.y = newValue;
+        }
+    }
+    private async UniTask ChangingCustomZ(float time, float newValue)
+    {
+        float elapsed = 0;
+        float startValue = custom.z;
+        try
+        {
+            while (elapsed < time)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / time;
+                await UniTask.Yield(ctsChangeCustom.Token);
+                custom.z = Mathf.Lerp(startValue, newValue, t);
+            }
+            custom.z = newValue;
+        }
+        catch (OperationCanceledException)
+        {
+            custom.z = newValue;
+        }
+    }
+    private async UniTask ChangingCustomW(float time, float newValue)
+    {
+        float elapsed = 0;
+        float startValue = custom.w;
+        try
+        {
+            while (elapsed < time)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / time;
+                await UniTask.Yield(ctsChangeCustom.Token);
+                custom.w = Mathf.Lerp(startValue, newValue, t);
+                for (int i = 0; i < customs.Length; i++)
+                {
+                    customs[i].w = custom.w;
+                }
+            }
+            custom.w = newValue;
+            for (int i = 0; i < customs.Length; i++)
+            {
+                customs[i].w = custom.w;
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            custom.w = newValue;
+            for (int i = 0; i < customs.Length; i++)
+            {
+                customs[i].w = custom.w;
+            }
+        }
+    }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.clear;
+        Gizmos.DrawCube(bounds.center, bounds.size);
+    }
+#endif
+}
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(AtlasRenderer))]
+public class AtlasRendererEditor : Editor
+{
+    BoxBoundsHandle boundsHandle = new BoxBoundsHandle();
+
+    ColorBits colorBits;
+    private void OnSceneGUI()
+    {
+        AtlasRenderer rend = (AtlasRenderer)target;
+
+        if (Selection.activeGameObject == rend.gameObject)
+        {
+            EditorGUI.BeginChangeCheck();
+
+            boundsHandle.center = rend.transform.position + rend.boundsOffset;
+
+            switch (rend.rendererType)
+            {
+                case AtlasRendererType.Slice:
+                {
+                    if (rend.atlas == null) return;
+                    SliceSprite sliceSprite = rend.atlas.slicedSprites[rend.spriteIndex];
+
+                    Vector4 centerWorldPivot = rend.worldPivotsAndSizes[4];
+                    boundsHandle.size = new Vector3(sliceSprite.worldSlices.x + (centerWorldPivot.z * rend.width) + sliceSprite.worldSlices.y, sliceSprite.worldSlices.z + (centerWorldPivot.w * rend.height) + sliceSprite.worldSlices.w, 0f);
+                }
+                break;
+                case AtlasRendererType.Motion:
+                case AtlasRendererType.Simple:
+                {
+                    boundsHandle.size = new Vector3(rend.sprite.worldSize.x * rend.width, rend.sprite.worldSize.y * rend.height, 0f);
+                }
+                break;
+            }
+        }
+
+        boundsHandle.SetColor(Color.green);
+        boundsHandle.DrawHandle();
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(rend, "Resize Bounds");
+
+            switch (rend.rendererType)
+            {
+                case AtlasRendererType.Slice:
+                {
+                    SliceSprite sliceSprite = rend.atlas.slicedSprites[rend.spriteIndex];
+                    Vector4 centerWorldPivot = rend.worldPivotsAndSizes[4];
+                    float fixWidth = sliceSprite.worldSlices.x + sliceSprite.worldSlices.y;
+                    float fixHeight = sliceSprite.worldSlices.z + sliceSprite.worldSlices.w;
+
+                    rend.width = (boundsHandle.size.x - fixWidth) / centerWorldPivot.z;
+                    rend.height = (boundsHandle.size.y - fixHeight) / centerWorldPivot.w;
+                    rend.UpdateSlicedSpriteInputs(sliceSprite);
+                }
+                break;
+                case AtlasRendererType.Motion:
+                case AtlasRendererType.Simple:
+                {
+                    rend.width = boundsHandle.size.x / rend.sprite.worldSize.x;
+                    rend.height = boundsHandle.size.y / rend.sprite.worldSize.y;
+                    rend.UpdateSpriteInputs(rend.sprite);
+                }
+                break;
+            }
+
+        }
+
+    }
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        AtlasRenderer atlasRenderer = (AtlasRenderer)target;
+
+        EditorGUI.BeginChangeCheck();
+        GUIContent coloBitsContent = new GUIContent("Color Bits");
+        EditorGUILayout.LabelField("Editor");
+        colorBits = (ColorBits)EditorGUILayout.EnumFlagsField(coloBitsContent, (ColorBits)atlasRenderer.customBit);
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(atlasRenderer, "Change Color Bits");
+            atlasRenderer.customBit = (int)colorBits;
+            EditorUtility.SetDirty(atlasRenderer);
+        }
+    }
+}
+#endif

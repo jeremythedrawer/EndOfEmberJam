@@ -1,0 +1,427 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+using UnityEngine;
+using static Atlas;
+public static class AtlasRendering
+{
+    public const int MAX_SPRITE_DATA_COUNT = 1024;
+    public static int SPRITE_DATA_STRIDE = Marshal.SizeOf<SpriteData>();
+
+    public static int ARGS_STRIDE = INT_SIZE * 5;
+
+    public enum AtlasRendererType
+    { 
+        Simple,
+        Motion,
+        Slice,
+    }
+    [Serializable] public struct BatchKey
+    {
+        public Texture2D texture;
+        public Material material;
+    }
+    [Serializable] public struct SpriteData
+    {
+        public Vector4 worldPosition;
+        public Vector4 worldPivotAndSize;
+        public Vector4 uvSizeAndPos;
+        public Vector4 scaleAndFlip;
+        public Vector4 custom;
+        public int customBit;
+    }
+
+    public static Dictionary<BatchKey, SpriteBatch> spriteBatchDict = new Dictionary<BatchKey, SpriteBatch>();
+    public static List<(BatchKey, SpriteBatch)> spriteBatchList = new List<(BatchKey, SpriteBatch)> ();
+
+    public static Dictionary<BatchKey, TextBatch> textBatchDict = new Dictionary<BatchKey, TextBatch>();
+    public static List<(BatchKey, TextBatch)> textBatchList = new List<(BatchKey, TextBatch)>();
+
+    public class SpriteBatch
+    {
+        public List<AtlasRenderer> atlasRendererList = new List<AtlasRenderer>();
+
+        public SpriteData[] spriteData = new SpriteData[MAX_SPRITE_DATA_COUNT];
+
+        public GraphicsBuffer spriteDataBuffer;
+        public GraphicsBuffer argsBuffer;
+
+        public MaterialPropertyBlock mpb;
+    }
+    public class TextBatch
+    {
+        public List<AtlasTextRenderer> atlasTextRendererList = new List<AtlasTextRenderer>();
+
+        public SpriteData[] spriteData = new SpriteData[MAX_SPRITE_DATA_COUNT];
+
+        public GraphicsBuffer spriteDataBuffer;
+        public GraphicsBuffer argsBuffer;
+
+        public MaterialPropertyBlock mpb;
+    }
+    public static void RefreshFrame()
+    {
+        spriteBatchList.Clear();
+
+        foreach (var kv in spriteBatchDict)
+        {
+            spriteBatchList.Add((kv.Key, kv.Value));
+        }
+
+        textBatchList.Clear();
+
+        foreach (var kv in textBatchDict)
+        {
+            textBatchList.Add((kv.Key, kv.Value));
+        }
+    }
+    public static void Dispose()
+    {
+        foreach (var batch in spriteBatchDict.Values)
+        {
+            batch.spriteDataBuffer?.Release();
+            batch.argsBuffer?.Release();
+        }
+
+        spriteBatchDict.Clear();
+
+        foreach (var batch in textBatchDict.Values)
+        {
+            batch.spriteDataBuffer?.Release();
+            batch.argsBuffer?.Release();
+        }
+
+        textBatchDict.Clear();
+    }
+    public static void RegisterRenderer(AtlasRenderer renderer)
+    {
+        if (renderer.batchKey.material == null) return;
+        renderer.batchKey.material.enableInstancing = true;
+
+        UnregisterRenderer(renderer);
+
+        if (!spriteBatchDict.TryGetValue(renderer.batchKey, out SpriteBatch batch))
+        {
+            batch = new SpriteBatch();
+            batch.spriteDataBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, MAX_SPRITE_DATA_COUNT, SPRITE_DATA_STRIDE);
+            batch.argsBuffer = new GraphicsBuffer(GraphicsBuffer.Target.IndirectArguments, 1, ARGS_STRIDE);
+            batch.mpb = new MaterialPropertyBlock();
+
+            spriteBatchDict.Add(renderer.batchKey, batch);
+        }
+
+        batch.atlasRendererList.Add(renderer);
+    }
+    public static void UnregisterRenderer(AtlasRenderer renderer)
+    {
+        if (!spriteBatchDict.TryGetValue(renderer.batchKey, out SpriteBatch batch))
+        {
+            return;
+        }
+        batch.atlasRendererList.Remove(renderer);
+        if (batch.atlasRendererList.Count == 0)
+        {
+            batch.spriteDataBuffer?.Release();
+            batch.spriteDataBuffer = null;
+
+            batch.argsBuffer?.Release();
+            batch.argsBuffer = null;
+
+
+            spriteBatchDict.Remove(renderer.batchKey);
+        }
+    }
+    public static void RegisterTextRenderer(AtlasTextRenderer renderer)
+    {
+        if (renderer.batchKey.material == null) return;
+        renderer.batchKey.material.enableInstancing = true;
+
+        UnregisterTextRenderer(renderer);
+
+        if (!textBatchDict.TryGetValue(renderer.batchKey, out TextBatch batch))
+        {
+            batch = new TextBatch();
+            
+            batch.spriteDataBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, MAX_SPRITE_DATA_COUNT, SPRITE_DATA_STRIDE);
+            batch.argsBuffer = new GraphicsBuffer(GraphicsBuffer.Target.IndirectArguments, 1, ARGS_STRIDE);
+            batch.mpb = new MaterialPropertyBlock();
+
+            textBatchDict.Add(renderer.batchKey, batch);
+        }
+        batch.atlasTextRendererList.Add(renderer);
+    }
+    public static void UnregisterTextRenderer(AtlasTextRenderer renderer)
+    {
+        if (!textBatchDict.TryGetValue(renderer.batchKey, out TextBatch batch)) return;
+
+        batch.atlasTextRendererList.Remove(renderer);
+        if (batch.atlasTextRendererList.Count == 0)
+        {
+            batch.spriteDataBuffer?.Release();
+            batch.spriteDataBuffer = null;
+
+            batch.argsBuffer?.Release();
+            batch.argsBuffer = null;
+
+            textBatchDict.Remove(renderer.batchKey);
+        }
+    }
+    public static MotionSprite GetNextKeyframeIndex(AtlasSO atlas, AtlasClip clip, ref float keyframeClock, ref int curFrameIndex, ref int prevFrameIndex)
+    {
+        if (curFrameIndex > clip.keyframeEndIndex || curFrameIndex < clip.keyframeStartIndex) curFrameIndex = clip.keyframeStartIndex;
+
+        keyframeClock += Time.deltaTime;
+
+        MotionSprite curMotionSprite = atlas.motionSprites[curFrameIndex];
+        int curFrame = (int)(keyframeClock * FRAMES_PER_SEC);
+     
+        if (curFrame < curMotionSprite.holdFrames) return curMotionSprite;
+        
+        switch (clip.clipType)
+        {
+            case ClipType.Loop:
+            {
+                prevFrameIndex = curFrameIndex;
+                curFrameIndex++;
+
+                if (curFrameIndex > clip.keyframeEndIndex)
+                {
+                    curFrameIndex = clip.keyframeStartIndex;
+                }
+
+                keyframeClock = 0;
+            }
+            break;
+            case ClipType.PingPong:
+            {
+                if (curFrameIndex < clip.keyframeEndIndex && (curFrameIndex > prevFrameIndex || curFrameIndex == clip.keyframeStartIndex))
+                {
+                    prevFrameIndex = curFrameIndex;
+                    curFrameIndex++;
+                }
+                else
+                {
+                    prevFrameIndex = curFrameIndex;
+                    curFrameIndex--;
+                }
+                keyframeClock = 0;
+            }
+            break;
+            case ClipType.OneShot:
+            {
+                prevFrameIndex = curFrameIndex;
+                if (curFrameIndex < clip.keyframeEndIndex)
+                {
+                    curFrameIndex++;
+                }
+                keyframeClock = 0;
+            }
+            break;
+        }
+
+        return atlas.motionSprites[curFrameIndex];
+    }
+    public static MotionSprite GetNextKeyframeSpriteReverse(AtlasSO atlas, AtlasClip clip, ref float keyframeClock, ref int curFrameIndex, ref int prevFrameIndex)
+    {
+        if (curFrameIndex > clip.keyframeEndIndex || curFrameIndex < clip.keyframeStartIndex) curFrameIndex = clip.keyframeEndIndex;
+
+        keyframeClock += Time.deltaTime;
+
+        MotionSprite curMotionSprite = atlas.motionSprites[curFrameIndex];
+        int curFrame = (int)(keyframeClock * FRAMES_PER_SEC);
+        if (curFrame < curMotionSprite.holdFrames) return curMotionSprite;
+
+        prevFrameIndex = curFrameIndex;
+        if (curFrameIndex > clip.keyframeStartIndex) curFrameIndex--;
+        keyframeClock = 0;
+
+        return atlas.motionSprites[curFrameIndex];
+    }
+    public static MotionSprite GetNextKeyframeSpriteManual(AtlasSO atlas, AtlasClip clip, float currentTime)
+    {
+        int curFrameIndex = (int)Mathf.Lerp(clip.keyframeStartIndex, clip.keyframeEndIndex, currentTime);
+        return atlas.motionSprites[curFrameIndex];
+    }
+    public static MotionSprite GetNextKeyframeIndexEditor(AtlasSO atlas, AtlasClip clip, ref float keyframeClock, ref int curFrameIndex, ref int prevFrameIndex)
+    {
+        if (curFrameIndex > clip.keyframeEndIndex || curFrameIndex < 0) curFrameIndex = 0;
+
+        MotionSprite curMotionSprite = atlas.motionSprites[curFrameIndex];
+        int curFrame = (int)(keyframeClock * FRAMES_PER_SEC);
+
+        if (curFrame < curMotionSprite.holdFrames) return curMotionSprite;
+
+        switch (clip.clipType)
+        {
+            case ClipType.Loop:
+            {
+                prevFrameIndex = curFrameIndex;
+                curFrameIndex++;
+
+                if (curFrameIndex > clip.keyframeEndIndex)
+                {
+                    curFrameIndex = clip.keyframeStartIndex;
+                }
+
+                keyframeClock = 0;
+            }
+            break;
+            case ClipType.PingPong:
+            {
+                if (curFrameIndex < clip.keyframeEndIndex && (curFrameIndex > prevFrameIndex || curFrameIndex == clip.keyframeStartIndex))
+                {
+                    prevFrameIndex = curFrameIndex;
+                    curFrameIndex++;
+                }
+                else
+                {
+                    prevFrameIndex = curFrameIndex;
+                    curFrameIndex--;
+                }
+                keyframeClock = 0;
+            }
+            break;
+            case ClipType.OneShot:
+            {
+                prevFrameIndex = curFrameIndex;
+                if (curFrameIndex < clip.keyframeEndIndex)
+                {
+                    curFrameIndex++;
+                }
+                keyframeClock = 0;
+            }
+            break;
+        }
+
+        return atlas.motionSprites[curFrameIndex];
+    }
+    public static Mesh SetQuad()
+    {
+        Mesh quad = new Mesh();
+        quad.name = "AtlasBatchQuad";
+
+        quad.vertices = new Vector3[]
+        {
+            new Vector3(0f, 0f),
+            new Vector3(1f, 0f),
+            new Vector3(0f,  1f),
+            new Vector3(1f,  1f),
+        };
+
+        quad.uv = new Vector2[]
+        {
+            new Vector2(0, 0),
+            new Vector2(1, 0),
+            new Vector2(0, 1),
+            new Vector2(1, 1),
+        };
+
+        quad.triangles = new int[] { 0, 2, 1, 2, 3, 1 };
+        quad.RecalculateBounds();
+
+        return quad;
+    }
+    public static void SetScaleAndFlipSliceNineSliceArray(float width, float height, int flipX, int flipY, ref Vector4[] scaleAndFlip)
+    {
+        Vector4 scaleFlipCQuad = new Vector4(1, 1, flipX, flipY);
+        Vector4 scaleFlipHQuad = new Vector4(width, 1, flipX, flipY);
+        Vector4 scaleFlipVQuad = new Vector4(1, height, flipX, flipY);
+        Vector4 scaleFlipMQuad = new Vector4(width, height, flipX, flipY);
+
+        scaleAndFlip[0] = scaleFlipCQuad;
+        scaleAndFlip[1] = scaleFlipHQuad;
+        scaleAndFlip[2] = scaleFlipCQuad;
+        scaleAndFlip[3] = scaleFlipVQuad;
+        scaleAndFlip[4] = scaleFlipMQuad;
+        scaleAndFlip[5] = scaleFlipVQuad;
+        scaleAndFlip[6] = scaleFlipCQuad;
+        scaleAndFlip[7] = scaleFlipHQuad;
+        scaleAndFlip[8] = scaleFlipCQuad;
+    }
+    public static Vector4[] GetQuadScalesFromSliceSprite(float width, float height, SliceSprite sliceSprite)
+    {
+        float centerWidth = sliceSprite.sprite.worldSize.x - sliceSprite.worldSlices.x - sliceSprite.worldSlices.y;
+        float centerHeight = sliceSprite.sprite.worldSize.y - sliceSprite.worldSlices.z - sliceSprite.worldSlices.w;
+
+        float pivotWidth = (width - 1) * centerWidth;
+        float pivotHeight = (height - 1) * centerHeight;
+
+        return new Vector4[]
+        {
+            new Vector4(1, 1, 0, 0),
+            new Vector4(width, 1, 0, 0),
+            new Vector4(1, 1, pivotWidth, 0),
+
+            new Vector4(1, height, 0, 0),
+            new Vector4(width, height, 0, 0),
+            new Vector4(1, height, pivotWidth, 0),
+
+            new Vector4(1, 1, 0, pivotHeight),
+            new Vector4(width, 1, 0, pivotHeight),
+            new Vector4(1, 1, pivotWidth, pivotHeight),
+        };
+    }
+
+    public static void SetWorldPivotAndSizes(SliceSprite sliceSprite, float width, float height, bool flipX, bool flipY, ref Vector4[] worldPivSize)
+    {
+        float centerWorldSliceWidth = sliceSprite.sprite.worldSize.x - sliceSprite.worldSlices.x - sliceSprite.worldSlices.y;
+        float centerWorldSliceHeight = sliceSprite.sprite.worldSize.y - sliceSprite.worldSlices.z - sliceSprite.worldSlices.w;
+
+        float xOffset = flipX ? sliceSprite.worldSlices.y : sliceSprite.worldSlices.x;
+        float yOffset = flipY ? sliceSprite.worldSlices.w : sliceSprite.worldSlices.z;
+
+        float rightColPos = xOffset + (centerWorldSliceWidth * width);
+        float topRowPos = yOffset + (centerWorldSliceHeight * height);
+
+        float flipXPivot = flipX ? 1 - sliceSprite.sprite.uvPivot.x : sliceSprite.sprite.uvPivot.x;
+        float flipYPivot = flipY ? 1 - sliceSprite.sprite.uvPivot.y : sliceSprite.sprite.uvPivot.y;
+
+        float basePivotX = flipXPivot * -(rightColPos + (flipX ? sliceSprite.worldSlices.x : sliceSprite.worldSlices.y));
+        float basePivotY = flipYPivot * -(topRowPos + (flipY ? sliceSprite.worldSlices.z : sliceSprite.worldSlices.w));
+
+        float pX0 = flipX ? basePivotX + rightColPos : basePivotX;
+        float pX1 = basePivotX + xOffset;
+        float pX2 = flipX ? basePivotX : basePivotX + rightColPos;
+
+        float pY0 = flipY ? basePivotY + topRowPos : basePivotY;
+        float pY1 = basePivotY + yOffset;
+        float pY2 = flipY ? basePivotY : basePivotY + topRowPos;
+
+        Vector4 q0 = new Vector4(pX0, pY0, sliceSprite.worldSlices.x, sliceSprite.worldSlices.z);
+        Vector4 q1 = new Vector4(pX1, pY0, centerWorldSliceWidth, sliceSprite.worldSlices.z);
+        Vector4 q2 = new Vector4(pX2, pY0, sliceSprite.worldSlices.y, sliceSprite.worldSlices.z);
+
+        Vector4 q3 = new Vector4(pX0, pY1, sliceSprite.worldSlices.x, centerWorldSliceHeight);
+        Vector4 q4 = new Vector4(pX1, pY1, centerWorldSliceWidth, centerWorldSliceHeight);
+        Vector4 q5 = new Vector4(pX2, pY1, sliceSprite.worldSlices.y, centerWorldSliceHeight);
+
+        Vector4 q6 = new Vector4(pX0, pY2, sliceSprite.worldSlices.x, sliceSprite.worldSlices.w);
+        Vector4 q7 = new Vector4(pX1, pY2, centerWorldSliceWidth, sliceSprite.worldSlices.w);
+        Vector4 q8 = new Vector4(pX2, pY2, sliceSprite.worldSlices.y, sliceSprite.worldSlices.w);
+
+        worldPivSize[0] = q0;
+        worldPivSize[1] = q1;
+        worldPivSize[2] = q2;
+        worldPivSize[3] = q3;
+        worldPivSize[4] = q4;
+        worldPivSize[5] = q5;
+        worldPivSize[6] = q6;
+        worldPivSize[7] = q7;
+        worldPivSize[8] = q8;
+    }
+}
+
+#if UNITY_EDITOR
+
+[InitializeOnLoad]
+public static class AtlasSpriteCleanup
+{
+    static AtlasSpriteCleanup()
+    {
+        AssemblyReloadEvents.beforeAssemblyReload += AtlasRendering.Dispose;
+    }
+}
+#endif
