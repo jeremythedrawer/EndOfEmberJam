@@ -10,7 +10,7 @@ Shader "Custom/s_atlasUI"
         {
             HLSLPROGRAM
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-            #include "Assets/Shaders/HLSL/AtlasSprites.hlsl"
+            #include "Assets/Shaders/Atlas/HLSL/AtlasSprites.hlsl"
             #pragma vertex vert
             #pragma fragment frag
 
@@ -38,12 +38,9 @@ Shader "Custom/s_atlasUI"
             TEXTURE2D(_AtlasTexture);
             SAMPLER(sampler_AtlasTexture);
 
-            TEXTURE2D(_CarriageBoundsTexture);
-            SAMPLER(sampler_CarriageBoundsTexture);
-
             float3 _BlackColor;
-            float3 _MeridiaColor;
             float3 _WhiteColor;
+
 
             Varyings vert(Attributes v)
             {
@@ -85,7 +82,7 @@ Shader "Custom/s_atlasUI"
                 float2 uv = SpriteUV(i.uv, i.uvSizeAndPos, i.scaleAndFlip);
                 half4 tex = SAMPLE_TEXTURE2D(_AtlasTexture, sampler_AtlasTexture, uv);
 
-                half4 finalColor = UIColor(i.customBit, tex, i.custom, _BlackColor, _WhiteColor, _MeridiaColor, i.positionHCS.y);
+                half4 finalColor = UIColor(i.customBit, tex, i.custom, _BlackColor, _WhiteColor);
 
                 clip(finalColor.a - 0.001);
 

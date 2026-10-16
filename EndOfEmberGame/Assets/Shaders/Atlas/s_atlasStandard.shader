@@ -18,8 +18,7 @@ Shader "Custom/s_atlasStandard"
         {
             HLSLPROGRAM
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-            #include "Assets/Shaders/HLSL/AtlasSprites.hlsl"
-            #include "Assets/Shaders/HLSL/AtlasParticles.hlsl"
+            #include "Assets/Shaders/Atlas/HLSL/AtlasSprites.hlsl"
 
             #pragma vertex vert
             #pragma fragment frag
@@ -98,16 +97,8 @@ Shader "Custom/s_atlasStandard"
 
                 half4 tex = SAMPLE_TEXTURE2D(_AtlasTexture, sampler_AtlasTexture, i.uv);
 
-                float divisor = 35;
-                half normDepth = round(i.worldPos.z/divisor) * divisor / FAR_CLIP;
-                normDepth *= 0.9;
-                half3 nightFactor = lerp(_WhiteColor, _BlackColor, _DayNight * normDepth);
-
-                half grey = tex.r + (-(_DayNight * 1.2 - 0.8) * normDepth);
-                half3 finalColor = lerp(_BlackColor, nightFactor, saturate(grey));
-
                 clip(tex.a - 0.001);
-                return half4 (finalColor, 1);
+                return half4 (tex.rgb, 1);
             }
             ENDHLSL
         }
