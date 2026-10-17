@@ -1,7 +1,4 @@
-using TreeEditor;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using static UnityEngine.InputSystem.InputAction;
 
 public class CursorController : MonoBehaviour
 {
@@ -12,17 +9,19 @@ public class CursorController : MonoBehaviour
     public static AtlasRenderer CursorRenderer;
 
     public InputSO inputData;
-    public CameraData camData;
 
     public CursorSO cursorData;
     public AudioSO audioData;
     public OptionsSO options;
     public PlayerSO playerData;
+    public CameraSO camData;
 
     public AtlasRenderer cursorRenderer;
     public AudioSource audioSource;
 
     [Header("Generated")]
+
+    public Vector4 cursorDistFromCenter;
 
     public float timer;
 
@@ -46,6 +45,11 @@ public class CursorController : MonoBehaviour
             transform.position = inputData.mouseWorldPos;
 
             cursorData.cursorBounds = cursorRenderer.GetBounds();
+
+            cursorDistFromCenter.x = inputData.mouseScreenPos.x / (float)Screen.width;
+            cursorDistFromCenter.y = inputData.mouseScreenPos.y / (float)Screen.height;
+            
+            camData.postProcessMaterial.SetVector("_NoiseOffset", -cursorDistFromCenter);
         }
     }
     private void LateUpdate()
@@ -92,10 +96,6 @@ public class CursorController : MonoBehaviour
         }
     }
 
-    private void PlayAudioOnClick(CallbackContext ctx)
-    {
-        audioSource.PlayOneShot(audioData.cursorClick);
-    }
     private void Init()
     {
         Cursor.visible = false;
@@ -104,9 +104,5 @@ public class CursorController : MonoBehaviour
         cursorData.curCursorSpriteType = CursorSO.CursorSpriteType.Point;
 
         playerData.curState = PlayerSO.State.Room;
-    }
-    private void UpdateVolume()
-    {
-        audioSource.volume = audioData.soundEffectsVolume;
     }
 }

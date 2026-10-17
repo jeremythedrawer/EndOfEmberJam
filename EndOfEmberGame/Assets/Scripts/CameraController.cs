@@ -226,6 +226,7 @@ public class CameraController : MonoBehaviour
                 float t = fadeClock / camData.fadeTime;
                 t = Curves.EaseOutT(t, 2);
                 camData.postProcessMaterial.SetFloat("_Fade", t);
+                camData.postProcessMaterial.SetFloat("_Focus", (1.0f - t) * 0.005f);
                 await UniTask.Yield(ctsFade.Token);
                 fadeClock += Time.deltaTime;
             }

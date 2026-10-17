@@ -199,8 +199,10 @@ MonoBehaviour:
   audioData: {fileID: 11400000, guid: fd6d804c2eda61f439484f1c6774868b, type: 2}
   options: {fileID: 11400000, guid: ef279fed7cd35be41be8c079b5ba344b, type: 2}
   playerData: {fileID: 11400000, guid: 8641ad54672092346a4d2bab986f28fc, type: 2}
+  camData: {fileID: 11400000, guid: a7fff445b9a105b4ea95fc2de646a20b, type: 2}
   cursorRenderer: {fileID: 101449082869126183}
   audioSource: {fileID: 8394574613125918423}
+  cursorDistFromCenter: {x: 0, y: 0, z: 0, w: 0}
   timer: 0
   cursorIsMoving: 0
   active: 0

@@ -6,8 +6,8 @@ public class CursorSO : ScriptableObject
 {
     public enum CursorSpriteType
     {
-        Arrow = 0,
-        Point = 1,
+        Point = 0,
+        Arrow = 1,
     }
 
     public InputSO inputData;
