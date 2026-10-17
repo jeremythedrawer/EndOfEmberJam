@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
-        m_Texture: {fileID: 2800000, guid: 057b908aeefb5bc46903b04a3a8f2f4d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0941ec3fd570d9d4ea11352ba74a681a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -46,6 +46,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _NoiseScale: 0.868
+    - _SquareToCircle: 0
+    - _VignetteDensity: 0.642
+    - _VignetteDistance: 23.4
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
