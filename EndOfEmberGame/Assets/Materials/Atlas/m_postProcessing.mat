@@ -46,10 +46,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _NoiseScale: 0.868
-    - _SquareToCircle: 0
-    - _VignetteDensity: 0.642
-    - _VignetteDistance: 23.4
+    - _Fade: 1
+    - _NoiseScale: 0.611
+    - _ScopeDensity: 0.45
+    - _ScopeDistance: 0.121
+    - _ScopeFade: 0
+    - _SquareToCircle: 1
+    - _VignetteDensity: 0.321
+    - _VignetteDistance: 30
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

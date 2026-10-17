@@ -1,8 +1,13 @@
+using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
 using UnityEngine;
 
 using static Atlas;
 public class CameraController : MonoBehaviour
 {
+    public delegate void OnFinishFadeIn();
+
     public CameraSO camData;
     public ActionSO actionData;
     public PlayerSO playerData;
@@ -14,7 +19,9 @@ public class CameraController : MonoBehaviour
     public Vector3 rawCurWorldPos;
     public Vector3 targetWorldPos;
 
+    public float fadeClock;
 
+    public CancellationTokenSource ctsFade;
     private void Start()
     {
         Init();
@@ -47,6 +54,8 @@ public class CameraController : MonoBehaviour
         cam.orthographicSize = GetSnappedOrthoSize();
         camData.worldUnitsPerPixel = (cam.orthographicSize * 2) / Screen.height;
 
+        fadeClock = camData.fadeTime;
+
         Vector3 boundsSize = new Vector3();
         boundsSize.x = cam.orthographicSize * 2 * cam.aspect;
         boundsSize.y = cam.orthographicSize * 2;
@@ -74,18 +83,21 @@ public class CameraController : MonoBehaviour
             case PlayerSO.State.Room:
             {
                 transform.position = camData.roomWorldPos;
+                FadeIn(FadeOutToVignette);
             }
             break;
 
             case PlayerSO.State.Microscope:
             {
                 transform.position = camData.microscopeWorldPos;
+                FadeIn(FadeOutToScope);
             }
             break;
 
             case PlayerSO.State.Wiki:
             {
                 transform.position = camData.wikiWorldPos;
+                FadeIn(FadeOutToVignette);
             }
             break;
         }
@@ -141,5 +153,89 @@ public class CameraController : MonoBehaviour
         Vector3 snappedPos = C2W.MultiplyPoint3x4(camSpace);
         return snappedPos;
     }
+    private void FadeIn(OnFinishFadeIn callBack = null)
+    {
+        ctsFade?.Cancel();
+        ctsFade = new CancellationTokenSource();
+        FadingIn(callBack).Forget();
+    }
+    private void FadeOutToVignette()
+    {
+        ctsFade?.Cancel();
+        ctsFade = new CancellationTokenSource();
+        FadingOutToVignette().Forget();
+    }
+    private void FadeOutToScope()
+    {
+        ctsFade?.Cancel();
+        ctsFade = new CancellationTokenSource();
+        FadingOutToScope().Forget();
+    }
+    private async UniTask FadingIn(OnFinishFadeIn callback)
+    {
+        try
+        {
+            while (fadeClock > 0)
+            {
+                float t = fadeClock / camData.fadeTime;
+                t = Curves.EaseOutT(t, 2);
+                camData.postProcessMaterial.SetFloat("_Fade", t);
+                await UniTask.Yield(ctsFade.Token);
+            
+                fadeClock -= Time.deltaTime * 10;
+            }
+            camData.postProcessMaterial.SetFloat("_Fade", 0);
+        
+            if (callback != null)
+            {
+                callback();
+            }
+        }
+        catch(OperationCanceledException)
+        {
+
+        }
+    }
+    private async UniTask FadingOutToVignette()
+    {
+        try
+        {
+            camData.postProcessMaterial.SetFloat("_SquareToCircle", 0);
+            while (fadeClock < camData.fadeTime)
+            {
+                float t = fadeClock / camData.fadeTime;
+                t = Curves.EaseOutT(t, 2);
+                camData.postProcessMaterial.SetFloat("_Fade", t);
+                await UniTask.Yield(ctsFade.Token);
+                fadeClock += Time.deltaTime;
+            }
+            camData.postProcessMaterial.SetFloat("_Fade", 1);
+        }
+        catch (OperationCanceledException)
+        {
+
+        }
+    }
+    private async UniTask FadingOutToScope()
+    {
+        try
+        {
+            camData.postProcessMaterial.SetFloat("_SquareToCircle", 1);
+            while (fadeClock < camData.fadeTime)
+            {
+                float t = fadeClock / camData.fadeTime;
+                t = Curves.EaseOutT(t, 2);
+                camData.postProcessMaterial.SetFloat("_Fade", t);
+                await UniTask.Yield(ctsFade.Token);
+                fadeClock += Time.deltaTime;
+            }
+            camData.postProcessMaterial.SetFloat("_Fade", 1);
+        }
+        catch( OperationCanceledException)
+        {
+
+        }
+    }
+
 }
 

@@ -3,7 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CameraSO", menuName = "Custom / Camera SO")]
 public class CameraSO : ScriptableObject
 {
+    public Material postProcessMaterial;
     public float damping;
+    public float fadeTime;
     [Header("Generated")]
     public Bounds bounds;
 

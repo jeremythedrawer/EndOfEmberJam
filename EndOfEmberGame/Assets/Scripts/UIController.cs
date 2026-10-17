@@ -4,11 +4,14 @@ public class UIController : MonoBehaviour
 {
     public AtlasTextRenderer headerRenderer;
 
+
+
     public TextButton leftButton;
     public TextButton rightButton;
 
     public ActionSO actionData;
     public PlayerSO playerData;
+    public CameraSO camData;
     private void Start()
     {
         InitButtons();
@@ -29,9 +32,10 @@ public class UIController : MonoBehaviour
                 {
                     leftButton.textRenderer.SetText("");
                     rightButton.textRenderer.SetText("Room");
-
-                    playerData.curState = PlayerSO.State.Wiki;
+                    
                     headerRenderer.SetText("Wiki");
+                    
+                    actionData.onEnterWikiView?.Invoke();
                 }
                 break;
 
@@ -45,8 +49,9 @@ public class UIController : MonoBehaviour
                     leftButton.textRenderer.SetText("Wiki");
                     rightButton.textRenderer.SetText("Microscope");
 
-                    playerData.curState = PlayerSO.State.Room;
                     headerRenderer.SetText("Room");
+                    
+                    actionData.onEnterRoomView?.Invoke();
                 }
                 break;
             }
@@ -62,8 +67,10 @@ public class UIController : MonoBehaviour
                 {
                     leftButton.textRenderer.SetText("Room");
                     rightButton.textRenderer.SetText("");
-                    playerData.curState = PlayerSO.State.Microscope;
+
                     headerRenderer.SetText("Microscope");
+
+                    actionData.onEnterMicroscopeView?.Invoke();
                 }
                 break;
 
@@ -71,8 +78,10 @@ public class UIController : MonoBehaviour
                 {
                     leftButton.textRenderer.SetText("Wiki");
                     rightButton.textRenderer.SetText("Microscope");
-                    playerData.curState = PlayerSO.State.Room;
+
                     headerRenderer.SetText("Room");
+
+                    actionData.onEnterRoomView?.Invoke();
                 }
                 break;
 

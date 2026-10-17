@@ -17,7 +17,7 @@ Shader "Custom/s_preProcessing"
 
 		half4 frag(Varyings input) : SV_TARGET
 		{
-			return half4(0.5,0.5,0.5,0);
+			return half4(1, 1, 1,0);
 		}
 	ENDHLSL
 

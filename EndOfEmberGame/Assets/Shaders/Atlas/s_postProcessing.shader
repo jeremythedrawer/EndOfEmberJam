@@ -6,8 +6,14 @@ Shader "Custom/s_postProcessing"
 
 		_VignetteDistance("Vignette Distance", Range(0,30)) = 0
 		_VignetteDensity("Vignette Density", Range(0,1)) = 0
+		
+		_ScopeDistance("Scope Distance", Range(0, 1)) = 0
+		_ScopeDensity("Scope Density", Range(0, 2)) = 0
+
 		_SquareToCircle("Square To Circle", Range(0,1)) = 0
+
 		_NoiseScale("Noise Scale", Range(0,1)) = 1
+		_Fade("Fade", Range(0,1)) = 0
     }
 
     HLSLINCLUDE
@@ -23,8 +29,15 @@ Shader "Custom/s_postProcessing"
 		CBUFFER_START(UnityPerMatieral)	
 			float _VignetteDistance;
 			float _VignetteDensity;
+
+			float _ScopeDistance;
+			float _ScopeDensity;
+
 			float _SquareToCircle;
+
 			float _NoiseScale;
+
+			float _Fade;
 		CBUFFER_END
 
 		float2 _SnapDiff;
@@ -42,16 +55,20 @@ Shader "Custom/s_postProcessing"
 
 			float2 squareUV = input.texcoord * (1 - input.texcoord.yx);
 			float square = squareUV.x * squareUV.y * _VignetteDistance;
-			square = saturate(pow(square, _VignetteDensity));
+			square = pow(square, _VignetteDensity);
 			square += halfTone;
+			square = saturate(square);
 
 			float2 centerUV = aspectUV * 2 - (1 * float2(aspect, 1));
 			float circle = 1- length(centerUV);
+			circle -= _ScopeDistance;
+			circle = saturate(circle);
+			circle = pow(circle, _ScopeDensity);
+
 			float vignetteSDF = lerp(square, circle, _SquareToCircle);
-
-
-			return (vignetteSDF.xxxx);
-
+			vignetteSDF += halfTone;
+			vignetteSDF *= _Fade;
+			camCol *= vignetteSDF;
 			return half4(camCol, 1);
 		}
 	ENDHLSL

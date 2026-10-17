@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39118e2c39995c64aa6e2ecb9f489b49, type: 3}
   m_Name: CameraSO
   m_EditorClassIdentifier: 
-  camWorldPos: {x: 0, y: 0, z: 0}
+  postProcessMaterial: {fileID: 2100000, guid: dd43677a1dd26dd46b539f96e8fc554e, type: 2}
+  damping: 0
+  fadeTime: 1
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  curCamWorldPos: {x: 0, y: 0, z: 0}
+  preCamWorldPos: {x: 0, y: 0, z: 0}
   wikiWorldPos: {x: 0, y: 0, z: 0}
   microscopeWorldPos: {x: 0, y: 0, z: 0}
   roomWorldPos: {x: 0, y: 0, z: 0}
+  worldUnitsPerPixel: 0
