@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     public CameraSO camData;
     public ActionSO actionData;
     public PlayerSO playerData;
-
+    public OptionsSO options;
     [Header("Generated")]
     
     public Camera cam;
@@ -62,6 +62,8 @@ public class CameraController : MonoBehaviour
         boundsSize.z = cam.farClipPlane + cam.nearClipPlane;
         camData.bounds = new Bounds();
         camData.bounds.size = boundsSize;
+
+        options.SetColors();
     }
     public void SetState(PlayerSO.State newState)
     {

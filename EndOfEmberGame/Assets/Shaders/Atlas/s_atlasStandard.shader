@@ -92,9 +92,9 @@ Shader "Custom/s_atlasStandard"
                 i.uv += uvPos;
 
                 half4 tex = SAMPLE_TEXTURE2D(_AtlasTexture, sampler_AtlasTexture, i.uv);
-
+                half mask = tex.r + tex.g + tex.b;
                 clip(tex.a - 0.001);
-                return half4 (tex.rgb, 1);
+                return half4 (mask.rrr, 1);
             }
             ENDHLSL
         }

@@ -47,10 +47,11 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _Fade: 1
-    - _Focus: 0
-    - _NoiseScale: 0.81
-    - _ScopeDensity: 0.93
-    - _ScopeDistance: 0.126
+    - _Focus: 0.000000047683713
+    - _Invert: 0
+    - _NoiseScale: 0.447
+    - _ScopeDensity: 0.61
+    - _ScopeDistance: 0.105
     - _ScopeFade: 0
     - _SquareToCircle: 1
     - _VignetteDensity: 0.321
@@ -58,7 +59,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _NoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _NoiseOffset: {r: -0, g: -0, b: -0, a: -0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

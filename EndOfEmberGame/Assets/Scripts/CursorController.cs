@@ -37,10 +37,6 @@ public class CursorController : MonoBehaviour
     {
         if (active)
         {
-            if (inputData.mouseLeftUp && cursorData.isHovering)
-            {
-                audioSource.PlayOneShot(audioData.cursorClick);
-            }
             cursorRenderer.enabled = true;
             transform.position = inputData.mouseWorldPos;
 

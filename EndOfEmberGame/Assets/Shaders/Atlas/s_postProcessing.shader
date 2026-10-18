@@ -19,6 +19,8 @@ Shader "Custom/s_postProcessing"
 
 		_Focus("Focus", Range(0,0.005)) = 0
 
+		_Invert("Invert", Float) = 0
+
     }
 
     HLSLINCLUDE
@@ -46,9 +48,13 @@ Shader "Custom/s_postProcessing"
 			float _Fade;
 
 			float _Focus;
+
+			float _Invert;
 		CBUFFER_END
 
 		float2 _SnapDiff;
+		float3 _DarkColor;
+		float3 _LightColor;
 
 		static const float2 BOX_BLUR_OFFSET[4] =
 		{
@@ -95,6 +101,11 @@ Shader "Custom/s_postProcessing"
 			vignetteSDF += halfTone;
 			vignetteSDF *= _Fade;
 			camCol *= vignetteSDF;
+
+			if (_Invert == 1) camCol = 1 - camCol;
+
+			camCol = lerp(_DarkColor, _LightColor, camCol);
+
 			return half4(camCol, 1);
 		}
 	ENDHLSL

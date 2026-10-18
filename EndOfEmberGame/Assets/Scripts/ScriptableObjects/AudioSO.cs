@@ -7,4 +7,6 @@ public class AudioSO : ScriptableObject
 
     public AudioClip cursorClick;
     public AudioClip cursorHover;
+
+    public AudioClip lightSwitch;
 }
