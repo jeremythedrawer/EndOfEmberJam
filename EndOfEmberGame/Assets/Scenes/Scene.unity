@@ -238,6 +238,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1506795870 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6821595183081589740, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+  m_PrefabInstance: {fileID: 2698968434082673826}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1370411465118074224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -343,6 +348,10 @@ PrefabInstance:
       propertyPath: bounds.m_Center.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5077181887917554255, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1506795870}
     - target: {fileID: 6427137612456992117, guid: 4be94e7760f59824aa4060f06aa37b18, type: 3}
       propertyPath: bounds.m_Center.x
       value: -4.7729216

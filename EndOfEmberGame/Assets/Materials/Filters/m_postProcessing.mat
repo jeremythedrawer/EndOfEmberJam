@@ -48,7 +48,7 @@ Material:
     - _Brightness: 0
     - _EnableExternalAlpha: 0
     - _Fade: 1
-    - _Focus: 2.9802322e-10
+    - _Focus: 0
     - _Invert: 0
     - _NoiseScale: 0.726
     - _ScopeDensity: 0.61
