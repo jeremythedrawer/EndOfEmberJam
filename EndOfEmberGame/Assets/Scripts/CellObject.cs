@@ -4,12 +4,15 @@ public class CellObject : MonoBehaviour
 {
     public MaterialPropertyBlock matPropBlock;
     public MeshRenderer meshRenderer;
-    private void Start()
+    public void Init()
     {
         matPropBlock = new MaterialPropertyBlock();
     }
-    private void Update()
+    public void SetPropBlock(float normID)
     {
+        matPropBlock.SetFloat("_TimeOffset", normID * 100);
+        meshRenderer.SetPropertyBlock(matPropBlock);
+
 
     }
 }

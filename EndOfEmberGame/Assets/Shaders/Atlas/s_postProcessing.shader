@@ -6,11 +6,6 @@ Shader "Custom/s_postProcessing"
 
 		_VignetteDistance("Vignette Distance", Range(0,30)) = 0
 		_VignetteDensity("Vignette Density", Range(0,1)) = 0
-		
-		_ScopeDistance("Scope Distance", Range(0, 1)) = 0
-		_ScopeDensity("Scope Density", Range(0, 2)) = 0
-
-		_SquareToCircle("Square To Circle", Range(0,1)) = 0
 
 		_NoiseScale("Noise Scale", Range(0,1)) = 1
 		_NoiseOffset("Noise Offset", Vector) = (0,0,0,0)
@@ -33,14 +28,9 @@ Shader "Custom/s_postProcessing"
         TEXTURE2D(_NoiseTexture);
         SAMPLER(sampler_NoiseTexture);
 
-		CBUFFER_START(UnityPerMatieral)	
+		CBUFFER_START(UnityPerMaterial)	
 			float _VignetteDistance;
 			float _VignetteDensity;
-
-			float _ScopeDistance;
-			float _ScopeDensity;
-
-			float _SquareToCircle;
 
 			float _NoiseScale;
 			float4 _NoiseOffset;
@@ -54,7 +44,7 @@ Shader "Custom/s_postProcessing"
 
 		float2 _SnapDiff;
 		float3 _DarkColor;
-		float3 _LightColor;
+		float3 _BrightColor;
 
 		static const float2 BOX_BLUR_OFFSET[4] =
 		{
@@ -87,24 +77,18 @@ Shader "Custom/s_postProcessing"
 			halfTone *= 0.005;
 
 			float2 squareUV = input.texcoord * (1 - input.texcoord.yx);
-			float square = squareUV.x * squareUV.y * _VignetteDistance;
-			square = pow(square, _VignetteDensity);
-			square = saturate(square);
+			float vignetteSDF  = squareUV.x * squareUV.y * _VignetteDistance;
+			vignetteSDF  = pow(vignetteSDF , _VignetteDensity);
+			vignetteSDF  = saturate(vignetteSDF);
 
-			float2 centerUV = aspectUV * 2 - (1 * float2(aspect, 1));
-			float circle = 1- length(centerUV);
-			circle -= _ScopeDistance;
-			circle = saturate(circle);
-			circle = pow(circle, _ScopeDensity) + circle;
-			circle += halfTone;
-			float vignetteSDF = lerp(square, circle, _SquareToCircle);
 			vignetteSDF += halfTone;
 			vignetteSDF *= _Fade;
 			camCol *= vignetteSDF;
 
 			if (_Invert == 1) camCol = 1 - camCol;
 
-			camCol = lerp(_DarkColor, _LightColor, camCol);
+			camCol = lerp(_DarkColor, _BrightColor, camCol);
+
 
 			return half4(camCol, 1);
 		}

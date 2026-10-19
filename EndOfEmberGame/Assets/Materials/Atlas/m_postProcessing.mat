@@ -47,7 +47,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _Fade: 1
-    - _Focus: 0.000000047683713
+    - _Focus: 0.000000013113022
     - _Invert: 0
     - _NoiseScale: 0.447
     - _ScopeDensity: 0.61

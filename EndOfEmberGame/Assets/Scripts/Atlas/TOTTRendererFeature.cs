@@ -10,7 +10,6 @@ using static AtlasRendering;
 
 public class TOTTRendererFeature : ScriptableRendererFeature
 {
-    public CameraData cameraStats;
     public Mesh quad;
 
     public Material preProcessMaterial;
@@ -21,14 +20,13 @@ public class TOTTRendererFeature : ScriptableRendererFeature
     private PostProcessPass postProcessPass;
     private class AtlasPassData
     {
-        public CameraData cameraStats;
     }
 
 
     public override void Create()
     {
         if (quad == null) quad = AtlasRendering.SetQuad();
-        batchPass = new AtlasBatchPass(cameraStats, quad);
+        batchPass = new AtlasBatchPass(quad);
         preProcessPass = new PreProcessPass(this);
         postProcessPass = new PostProcessPass(this);
     }
@@ -41,14 +39,12 @@ public class TOTTRendererFeature : ScriptableRendererFeature
     }
     private class AtlasBatchPass : ScriptableRenderPass
     {
-        private static CameraData cameraStats;
         private static Mesh quad;
         private uint[] args;
         
-        public AtlasBatchPass( CameraData camStats, Mesh quadToUse)
+        public AtlasBatchPass(Mesh quadToUse)
         {
             renderPassEvent = RenderPassEvent.AfterRenderingOpaques;
-            cameraStats = camStats;
             quad = quadToUse;
         }
 
@@ -57,7 +53,6 @@ public class TOTTRendererFeature : ScriptableRendererFeature
             UniversalResourceData resources = frameData.Get<UniversalResourceData>();
 
             using IRasterRenderGraphBuilder builder = renderGraph.AddRasterRenderPass<AtlasPassData>("Atlas Batch Pass", out AtlasPassData passData);
-            passData.cameraStats = cameraStats;
             builder.SetRenderAttachment(resources.activeColorTexture, 0);
             builder.SetRenderAttachmentDepth(resources.activeDepthTexture, AccessFlags.ReadWrite);
             builder.AllowPassCulling(false);
@@ -73,11 +68,10 @@ public class TOTTRendererFeature : ScriptableRendererFeature
 
             builder.SetRenderFunc((AtlasPassData data, RasterGraphContext ctx) =>
             {
-                ExecuteBatch(ctx.cmd, data.cameraStats, quad, ref args);
+                ExecuteBatch(ctx.cmd, quad, ref args);
             });
         }
-
-        private static void ExecuteBatch(RasterCommandBuffer cmd, CameraData camStats, Mesh quad, ref uint[] args)
+        private static void ExecuteBatch(RasterCommandBuffer cmd, Mesh quad, ref uint[] args)
         {
 #if UNITY_EDITOR
             PrefabStage prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
@@ -213,12 +207,12 @@ public class TOTTRendererFeature : ScriptableRendererFeature
             if (rendererFeature.postProcessMaterial == null) return;
 
             TextureDesc camColorTexDesc = resourceData.cameraColor.GetDescriptor(renderGraph);
-            camColorTexDesc.name = "PixelPerfectTexture";
+            camColorTexDesc.name = "PostProcessing";
 
             TextureHandle texHandle = renderGraph.CreateTexture(camColorTexDesc);
 
             PixelPerfectPassData passData;
-            using (IRasterRenderGraphBuilder builder = renderGraph.AddRasterRenderPass<PixelPerfectPassData>("Pixel Perfect Pass", out passData))
+            using (IRasterRenderGraphBuilder builder = renderGraph.AddRasterRenderPass<PixelPerfectPassData>("Post Processing Pass", out passData))
             {
                 passData.curSourceColor = resourceData.cameraColor;
                 passData.targetColor = texHandle;

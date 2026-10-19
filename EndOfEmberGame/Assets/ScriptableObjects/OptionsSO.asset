@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: OptionsSO
   m_EditorClassIdentifier: 
   darkColor: {r: 0.011213952, g: 0.07694499, b: 0.11320752, a: 1}
-  lightColor: {r: 0.990566, g: 0.98717993, b: 0.8457191, a: 1}
-  darkColorID: 1343
-  lightColorID: 21
+  lightColor: {r: 1, g: 1, b: 1, a: 1}

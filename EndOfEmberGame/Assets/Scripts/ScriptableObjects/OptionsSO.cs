@@ -13,7 +13,7 @@ public class OptionsSO : ScriptableObject
     public void SetColors()
     {
         darkColorID = Shader.PropertyToID("_DarkColor");
-        lightColorID = Shader.PropertyToID("_LightColor");
+        lightColorID = Shader.PropertyToID("_BrightColor");
         Shader.SetGlobalColor(darkColorID, darkColor.linear);
         Shader.SetGlobalColor(lightColorID, lightColor.linear);
     }
