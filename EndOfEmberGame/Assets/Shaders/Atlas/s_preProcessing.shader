@@ -11,13 +11,13 @@ Shader "Custom/s_preProcessing"
 		TEXTURE2D(_SourceTex);
 		SAMPLER(sampler_SourceTex);
 
-		float3 _BlackColor;
-		float3 _WhiteColor;
+		float3 _DarkColor;
+		float3 _BrightColor;
 
 
 		half4 frag(Varyings input) : SV_TARGET
 		{
-			return half4(1, 1, 1,0);
+			return half4(0.5, 0.5, 0.5,0);
 		}
 	ENDHLSL
 

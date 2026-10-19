@@ -35,7 +35,7 @@ public class UIController : MonoBehaviour
                     
                     headerRenderer.SetText("Wiki");
                     
-                    actionData.onEnterWikiView?.Invoke();
+                    actionData.onToWikiView?.Invoke();
                 }
                 break;
 
@@ -51,7 +51,7 @@ public class UIController : MonoBehaviour
 
                     headerRenderer.SetText("Room");
                     
-                    actionData.onEnterRoomView?.Invoke();
+                    actionData.onToRoomView?.Invoke();
                 }
                 break;
             }
@@ -70,7 +70,7 @@ public class UIController : MonoBehaviour
 
                     headerRenderer.SetText("Microscope");
 
-                    actionData.onEnterMicroscopeView?.Invoke();
+                    actionData.onToMicroscopeView?.Invoke();
                 }
                 break;
 
@@ -81,7 +81,7 @@ public class UIController : MonoBehaviour
 
                     headerRenderer.SetText("Room");
 
-                    actionData.onEnterRoomView?.Invoke();
+                    actionData.onToRoomView?.Invoke();
                 }
                 break;
 

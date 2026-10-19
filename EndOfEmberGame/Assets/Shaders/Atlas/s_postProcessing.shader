@@ -4,8 +4,8 @@ Shader "Custom/s_postProcessing"
     {
 		[NoScaleOffset] _NoiseTexture("Noise Texture", 2D) = "white" {}
 
-		_VignetteDistance("Vignette Distance", Range(0,30)) = 0
-		_VignetteDensity("Vignette Density", Range(0,1)) = 0
+		_VignetteDistance("Vignette Distance", Range(0,50)) = 0
+		_VignetteDensity("Vignette Density", Range(0,2)) = 0
 
 		_NoiseScale("Noise Scale", Range(0,1)) = 1
 		_NoiseOffset("Noise Offset", Vector) = (0,0,0,0)
@@ -15,6 +15,8 @@ Shader "Custom/s_postProcessing"
 		_Focus("Focus", Range(0,0.005)) = 0
 
 		_Invert("Invert", Float) = 0
+
+		_Brightness("Brightness", Range(0,3)) = 1
 
     }
 
@@ -40,6 +42,8 @@ Shader "Custom/s_postProcessing"
 			float _Focus;
 
 			float _Invert;
+
+			float _Brightness;
 		CBUFFER_END
 
 		float2 _SnapDiff;
@@ -73,24 +77,30 @@ Shader "Custom/s_postProcessing"
 			float2 aspectUV = input.texcoord;
 			aspectUV.x *= aspect;
 			half3 halfToneTex = SAMPLE_TEXTURE2D_X(_NoiseTexture, sampler_NoiseTexture, (aspectUV + (_NoiseOffset * 0.0125)) * _NoiseScale);
-			float halfTone = max(halfToneTex.b, halfToneTex.g * 5) * 2 - 1; 
-			halfTone *= 0.005;
 
 			float2 squareUV = input.texcoord * (1 - input.texcoord.yx);
 			float vignetteSDF  = squareUV.x * squareUV.y * _VignetteDistance;
 			vignetteSDF  = pow(vignetteSDF , _VignetteDensity);
-			vignetteSDF  = saturate(vignetteSDF);
+
+			float halfTone = halfToneTex.r + halfToneTex.g;
+			halfTone *= 2;
+			halfTone -= 1;
+			halfTone *= 0.1;
 
 			vignetteSDF += halfTone;
 			vignetteSDF *= _Fade;
+			vignetteSDF = saturate(vignetteSDF);
+			vignetteSDF += _Brightness;
+			//return vignetteSDF.xxxx;
+			
 			camCol *= vignetteSDF;
 
 			if (_Invert == 1) camCol = 1 - camCol;
 
 			camCol = lerp(_DarkColor, _BrightColor, camCol);
 
-
 			return half4(camCol, 1);
+
 		}
 	ENDHLSL
 

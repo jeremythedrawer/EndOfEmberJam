@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37505cae889313148acab44ae0028cce, type: 3}
   m_Name: OptionsSO
   m_EditorClassIdentifier: 
-  darkColor: {r: 0.011213952, g: 0.07694499, b: 0.11320752, a: 1}
-  lightColor: {r: 1, g: 1, b: 1, a: 1}
+  darkColor: {r: 0.02322891, g: 0.09652011, b: 0.16981131, a: 1}
+  lightColor: {r: 0.7331879, g: 0.735849, b: 0.65601635, a: 1}
+  darkColorID: 949
+  lightColorID: 1560

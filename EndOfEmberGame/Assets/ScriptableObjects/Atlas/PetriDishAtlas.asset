@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cafafa8247c38c459bc8477e6bfafda, type: 3}
+  m_Name: PetriDishAtlas
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: af5be8ba826161745addebe6a5d983cd, type: 3}
+  markerTexture: {fileID: 0}
+  entityMotionType: 0
+  motionSprites: []
+  simpleSprites:
+  - customPositions: []
+    uvSizeAndPos: {x: 0.45117188, y: 0.21972656, z: 0.001953125, w: 0.7783203}
+    worldSize: {x: 2.5666666, y: 1.25, z: 0}
+    uvPivot: {x: 0, y: 0}
+    index: 0
+  slicedSprites: []
+  clips: []

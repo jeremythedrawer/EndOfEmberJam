@@ -45,17 +45,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Brightness: 0
     - _EnableExternalAlpha: 0
     - _Fade: 1
-    - _Focus: 0.000000013113022
+    - _Focus: 2.9802322e-10
     - _Invert: 0
-    - _NoiseScale: 0.447
+    - _NoiseScale: 0.726
     - _ScopeDensity: 0.61
     - _ScopeDistance: 0.105
     - _ScopeFade: 0
     - _SquareToCircle: 1
-    - _VignetteDensity: 0.321
-    - _VignetteDistance: 30
+    - _VignetteDensity: 0.41
+    - _VignetteDistance: 50
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
