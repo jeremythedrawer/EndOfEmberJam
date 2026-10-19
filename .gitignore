@@ -108,7 +108,7 @@ InitTestScene*.unity*
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
 EndOfEmberGame/Library
-EndOfEmberGame/ProjectSettings
+#EndOfEmberGame/ProjectSettings
 EndOfEmberGame/UserSettings
 EndOfEmberGame/Temp
 EndOfEmberGame/obj
