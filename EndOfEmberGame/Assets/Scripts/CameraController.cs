@@ -1,17 +1,22 @@
 using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
+using Unity.Collections;
 using UnityEngine;
 
 using static Atlas;
+using static Biology;
 public class CameraController : MonoBehaviour
 {
     public delegate void OnFinishFadeIn();
+
+    public AudioSource audioSource;
 
     public CameraSO camData;
     public ActionSO actionData;
     public PlayerSO playerData;
     public OptionsSO options;
+    public AudioSO audioData;
     [Header("Generated")]
     
     public Camera cam;
@@ -31,13 +36,13 @@ public class CameraController : MonoBehaviour
     {
         actionData.onToMicroscopeView += EnterMicroscopeView;
         actionData.onToRoomView += EnterRoomView;
-        actionData.onToWikiView += EnterWikiView;
+        actionData.onToPetriDishTableView += EnterPetriDishView;
     }
     private void OnDisable()
     {
         actionData.onToMicroscopeView -= EnterMicroscopeView;
         actionData.onToRoomView -= EnterRoomView;
-        actionData.onToWikiView -= EnterWikiView;
+        actionData.onToPetriDishTableView -= EnterPetriDishView;
     }
     private void Update()
     {
@@ -54,7 +59,7 @@ public class CameraController : MonoBehaviour
         cam.orthographicSize = GetSnappedOrthoSize();
         camData.worldUnitsPerPixel = (cam.orthographicSize * 2) / Screen.height;
 
-        fadeClock = camData.fadeTime;
+        fadeClock = audioData.microscopeView001.length;
 
         Vector3 boundsSize = new Vector3();
         boundsSize.x = cam.orthographicSize * 2 * cam.aspect;
@@ -63,13 +68,20 @@ public class CameraController : MonoBehaviour
         camData.bounds = new Bounds();
         camData.bounds.size = boundsSize;
 
+        rawCurWorldPos.z = transform.position.z;
+        targetWorldPos.z += transform.position.z;
+
         options.SetColors();
+
+        int numSamples = audioData.microscopeView001.samples * audioData.microscopeView001.channels;
+        NativeArray<float> microscopeViewSamples = new NativeArray<float>(numSamples, Allocator.Temp);
     }
-    public void SetState(PlayerSO.State newState)
+    public void SetState(ViewType newState)
     {
-        if (playerData.curState == newState) return;
+        if (playerData.curView == newState) return;
         ExitState();
-        playerData.curState = newState;
+        playerData.preView = playerData.curView;
+        playerData.curView = newState;
         EnterState();
     }
 
@@ -80,23 +92,23 @@ public class CameraController : MonoBehaviour
 
     public void EnterState()
     {
-        switch(playerData.curState)
+        switch(playerData.curView)
         {
-            case PlayerSO.State.Room:
+            case ViewType.Room:
             {
-                FadeIn(FadeOutToVignette);
+                FadeIn(FadeToRoom);
             }
             break;
 
-            case PlayerSO.State.Microscope:
+            case ViewType.Microscope:
             {
-                FadeIn(FadeOutToMicroscope);
+                FadeIn(FadeToMicroscope);
             }
             break;
 
-            case PlayerSO.State.Wiki:
+            case ViewType.PetriDishTable:
             {
-                FadeIn(FadeOutToVignette);
+                FadeIn(FadeToPetryDishTable);
             }
             break;
         }
@@ -108,17 +120,17 @@ public class CameraController : MonoBehaviour
 
     public void EnterRoomView()
     {
-        SetState(PlayerSO.State.Room);
+        SetState(ViewType.Room);
     }
 
     public void EnterMicroscopeView()
     {
-        SetState(PlayerSO.State.Microscope);
+        SetState(ViewType.Microscope);
     }
 
-    public void EnterWikiView()
+    public void EnterPetriDishView()
     {
-        SetState(PlayerSO.State.Wiki);
+        SetState(ViewType.PetriDishTable);
     }
 
     private void SmoothMove()
@@ -158,23 +170,49 @@ public class CameraController : MonoBehaviour
         ctsFade = new CancellationTokenSource();
         FadingIn(callBack).Forget();
     }
-    private void FadeOutToVignette()
+    private void FadeToRoom()
     {
+        targetWorldPos = camData.roomWorldPos;
+        rawCurWorldPos = targetWorldPos;
+        camData.bounds.center = targetWorldPos;
         ctsFade?.Cancel();
         ctsFade = new CancellationTokenSource();
-        
-        actionData.onExitMicroscopeView?.Invoke();
-
         FadingOutToVignette().Forget();
+        
+        actionData.onEnterRoomView?.Invoke();
+
     }
-    private void FadeOutToMicroscope()
+    private void FadeToPetryDishTable()
     {
+        targetWorldPos = camData.petriDishTableWorldPos;
+        rawCurWorldPos = targetWorldPos;
+        camData.bounds.center = targetWorldPos;
 
         ctsFade?.Cancel();
         ctsFade = new CancellationTokenSource();
+        FadingOutToVignette().Forget();
+
+        actionData.onEnterPetriDishView?.Invoke();
+
+        if (playerData.preView == ViewType.Microscope)
+        {
+            actionData.onExitMicroscopeView?.Invoke();
+        }
+    }
+    private void FadeToMicroscope()
+    {
+        targetWorldPos = camData.microscopeWorldPos;
+        rawCurWorldPos = targetWorldPos;
+        camData.bounds.center = targetWorldPos;
+
+        ctsFade?.Cancel();
+        ctsFade = new CancellationTokenSource();
+        FadingOutToMicroscope().Forget();
+
+
+        audioSource.PlayOneShot(audioData.microscopeView001);
 
         actionData.onEnterMicroscopeView?.Invoke();
-        FadingOutToMicroscope().Forget();
     }
     private async UniTask FadingIn(OnFinishFadeIn callback)
     {
@@ -182,10 +220,10 @@ public class CameraController : MonoBehaviour
         {
             while (fadeClock > 0)
             {
-                float fade = fadeClock / camData.fadeTime;
+                float fade = fadeClock / audioData.microscopeView001.length;
                 fade = Curves.EaseOutT(fade, 2);
                 camData.postProcessMaterial.SetFloat("_Fade", fade);
-                float brightness = fade * 1.5f;
+                float brightness = fade;
                 camData.postProcessMaterial.SetFloat("_Brightness", brightness);
                 await UniTask.Yield(ctsFade.Token);
             
@@ -207,9 +245,9 @@ public class CameraController : MonoBehaviour
     {
         try
         {
-            while (fadeClock < camData.fadeTime)
+            while (fadeClock < audioData.microscopeView001.length)
             {
-                float fade = fadeClock / camData.fadeTime;
+                float fade = fadeClock / audioData.microscopeView001.length;
                 fade = Curves.EaseOutT(fade, 2);
                 camData.postProcessMaterial.SetFloat("_Fade", fade);
                 await UniTask.Yield(ctsFade.Token);
@@ -226,19 +264,44 @@ public class CameraController : MonoBehaviour
     {
         try
         {
-            while (fadeClock < camData.fadeTime)
+            int clickIndex = 0;
+            while (clickIndex < audioData.microScopeClickTimes.Length)
             {
-                float fade = fadeClock / camData.fadeTime;
-                fade = Curves.EaseOutT(fade, 2);
+                float fade = fadeClock / audioData.microscopeView001.length;
                 camData.postProcessMaterial.SetFloat("_Fade", fade);
-                float brightness = fade * 1.5f;
-                float focus = (1.0f - fade) * 0.005f;
+                float brightness = fade;
+                float focus = (1.0f - fade) * 0.01f;
+
+
                 camData.postProcessMaterial.SetFloat("_Brightness", brightness);
                 camData.postProcessMaterial.SetFloat("_Focus", focus);
+                
+                while(fadeClock < audioData.microScopeClickTimes[clickIndex])
+                {
+                    fadeClock += Time.deltaTime;
+                    await UniTask.Yield();
+                }
+                clickIndex++;
+
                 await UniTask.Yield(ctsFade.Token);
+            }
+            while (fadeClock < audioData.microscopeView001.length)
+            {
+                float fade = fadeClock / audioData.microscopeView001.length;
+                camData.postProcessMaterial.SetFloat("_Fade", fade);
+                float brightness = fade;
+                float focus = (1.0f - fade) * 0.01f;
+
+                camData.postProcessMaterial.SetFloat("_Brightness", brightness);
+                camData.postProcessMaterial.SetFloat("_Focus", focus);
+
+                await UniTask.Yield();
+
                 fadeClock += Time.deltaTime;
+                Debug.Log(focus);
             }
             camData.postProcessMaterial.SetFloat("_Fade", 1);
+            camData.postProcessMaterial.SetFloat("_Focus", 0);
         }
         catch( OperationCanceledException)
         {
