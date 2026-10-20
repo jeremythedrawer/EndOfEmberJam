@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: CameraSO
   m_EditorClassIdentifier: 
   postProcessMaterial: {fileID: 2100000, guid: dd43677a1dd26dd46b539f96e8fc554e, type: 2}
-  damping: 0
+  damping: 1
   fadeTime: 1
   bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  curCamWorldPos: {x: 0, y: 0, z: 0}
-  preCamWorldPos: {x: 0, y: 0, z: 0}
-  wikiWorldPos: {x: 0, y: 0, z: 0}
-  microscopeWorldPos: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0.0022211075, y: 0, z: -10}
+    m_Extent: {x: 5.3333335, y: 3, z: 500}
+  curCamWorldPos: {x: 0.0022211075, y: 0, z: -10}
+  preCamWorldPos: {x: 0.0022211075, y: 0, z: -10}
+  microscopeWorldPos: {x: 24.5, y: 0, z: 0}
+  petriDishTableWorldPos: {x: 11.48, y: 0, z: 0}
   roomWorldPos: {x: 0, y: 0, z: 0}
-  worldUnitsPerPixel: 0
+  worldUnitsPerPixel: 0.0055555557
