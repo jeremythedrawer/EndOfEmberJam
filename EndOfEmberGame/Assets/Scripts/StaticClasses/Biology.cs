@@ -1,4 +1,4 @@
-
+using UnityEngine;
 using System;
 
 public static class Biology
@@ -8,7 +8,7 @@ public static class Biology
     {
         Plant, // hexagon shape
         Mammal, // circle shape
-        Mold, //bean shape
+        Fungus, //bean shape
     }
     [Flags] public enum EnvironmentState
     {
@@ -17,4 +17,17 @@ public static class Biology
         Light = 1 << 1, // Cell growing
         Humidity = 1 << 3, // Cell pulsing
     }
+    public enum ViewType
+    {
+        None,
+        Room,
+        Microscope,
+        PetriDishTable,
+    }
+    [Serializable] public struct TriggerCircle
+    {
+        public Vector3 center;
+        public float radius;
+    }
+
 }
