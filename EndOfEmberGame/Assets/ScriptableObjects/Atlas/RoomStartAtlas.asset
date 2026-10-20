@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cafafa8247c38c459bc8477e6bfafda, type: 3}
   m_Name: RoomStartAtlas
   m_EditorClassIdentifier: 
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: 75145f690884eea15940183759db94af, type: 3}
   markerTexture: {fileID: 0}
   entityMotionType: 0
   motionSprites: []
