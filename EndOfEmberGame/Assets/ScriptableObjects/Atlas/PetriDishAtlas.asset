@@ -18,9 +18,19 @@ MonoBehaviour:
   motionSprites: []
   simpleSprites:
   - customPositions: []
-    uvSizeAndPos: {x: 0.45117188, y: 0.21972656, z: 0.001953125, w: 0.7783203}
-    worldSize: {x: 2.5666666, y: 1.25, z: 0}
-    uvPivot: {x: 0, y: 0}
+    uvSizeAndPos: {x: 0.14648438, y: 0.072753906, z: 0.0048828125, w: 0.9223633}
+    worldSize: {x: 1.6666666, y: 0.8277778, z: 0}
+    uvPivot: {x: 0.5, y: 0.5}
     index: 0
+  - customPositions: []
+    uvSizeAndPos: {x: 0.42285156, y: 0.4267578, z: 0.15576172, w: 0.5703125}
+    worldSize: {x: 4.811111, y: 4.8555555, z: 0}
+    uvPivot: {x: 0, y: 0}
+    index: 1
+  - customPositions: []
+    uvSizeAndPos: {x: 0.20605469, y: 0.17382812, z: 0.60302734, w: 0.82373047}
+    worldSize: {x: 2.3444445, y: 1.9777777, z: 0}
+    uvPivot: {x: 0.5, y: 0.5}
+    index: 2
   slicedSprites: []
   clips: []
