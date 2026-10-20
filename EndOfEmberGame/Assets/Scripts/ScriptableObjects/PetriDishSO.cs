@@ -9,4 +9,5 @@ public class PetriDishSO : ScriptableObject
 
     [Header("Generated")]
     public Vector2[] positions;
+    public int index;
 }

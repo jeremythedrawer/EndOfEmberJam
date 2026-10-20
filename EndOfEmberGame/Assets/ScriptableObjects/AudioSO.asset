@@ -16,3 +16,16 @@ MonoBehaviour:
   cursorClick: {fileID: 8300000, guid: 71e36d1b9d35a2847a7005ffa2870386, type: 3}
   cursorHover: {fileID: 8300000, guid: e95c2e37c8df73f4184e296db46e60b0, type: 3}
   lightSwitch: {fileID: 8300000, guid: 67a5fe479eeacd44aaeb460ab79d7a02, type: 3}
+  petriDishDrop001: {fileID: 8300000, guid: cd2497508ee51974180e77a113d91c2d, type: 3}
+  petriDishDrop002: {fileID: 8300000, guid: ebee23b34507672469cbaaf95cfa0795, type: 3}
+  petriDishHover001: {fileID: 8300000, guid: 232471a229c3d1c408f6f409269ebe39, type: 3}
+  microscopeView001: {fileID: 8300000, guid: 85df6f12f1dd430488e17a01ffbf2ca2, type: 3}
+  microScopeClickTimes:
+  - 0.068
+  - 0.132
+  - 0.204
+  - 0.29
+  - 0.402
+  - 0.498
+  - 0.644
+  - 0.759

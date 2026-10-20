@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3958151409944333774
+--- !u!1 &2879526303755078630
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1572543415501932356}
-  - component: {fileID: 9201992610596857641}
-  - component: {fileID: 1157640623974403497}
+  - component: {fileID: 1275763587088110214}
+  - component: {fileID: 3975656085003733789}
+  - component: {fileID: 370417187678800312}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1572543415501932356
+--- !u!4 &1275763587088110214
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3958151409944333774}
+  m_GameObject: {fileID: 2879526303755078630}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,19 +33,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9201992610596857641
+--- !u!114 &3975656085003733789
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3958151409944333774}
+  m_GameObject: {fileID: 2879526303755078630}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 78d8796666ea0b440a75c071ca2f8822, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: ac52a511c02f43170984856f9eb3549d, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -63,25 +63,25 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1157640623974403497
+--- !u!114 &370417187678800312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3958151409944333774}
+  m_GameObject: {fileID: 2879526303755078630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7fbf489b4e2d2344971adeabb4997f4, type: 3}
+  m_Script: {fileID: 11500000, guid: a742b4aa4164fd25ab3f39924402b176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputData: {fileID: 11400000, guid: a27eb58b0365642479d3c9871386c36f, type: 2}
-  playerInput: {fileID: 9201992610596857641}
+  inputData: {fileID: 11400000, guid: b5b25f15e5ffd59ce9956fd0fc013698, type: 2}
+  playerInput: {fileID: 3975656085003733789}
   cursorLeftDownAction:
     m_Name: Cursor Left Down
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: b3a60bc2-f77b-439b-b0cb-56b8fbb40bf3
+    m_Id: 45352659-8661-44f2-89e4-f16f04df8f03
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

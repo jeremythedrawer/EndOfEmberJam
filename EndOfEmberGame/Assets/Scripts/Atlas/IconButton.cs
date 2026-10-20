@@ -25,11 +25,11 @@ public class IconButton : MonoBehaviour
     public Callback OnExitCallback;
 
     public CancellationTokenSource ctsMove;
-    public void InitButton(Callback onMouseUp = null, Callback onMouseDown = null, Callback onEnter = null, Callback onExit = null)
+    public void InitButton(Callback onMouseUp = null, Callback onMouseDown = null, Callback onMouseEnter = null, Callback onExit = null)
     {
         OnMouseUpCallback = onMouseUp ?? MouseUp;
         OnMouseDownCallback = onMouseDown ?? MouseDown;
-        OnEnterCallback = onEnter ?? EnterButton;
+        OnEnterCallback = onMouseEnter ?? MosueEnter;
         OnExitCallback = onExit ?? ExitButton;
         atlasRenderer.SetBounds();
         activePos = atlasRenderer.transform.localPosition;
@@ -123,15 +123,13 @@ public class IconButton : MonoBehaviour
     {
         atlasRenderer.customBit ^= (int)ColorBits.Invert;
     }
-    public void EnterButton()
+    public void MosueEnter()
     {
         atlasRenderer.customBit |= (int)ColorBits.GreenChannel;
-        atlasRenderer.customBit &= ~(int)ColorBits.BlueChannel;
     }
     public void ExitButton()
     {
         atlasRenderer.customBit &= ~(int)ColorBits.GreenChannel;
-        atlasRenderer.customBit |= (int)ColorBits.BlueChannel;
         atlasRenderer.customBit &= ~(int)ColorBits.Invert;
     }
     public void MouseUp()

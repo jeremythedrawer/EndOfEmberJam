@@ -4,11 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ActionSO", menuName = "Custom / Action SO")]
 public class ActionSO : ScriptableObject
 {
-    public Action onToWikiView;
+    public Action onToPetriDishTableView;
     public Action onToRoomView;
     public Action onToMicroscopeView;
 
-    public Action onEnterWikiView;
+    public Action onEnterPetriDishView;
     public Action onEnterRoomView;
     public Action onEnterMicroscopeView;
 

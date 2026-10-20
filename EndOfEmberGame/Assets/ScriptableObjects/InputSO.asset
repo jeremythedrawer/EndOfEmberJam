@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d10dd9ae9b14704c84d343afff2e487, type: 3}
+  m_Script: {fileID: 11500000, guid: bc07e45aada02d4ad9c81d2e145b3b22, type: 3}
   m_Name: InputSO
   m_EditorClassIdentifier: 
   mouseScreenPos: {x: 0, y: 0, z: 0}

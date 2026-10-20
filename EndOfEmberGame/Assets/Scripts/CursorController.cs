@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using static Biology;
 public class CursorController : MonoBehaviour
 {
     const float VISIBLE_TIMER = 3f;
@@ -17,7 +18,6 @@ public class CursorController : MonoBehaviour
     public CameraSO camData;
 
     public AtlasRenderer cursorRenderer;
-    public AudioSource audioSource;
 
     [Header("Generated")]
 
@@ -79,7 +79,6 @@ public class CursorController : MonoBehaviour
         if (cursorData.changeButton)
         {
             cursorRenderer.UpdateSpriteInputsByIndex((int)cursorData.curCursorSpriteType);
-            audioSource.PlayOneShot(audioData.cursorHover);
 
             cursorData.changeButton = false;
         }
@@ -99,6 +98,6 @@ public class CursorController : MonoBehaviour
 
         cursorData.curCursorSpriteType = CursorSO.CursorSpriteType.Point;
 
-        playerData.curState = PlayerSO.State.Room;
+        playerData.curView = ViewType.Room;
     }
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdae679da4064b44ea0fc6c52fbb8cd0, type: 3}
+  m_Name: MicroscopeSO
+  m_EditorClassIdentifier: 
+  petriDishDatas:
+  - {fileID: 11400000, guid: f0d6570721b3ddd419e168eb8bde9290, type: 2}
+  - {fileID: 11400000, guid: cbeecbb007e3cca48bb9f30b29c24ccb, type: 2}
+  - {fileID: 11400000, guid: 4e669fbcfb1f7bd4da3bba161b38b215, type: 2}
+  triggerCircle:
+    center: {x: 3.55582, y: 1.5014064, z: 12}
+    radius: 0.81277657
+  curCellType: 0
+  activePetriDishIndex: -1
