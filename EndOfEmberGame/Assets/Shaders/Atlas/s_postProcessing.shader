@@ -91,16 +91,17 @@ Shader "Custom/s_postProcessing"
 			vignetteSDF *= _Fade;
 			vignetteSDF = saturate(vignetteSDF);
 			vignetteSDF += _Brightness;
+
 			//return vignetteSDF.xxxx;
 			
 			camCol *= vignetteSDF;
-
+			camCol = saturate(camCol);
 			if (_Invert == 1) camCol = 1 - camCol;
 
 			camCol = lerp(_DarkColor, _BrightColor, camCol);
 
-			return half4(camCol, 1);
 
+			return half4(camCol, 1);
 		}
 	ENDHLSL
 

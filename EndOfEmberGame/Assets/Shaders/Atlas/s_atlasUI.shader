@@ -50,6 +50,7 @@ Shader "Custom/s_atlasUI"
 
 
                 float3 position = spriteData.position.xyz;
+
                 
                 float2 pivot = spriteData.pivotAndSize.xy;
                 float2 size = spriteData.pivotAndSize.zw;
@@ -78,11 +79,11 @@ Shader "Custom/s_atlasUI"
                 float2 uv = SpriteUV(i.uv, i.uvSizeAndPos, i.scaleAndFlip);
                 half4 tex = SAMPLE_TEXTURE2D(_AtlasTexture, sampler_AtlasTexture, uv);
 
-                half4 finalColor = UIColor(i.customBit, tex, i.custom, _DarkColor, _LightColor);
+                half4 finalColor = UIColor(i.customBit, tex, _DarkColor, _LightColor);
 
                 clip(finalColor.a - 0.001);
 
-                return half4(finalColor.rgb,1 );
+                return half4(finalColor.rgb, 1);
             }
             ENDHLSL
         }

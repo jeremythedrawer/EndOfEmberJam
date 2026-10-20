@@ -23,7 +23,7 @@ struct AtlasSprite
 };
 
 
-half4 UIColor(int bitMask, half4 tex, float4 custom, float3 darkColor, float3 lightColor)
+half4 UIColor(int bitMask, half4 tex, float3 darkColor, float3 lightColor)
 {
 
     int redMask = saturate(bitMask & RED_BIT);
@@ -31,27 +31,17 @@ half4 UIColor(int bitMask, half4 tex, float4 custom, float3 darkColor, float3 li
     int blueMask = saturate(bitMask & BLUE_BIT);
 
     half whiteTex = tex.r * tex.g * tex.b;
-    
-
-    half redTex = tex.r * redMask;
+   
     half greenTex = tex.g * greenMask;
-    half blueTex = tex.b * blueMask;
-    half fullMask = saturate(whiteTex + redTex + greenTex + blueTex);
+
+    half fullMask = saturate((tex.r + greenMask) - tex.b);
     half invertTex = 1 - fullMask;
     int invertMask = saturate(bitMask & INVERT_BIT);
     half t = lerp(fullMask, invertTex, invertMask);
-
-    float tCol = round(LinearLightness(custom.rgb));
-
-    half useCol = saturate(ceil(custom.r + custom.g + custom.b));
-
-    half3 darkCol = lerp(custom.rgb, darkColor, tCol);
-    half3 lightCol = lerp(lightColor, custom.rgb, tCol);
-    darkCol = lerp(darkColor, darkCol, useCol);
-    lightCol = lerp(lightColor, lightCol, useCol);
-    half3 finalColor = lerp(darkCol, lightCol, t);
     
-    return half4(finalColor, tex.a);
+    half alpha = (tex.r + tex.b) + greenMask;
+    alpha *= tex.a;
+    return half4(fullMask.xxx, alpha);
 }
 float2 SpriteUV(float2 uv, float4 uvSizeAndPos, float4 scaleAndFlip)
 {
