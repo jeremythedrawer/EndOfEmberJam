@@ -29,6 +29,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "05e89d04-f19c-4cf8-8f48-50864f7bcd5a",
+            "actions": [
+                {
+                    "name": "Point",
+                    "type": "Value",
+                    "id": "f662b97a-1cf7-469f-9575-41dd807df4b3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "476d6f58-273d-4ab1-a89b-0bbc608b1a4e",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
