@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42fdc96189a442f44bd5890eb29a9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputData: {fileID: 11400000, guid: a27eb58b0365642479d3c9871386c36f, type: 2}
+  inputData: {fileID: 11400000, guid: b5b25f15e5ffd59ce9956fd0fc013698, type: 2}
   cursorData: {fileID: 11400000, guid: bd1893e4bd189d84d8960ebe73d31bc8, type: 2}
   camData: {fileID: 11400000, guid: a7fff445b9a105b4ea95fc2de646a20b, type: 2}
   atlasRenderer: {fileID: 106588201855830126}
@@ -211,15 +211,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5468300009415442257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e60a5e93b22e91c479a2ce069a411f21, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eb7b0636e0c4c64b9d94c594c810d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 4158450570024179902}
   audioSource: {fileID: 8039863278307244409}
-  petriDishData: {fileID: 11400000, guid: f0d6570721b3ddd419e168eb8bde9290, type: 2}
+  petriDishData: {fileID: 0}
   camData: {fileID: 11400000, guid: a7fff445b9a105b4ea95fc2de646a20b, type: 2}
-  inputData: {fileID: 11400000, guid: a27eb58b0365642479d3c9871386c36f, type: 2}
-  microscopeData: {fileID: 11400000, guid: 79c60b8112660ce4f87f62f2ebe95f52, type: 2}
+  inputData: {fileID: 11400000, guid: b5b25f15e5ffd59ce9956fd0fc013698, type: 2}
+  microscopeData: {fileID: 11400000, guid: 83f5ef742a5147940b5964a187bea927, type: 2}
   actionData: {fileID: 11400000, guid: 042f9a8a25af21c43b80cb95cb167bdf, type: 2}
   audioData: {fileID: 11400000, guid: fd6d804c2eda61f439484f1c6774868b, type: 2}
   playerData: {fileID: 11400000, guid: 8641ad54672092346a4d2bab986f28fc, type: 2}

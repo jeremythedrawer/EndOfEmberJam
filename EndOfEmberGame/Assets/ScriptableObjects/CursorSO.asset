@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27fb386d447c6c429b6583caec0f0bd, type: 3}
   m_Name: CursorSO
   m_EditorClassIdentifier: 
-  inputData: {fileID: 11400000, guid: a27eb58b0365642479d3c9871386c36f, type: 2}
+  inputData: {fileID: 11400000, guid: b5b25f15e5ffd59ce9956fd0fc013698, type: 2}
   buttonDepths:
-  - 0
+  - 10.9
   - 0
   - 0
   - 0
@@ -23,12 +23,11 @@ MonoBehaviour:
   - 0
   - 0
   cursorBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Center: {x: 16.880556, y: -3.086111, z: 0.25}
+    m_Extent: {x: 0.06944445, y: 0.08611111, z: 0.1}
   curDepth: 0
   prevDepth: 0
   curCursorSpriteType: 0
-  curPassengerSelectionMode: 0
   hoverCount: 0
   changeButton: 0
   isHovering: 0
