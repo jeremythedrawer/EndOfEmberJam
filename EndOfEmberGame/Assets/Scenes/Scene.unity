@@ -119,6 +119,76 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &83657345
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1402245687}
+    m_Modifications:
+    - target: {fileID: 106588201855830126, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: bounds.m_Center.x
+      value: 10.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 435237304653246610, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: petriDishData
+      value: 
+      objectReference: {fileID: 11400000, guid: 289059afbf1b335489621393fb25e1e6, type: 2}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.586
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.221
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468300009415442257, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_Name
+      value: PetriDishControl
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+--- !u!4 &339590481 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+  m_PrefabInstance: {fileID: 83657345}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &495474630
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +575,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 339590481}
   - {fileID: 1605543956}
+  - {fileID: 1672344777}
   - {fileID: 1376392086}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -574,10 +646,80 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+--- !u!1001 &1554776357
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1402245687}
+    m_Modifications:
+    - target: {fileID: 106588201855830126, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: bounds.m_Center.x
+      value: 10.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 435237304653246610, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: petriDishData
+      value: 
+      objectReference: {fileID: 11400000, guid: 76addc097be1b9946abd608c8bd6a7e4, type: 2}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.921
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468300009415442257, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+      propertyPath: m_Name
+      value: PetriDishPlant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
 --- !u!4 &1605543956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
   m_PrefabInstance: {fileID: 1456832878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1672344777 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5186829376756872924, guid: 106c35aa2c995844e810e0ad98ed040d, type: 3}
+  m_PrefabInstance: {fileID: 1554776357}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &1855993740 stripped
 AudioSource:
