@@ -15,3 +15,4 @@ MonoBehaviour:
   cellType: 1
   cellObject: {fileID: 6026770905291750190, guid: ac6e2812f259d064da040598b874a5e7, type: 3}
   positions: []
+  index: 1
