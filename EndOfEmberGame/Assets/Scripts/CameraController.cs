@@ -298,7 +298,6 @@ public class CameraController : MonoBehaviour
                 await UniTask.Yield();
 
                 fadeClock += Time.deltaTime;
-                Debug.Log(focus);
             }
             camData.postProcessMaterial.SetFloat("_Fade", 1);
             camData.postProcessMaterial.SetFloat("_Focus", 0);
