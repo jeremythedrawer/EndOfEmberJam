@@ -2,27 +2,27 @@ using UnityEngine;
 
 public class PetriDishTableProp : MonoBehaviour
 {
-    public ActionSO actionData;
+    //public ActionSO actionData;
 
-    public IconButton button;
+    //public IconButton button;
 
-    private void Start()
-    {
-        Init();
-    }
-    private void Update()
-    {
-        button.UpdateButton();
-    }
-    private void Init()
-    {
-        void MouseUp()
-        {
-            button.MouseUp();
+    //private void Start()
+    //{
+    //    Init();
+    //}
+    //private void Update()
+    //{
+    //    button.UpdateButton();
+    //}
+    //private void Init()
+    //{
+    //    void MouseUp()
+    //    {
+    //        button.MouseUp();
 
-            actionData.onToPetriDishTableView?.Invoke();
-        }
+    //        actionData.onToPetriDishTableView?.Invoke();
+    //    }
 
-        button.InitButton(onMouseUp: MouseUp);
-    }
+    //    button.InitButton(onMouseUp: MouseUp);
+    //}
 }
