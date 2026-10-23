@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 // NOTE(Jazz): Controls - What view are we in? Where do we go from here?
@@ -19,25 +18,31 @@ public class ViewManager : MonoBehaviour
     public void OpenViewRoom()
     {
         DisableAllViews();
-
-        currentViewType = ViewType.Room;
-        viewPrefabs[(int)currentViewType].SetActive(true);
+        EnableView(ViewType.Room);
     }
 
     public void OpenViewDesk()
     {
         DisableAllViews();
-
-        currentViewType = ViewType.Desk;
-        viewPrefabs[(int)currentViewType].SetActive(true);
+        EnableView(ViewType.Desk);
     }
 
     public void OpenViewAttic()
     {
         DisableAllViews();
+        EnableView(ViewType.Attic);
+    }
 
+    public void OpenViewLab()
+    {
+        DisableAllViews();
+        EnableView(ViewType.Lab);
+    }
+
+    private void EnableView(ViewType view)
+    {
         currentViewType = ViewType.Attic;
-        viewPrefabs[(int)currentViewType].SetActive(true);
+        viewPrefabs[(int)view].SetActive(true);
     }
 
     private void DisableAllViews()
