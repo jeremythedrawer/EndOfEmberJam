@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "a77a1b4a89824fb6df293099de3060daf2a432c1"
     },
+    "com.proselyte.sigils": {
+      "version": "https://github.com/JazariO/Sigils.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "774d9749e669af5151f1204689753803c2f548d0"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
