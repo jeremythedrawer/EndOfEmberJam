@@ -16,8 +16,14 @@ public class ViewManager : MonoBehaviour
         MAX_COUNT
     } public ViewType currentViewType;
 
+    public void OpenViewRoom()
+    {
+        DisableAllViews();
 
-    // NOTE(Jazz): call this from a ui event to switch to a specific canvas.
+        currentViewType = ViewType.Room;
+        viewPrefabs[(int)currentViewType].SetActive(true);
+    }
+
     public void OpenViewDesk()
     {
         DisableAllViews();
