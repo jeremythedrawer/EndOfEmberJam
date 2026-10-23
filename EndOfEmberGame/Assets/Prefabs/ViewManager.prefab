@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   currentViewType: 0
 --- !u!114 &6908940959825666889
 MonoBehaviour:
@@ -70,7 +71,23 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 8426220141210946333}
           m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
-          m_MethodName: SwitchView
+          m_MethodName: OpenViewDesk
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 29007454932feaa4b986d6b128dde7c3, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8426220141210946333}
+          m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
+          m_MethodName: OpenViewAttic
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
