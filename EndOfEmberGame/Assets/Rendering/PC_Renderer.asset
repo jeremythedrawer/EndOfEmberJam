@@ -24,9 +24,8 @@ MonoBehaviour:
     probeSamplingDebugMesh: {fileID: -3555484719484374845, guid: 57d7c4c16e2765b47a4d2069b311bffe, type: 3}
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e, type: 3}
     probeVolumeBlendStatesCS: {fileID: 7200000, guid: b9a23f869c4fd45f19c5ada54dd82176, type: 3}
-  m_RendererFeatures:
-  - {fileID: 5556196231224664395}
-  m_RendererFeatureMap: 4ba182c808931b4d
+  m_RendererFeatures: []
+  m_RendererFeatureMap: 
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -52,19 +51,3 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
---- !u!114 &5556196231224664395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3f8cb3e5a287074eaeadcd52087897a, type: 3}
-  m_Name: TOTTRendererFeature
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  quad: {fileID: 4300000, guid: 95be51ce3fa1da54db19299bad7b1839, type: 2}
-  preProcessMaterial: {fileID: 2100000, guid: fcdb31f6b37f22b489d9421d5b314934, type: 2}
-  postProcessMaterial: {fileID: 2100000, guid: dd43677a1dd26dd46b539f96e8fc554e, type: 2}
