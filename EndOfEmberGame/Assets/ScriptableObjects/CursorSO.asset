@@ -12,22 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27fb386d447c6c429b6583caec0f0bd, type: 3}
   m_Name: CursorSO
   m_EditorClassIdentifier: 
-  inputData: {fileID: 11400000, guid: b5b25f15e5ffd59ce9956fd0fc013698, type: 2}
-  buttonDepths:
-  - 10.9
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  cursorBounds:
-    m_Center: {x: 16.880556, y: -3.086111, z: 0.25}
-    m_Extent: {x: 0.06944445, y: 0.08611111, z: 0.1}
-  curDepth: 0
-  prevDepth: 0
+  spritePoint: {fileID: -484035964, guid: c9d7dade38633fc48b37d9761f2ac00e, type: 3}
+  spriteHandDrag: {fileID: 1680024920, guid: c9d7dade38633fc48b37d9761f2ac00e, type: 3}
   curCursorSpriteType: 0
-  hoverCount: 0
-  changeButton: 0
-  isHovering: 0
