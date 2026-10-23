@@ -1,103 +1,50 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-using static Biology;
+public enum CursorSpriteType : byte
+{
+    Point = 0,
+    ArrowUp = 1,
+    ArrowDown = 2,
+    HandOpen = 3,
+    HandDrag = 4,
+    MAX_COUNT
+}
+
 public class CursorController : MonoBehaviour
 {
-    const float VISIBLE_TIMER = 3f;
-    const float MOVE_THRESHOLD = 0.01f;
-
-    public static AtlasRenderer PrevRenderer;
-    public static AtlasRenderer CursorRenderer;
-
     public InputSO inputData;
-
     public CursorSO cursorData;
-    public AudioSO audioData;
-    public OptionsSO options;
-    public PlayerSO playerData;
-    public CameraSO camData;
+    public Transform cursorTransform;
+    public Image cursorImage;
 
-    public AtlasRenderer cursorRenderer;
-
-    [Header("Generated")]
-
-    public Vector4 cursorDistFromCenter;
-
-    public float timer;
-
-    public bool cursorIsMoving;
-    public bool active;
+    private void Awake()
+    {
+        Cursor.visible = false;
+    }
 
     private void Start()
     {
-        Init();
+        
     }
 
     private void Update()
     {
-        if (active)
+        // set cursor position
+        cursorTransform.position = inputData.mouseScreenPos;
+
+        switch (cursorData.curCursorSpriteType)
         {
-            cursorRenderer.enabled = true;
-            transform.position = inputData.mouseWorldPos;
-
-            cursorData.cursorBounds = cursorRenderer.GetBounds();
-
-            cursorDistFromCenter.x = inputData.mouseScreenPos.x / (float)Screen.width;
-            cursorDistFromCenter.y = inputData.mouseScreenPos.y / (float)Screen.height;
-            
-            camData.postProcessMaterial.SetVector("_NoiseOffset", -cursorDistFromCenter);
-        }
-    }
-    private void LateUpdate()
-    {
-        cursorData.CheckButtonResults();
-
-        if (inputData.mouseDelta.sqrMagnitude < MOVE_THRESHOLD && !inputData.mouseLeftHold && !cursorData.isHovering)
-        {
-            cursorIsMoving = false;
-            timer += Time.deltaTime;
-
-            if (timer > VISIBLE_TIMER)
+            case CursorSpriteType.Point:
             {
-                if (active)
-                {
-                    cursorRenderer.enabled = false;
-                    active = false;
-                }
+                cursorImage.sprite = cursorData.spritePoint;
             }
-        }
-        else
-        {
-            cursorIsMoving = true;
-            if (!active)
+            break;
+            case CursorSpriteType.HandDrag:
             {
-                cursorRenderer.enabled = true;
-                timer = 0;
-                active = true;
+                cursorImage.sprite = cursorData.spriteHandDrag;
             }
+            break;
         }
-        if (cursorData.changeButton)
-        {
-            cursorRenderer.UpdateSpriteInputsByIndex((int)cursorData.curCursorSpriteType);
-
-            cursorData.changeButton = false;
-        }
-        else if (!cursorData.isHovering)
-        {
-            if (cursorRenderer.spriteIndex != (int)CursorSO.CursorSpriteType.Arrow)
-            {
-                cursorRenderer.UpdateSpriteInputsByIndex((int)CursorSO.CursorSpriteType.Arrow);
-            }
-        }
-    }
-
-    private void Init()
-    {
-        Cursor.visible = false;
-        CursorRenderer = cursorRenderer;
-
-        cursorData.curCursorSpriteType = CursorSO.CursorSpriteType.Point;
-
-        playerData.curView = ViewType.Room;
     }
 }
