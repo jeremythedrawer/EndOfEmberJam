@@ -28,4 +28,15 @@ public class ViewManager : MonoBehaviour
 
         viewPrefabs[(int)currentViewType].SetActive(true);
     }
+
+    public void OpenRoomView()
+    {
+        foreach(var view in viewPrefabs)
+        {
+            view.SetActive(false);
+            currentViewType = ViewType.Room;
+        }
+
+        viewPrefabs[(int)currentViewType].SetActive(true);
+    }
 }
