@@ -12,7 +12,11 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        InitInputs();
+        // Init inputs
+        cursorLeftDownAction = playerInput.actions["Player/CursorLeftDown"];
+        cursorLeftDownAction.started += OnStartLeftMouse;
+        cursorLeftDownAction.performed += OnPerformLeftMouse;
+        cursorLeftDownAction.canceled += OnCancelLeftMouse;
     }
     private void Start()
     {
@@ -21,32 +25,17 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        HandleMouseMove();
+        // Handle mouse move
+        Vector2 screenPos = Mouse.current.position.ReadValue();
+        inputData.mouseScreenPos.x = Mathf.Clamp(screenPos.x, 0.0f, Screen.width);
+        inputData.mouseScreenPos.y = Mathf.Clamp(screenPos.y, 0.0f, Screen.height);
+        inputData.mouseWorldPos = Camera.main.ScreenToWorldPoint(inputData.mouseScreenPos);
+        inputData.mouseDelta = Mouse.current.delta.ReadValue();
     }
     private void LateUpdate()
     {
         inputData.mouseLeftDown = false;
         inputData.mouseLeftUp = false;
-    }
-
-    private void HandleMouseMove()
-    {
-        Vector2 screenPos = Mouse.current.position.ReadValue();
-
-        inputData.mouseScreenPos.x = Mathf.Clamp(screenPos.x, 0.0f, Screen.width);
-        inputData.mouseScreenPos.y = Mathf.Clamp(screenPos.y, 0.0f, Screen.height);
-        
-        inputData.mouseWorldPos = Camera.main.ScreenToWorldPoint(inputData.mouseScreenPos);
-
-        inputData.mouseDelta = Mouse.current.delta.ReadValue();
-    }
-
-    private void InitInputs()
-    {
-        cursorLeftDownAction = playerInput.actions["Player/CursorLeftDown"];
-        cursorLeftDownAction.started += OnStartLeftMouse;
-        cursorLeftDownAction.performed += OnPerformLeftMouse;
-        cursorLeftDownAction.canceled += OnCancelLeftMouse;
     }
 
     private void OnStartLeftMouse(CallbackContext ctx)
