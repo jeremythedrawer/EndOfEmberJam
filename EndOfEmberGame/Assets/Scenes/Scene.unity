@@ -512,14 +512,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6908940959825666889, guid: 37d9094f459f16147b15e67ec0335903, type: 3}
-      propertyPath: eventResponses.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenDeskView
-      objectReference: {fileID: 0}
-    - target: {fileID: 8426220141210946333, guid: 37d9094f459f16147b15e67ec0335903, type: 3}
-      propertyPath: viewPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8426220141210946333, guid: 37d9094f459f16147b15e67ec0335903, type: 3}
       propertyPath: 'viewPrefabs.Array.data[0]'
       value: 
