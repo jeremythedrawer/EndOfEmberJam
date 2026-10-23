@@ -18,14 +18,27 @@ public class ViewManager : MonoBehaviour
 
 
     // NOTE(Jazz): call this from a ui event to switch to a specific canvas.
-    public void OpenDeskView()
+    public void OpenViewDesk()
+    {
+        DisableAllViews();
+
+        currentViewType = ViewType.Desk;
+        viewPrefabs[(int)currentViewType].SetActive(true);
+    }
+
+    public void OpenViewAttic()
+    {
+        DisableAllViews();
+
+        currentViewType = ViewType.Attic;
+        viewPrefabs[(int)currentViewType].SetActive(true);
+    }
+
+    private void DisableAllViews()
     {
         foreach(var view in viewPrefabs)
         {
             view.SetActive(false);
-            currentViewType = ViewType.Desk;
         }
-
-        viewPrefabs[(int)currentViewType].SetActive(true);
     }
 }
