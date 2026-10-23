@@ -15,6 +15,13 @@ public class ViewManager : MonoBehaviour
         MAX_COUNT
     } public ViewType currentViewType;
 
+    private void Start()
+    {
+        currentViewType = ViewType.Room;
+        DisableAllViews();
+        EnableView(currentViewType);
+    }
+
     public void OpenViewRoom()       { DisableAllViews(); EnableView(ViewType.Room); }
     public void OpenViewDesk()       { DisableAllViews(); EnableView(ViewType.Desk); }
     public void OpenViewLab()        { DisableAllViews(); EnableView(ViewType.Lab); }
