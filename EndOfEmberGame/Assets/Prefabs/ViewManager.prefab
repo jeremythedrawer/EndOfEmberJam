@@ -97,13 +97,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - gameEvent: {fileID: 11400000, guid: 29007454932feaa4b986d6b128dde7c3, type: 2}
+  - gameEvent: {fileID: 11400000, guid: 814587e5e7bf493448b6920fbfea4978, type: 2}
     response:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 8426220141210946333}
           m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
-          m_MethodName: OpenViewAttic
+          m_MethodName: OpenViewMicroscope
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -120,6 +120,22 @@ MonoBehaviour:
         - m_Target: {fileID: 8426220141210946333}
           m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
           m_MethodName: OpenViewLab
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 29007454932feaa4b986d6b128dde7c3, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8426220141210946333}
+          m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
+          m_MethodName: OpenViewAttic
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

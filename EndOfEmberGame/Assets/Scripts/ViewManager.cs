@@ -15,29 +15,11 @@ public class ViewManager : MonoBehaviour
         MAX_COUNT
     } public ViewType currentViewType;
 
-    public void OpenViewRoom()
-    {
-        DisableAllViews();
-        EnableView(ViewType.Room);
-    }
-
-    public void OpenViewDesk()
-    {
-        DisableAllViews();
-        EnableView(ViewType.Desk);
-    }
-
-    public void OpenViewAttic()
-    {
-        DisableAllViews();
-        EnableView(ViewType.Attic);
-    }
-
-    public void OpenViewLab()
-    {
-        DisableAllViews();
-        EnableView(ViewType.Lab);
-    }
+    public void OpenViewRoom()       { DisableAllViews(); EnableView(ViewType.Room); }
+    public void OpenViewDesk()       { DisableAllViews(); EnableView(ViewType.Desk); }
+    public void OpenViewLab()        { DisableAllViews(); EnableView(ViewType.Lab); }
+    public void OpenViewMicroscope() { DisableAllViews(); EnableView(ViewType.Microscope); }
+    public void OpenViewAttic()      { DisableAllViews(); EnableView(ViewType.Attic); }
 
     private void EnableView(ViewType view)
     {
@@ -47,16 +29,12 @@ public class ViewManager : MonoBehaviour
 
     private void DisableAllViews()
     {
-        foreach(var view in viewPrefabs)
-        {
-            view.SetActive(false);
-        }
+        foreach(var view in viewPrefabs) view.SetActive(false);
     }
 
     public void OpenRoomView()
     {
         DisableAllViews();
-        
         currentViewType = ViewType.Room;
         viewPrefabs[(int)currentViewType].SetActive(true);
     }
