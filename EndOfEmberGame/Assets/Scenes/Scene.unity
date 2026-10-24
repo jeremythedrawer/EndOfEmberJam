@@ -314,6 +314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AtticView
       objectReference: {fileID: 0}
+    - target: {fileID: 4757870975586806253, guid: 138c0e009283fec45be46c4d1021e62d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6794747842014552140, guid: 138c0e009283fec45be46c4d1021e62d, type: 3}
       propertyPath: m_Camera
       value: 
@@ -606,6 +610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomView
       objectReference: {fileID: 0}
+    - target: {fileID: 815365916697069336, guid: 48bf14079ef319642a2849d0417292a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2940482023228205716, guid: 48bf14079ef319642a2849d0417292a0, type: 3}
       propertyPath: m_Camera
       value: 
@@ -829,6 +837,10 @@ PrefabInstance:
     - target: {fileID: 5407280924697513244, guid: 883b1875fa506954f8e0c31f82cd967c, type: 3}
       propertyPath: m_Name
       value: DeskView
+      objectReference: {fileID: 0}
+    - target: {fileID: 5407280924697513244, guid: 883b1875fa506954f8e0c31f82cd967c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7466666156859220749, guid: 883b1875fa506954f8e0c31f82cd967c, type: 3}
       propertyPath: m_Camera
