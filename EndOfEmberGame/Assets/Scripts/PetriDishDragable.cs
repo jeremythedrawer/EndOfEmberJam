@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,6 +6,7 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
 {
     [SerializeField] InputSO inputSO;
     [SerializeField] CursorSO cursorData;
+    public PetriDishSO petriDishData;
     private Coroutine trackingFunction;
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -26,11 +26,17 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
         {
             if (inputSO.mouseLeftDown)
             {
+                transform.SetAsLastSibling();
                 spriteOffset = transform.position - inputSO.mouseWorldPos;
             }
             if (inputSO.mouseLeftHold && spriteOffset != Vector3.zero)
             {
                 transform.position = new Vector3(spriteOffset.x + inputSO.mouseWorldPos.x, spriteOffset.y + inputSO.mouseWorldPos.y, transform.position.z);
+            }
+            if (inputSO.mouseLeftUp)
+            {
+                spriteOffset = Vector3.zero;
+                PetriDishSnap.instance.DetectDish(this);
             }
             yield return null;
         }
