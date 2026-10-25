@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 // NOTE(Jazz): Controls - What view are we in? Where do we go from here?
 public class ViewManager : MonoBehaviour
 {
     public GameObject[] viewPrefabs;
+    public GraphicRaycaster[] viewGraphicRaycasters;
+    public GraphicRaycaster hudGraphicRaycaster;
 
     public enum ViewType
     {
@@ -27,6 +30,24 @@ public class ViewManager : MonoBehaviour
     public void OpenViewLab()        { DisableAllViews(); EnableView(ViewType.Lab); }
     public void OpenViewMicroscope() { DisableAllViews(); EnableView(ViewType.Microscope); }
     public void OpenViewAttic()      { DisableAllViews(); EnableView(ViewType.Attic); }
+
+    public void OnInteractionEnable()
+    {
+        foreach(var gRaycaster in viewGraphicRaycasters)
+        {
+            gRaycaster.enabled = true;
+        }
+        hudGraphicRaycaster.enabled = false;
+    }
+
+    public void OnInteractionDisable()
+    {
+        foreach(var gRaycaster in viewGraphicRaycasters)
+        {
+            gRaycaster.enabled = false;
+        }
+        hudGraphicRaycaster.enabled = true;
+    }
 
     private void EnableView(ViewType view)
     {
