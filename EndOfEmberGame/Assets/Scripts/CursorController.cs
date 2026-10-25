@@ -1,3 +1,4 @@
+using Proselyte.Sigils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,14 +19,24 @@ public class CursorController : MonoBehaviour
     public Transform cursorTransform;
     public Image cursorImage;
 
+    public GameEvent cursorHideEvent;
+    public GameEvent cursorShowEvent;
+
     private void Awake()
     {
         Cursor.visible = false;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        
+        cursorShowEvent.RegisterListener(OnCursorShow);
+        cursorHideEvent.RegisterListener(OnCursorHide);
+    }
+
+    private void OnDisable()
+    {
+        cursorShowEvent.UnregisterListener(OnCursorShow);
+        cursorHideEvent.UnregisterListener(OnCursorHide);
     }
 
     private void Update()
@@ -46,5 +57,15 @@ public class CursorController : MonoBehaviour
             }
             break;
         }
+    }
+
+    public void OnCursorHide()
+    {
+        cursorImage.enabled = false;
+    }
+
+    public void OnCursorShow()
+    {
+        cursorImage.enabled = true;
     }
 }
