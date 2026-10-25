@@ -312,10 +312,10 @@ MonoBehaviour:
   rainFadeInTime: 0.8
   rainFadeOutTime: 0.2
   rainAtticFadeOutTime: 0.4
-  lowPassAtticMin: 500
+  lowPassAtticMin: 600
   lowPassRoomMin: 850
   lowPassRoomMax: 4500
-  ambienceVolAttic: -6
+  ambienceVolAttic: -4
   rainLowPassCursorPosition: 0
 --- !u!114 &4350094629917914553
 MonoBehaviour:
