@@ -198,7 +198,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tex_sprite_mold_4
+      name: tex_sprite_mold_6
       rect:
         serializedVersion: 2
         x: 1735
@@ -220,7 +220,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tex_sprite_mold_5
+      name: tex_sprite_mold_4
       rect:
         serializedVersion: 2
         x: 1123
@@ -242,7 +242,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tex_sprite_mold_6
+      name: tex_sprite_mold_5
       rect:
         serializedVersion: 2
         x: 1428
@@ -281,9 +281,9 @@ TextureImporter:
       tex_sprite_mold_1: -1338440913
       tex_sprite_mold_2: 1042349554
       tex_sprite_mold_3: 925023724
-      tex_sprite_mold_4: -1408603400
-      tex_sprite_mold_5: -895225180
-      tex_sprite_mold_6: 1500981721
+      tex_sprite_mold_4: -895225180
+      tex_sprite_mold_5: 1500981721
+      tex_sprite_mold_6: -1408603400
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
