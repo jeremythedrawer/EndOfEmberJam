@@ -5,15 +5,6 @@ using UnityEngine;
 
 public class SubtitleController : MonoBehaviour
 {
-    // what should this do?
-
-    // show unique dialogue.
-
-    // dialogue should need to be skipped by the player by clicking.
-    // dialogue should appear slowly.
-
-    //DialogueSO dialogueData;
-
     public InputSO inputData;
     public SubtitlesSO subtitlesData;
     public TMP_Text subtitlesTextTMP;
@@ -36,11 +27,12 @@ public class SubtitleController : MonoBehaviour
     private WaitForSeconds waitForSecondsWord;
     private WaitForSeconds waitForSecondsSpace;
     private Coroutine currentSubtitlesCoroutine;
-    private string currentSubtitle;
+
+    private string currentSubtitleString = string.Empty;
+    private int currentSubtitleLine = 0;
 
     private float audioSourceStartPitch;
 
-    private const char newLineChar = '#';
 
     private void Awake()
     {
@@ -78,40 +70,50 @@ public class SubtitleController : MonoBehaviour
         {
             // skipping animation: stop coroutine, complete message
             StopCoroutine(currentSubtitlesCoroutine);
-            subtitlesTextTMP.text = currentSubtitle;
-            typingSubtitles = false;
+            subtitlesTextTMP.text = currentSubtitleString;
             audioSource.PlayOneShot(audioClipPrintCharacter);
+            
+            typingSubtitles = false;
         }
         else
         {
-            // confirm subtitles: clear message, show cursor again
-            subtitlesTextTMP.text = string.Empty;
-            subtitlesOverlayCanvasGO.SetActive(false);
-            cursorShowEvent.Raise();
-            interactionEnableEvent.Raise();
+            currentSubtitleLine++;
+            if(currentSubtitleLine < subtitlesData.subtitles[subtitlesData.currentSubtitleIndex].subtitleLines.Length)
+            {
+                // print next subtitle line
+                currentSubtitlesCoroutine = StartCoroutine(PrintSubtitles());
+            }
+            else
+            {
+                // subtitles completed
+                subtitlesTextTMP.text = string.Empty;
+                currentSubtitleLine = 0;
+                subtitlesOverlayCanvasGO.SetActive(false);
+                cursorShowEvent.Raise();
+                interactionEnableEvent.Raise();
+            }
         }
-        
     }
 
     private IEnumerator PrintSubtitles()
     {
         typingSubtitles = true;
-        currentSubtitle = subtitlesData.subtitles[subtitlesData.currentSubtitleIndex];
+        currentSubtitleString = subtitlesData.subtitles[subtitlesData.currentSubtitleIndex].subtitleLines[currentSubtitleLine]; // TODO: show each line in sequence
         subtitlesTextTMP.text = string.Empty;
 
         float pitchOffsetLower = audioSourceStartPitch - charPrintPitchOffset;
         float pitchOffsetUpper = audioSourceStartPitch + charPrintPitchOffset;
 
         int ctr = 0;
-        int charTarget = currentSubtitle.Length;
+        int charTarget = currentSubtitleString.Length;
 
         while(ctr < charTarget)
         {
-            subtitlesTextTMP.text = currentSubtitle[..ctr];
+            subtitlesTextTMP.text = currentSubtitleString[..ctr];
             audioSource.pitch = Random.Range(pitchOffsetLower, pitchOffsetUpper);
             audioSource.PlayOneShot(audioClipPrintCharacter);
 
-            if(currentSubtitle[ctr] == ' ')
+            if(currentSubtitleString[ctr] == ' ')
             {
                 yield return waitForSecondsSpace;
             }
@@ -122,7 +124,7 @@ public class SubtitleController : MonoBehaviour
             ctr++;
         }
 
-        subtitlesTextTMP.text = currentSubtitle;
+        subtitlesTextTMP.text = currentSubtitleString;
         typingSubtitles = false;
     }
 }
