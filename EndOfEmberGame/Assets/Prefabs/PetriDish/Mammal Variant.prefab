@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 5360328980335979392, guid: aa438b4719faf3441b3f75f316458103, type: 3}
       propertyPath: petriDishData
       value: 
-      objectReference: {fileID: 11400000, guid: 85ba973e5c35ba240821ef7247b85e0a, type: 2}
+      objectReference: {fileID: 11400000, guid: 52e06b1db3309f3919c5ee8645248cd4, type: 2}
     - target: {fileID: 8300149557802956594, guid: aa438b4719faf3441b3f75f316458103, type: 3}
       propertyPath: m_Name
       value: Mammal Variant

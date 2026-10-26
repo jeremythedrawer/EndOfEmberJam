@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a57f83d381c610345a070d702e40f49a, type: 3}
   m_Name: PetriDIshFungus
   m_EditorClassIdentifier: 
-  cellType: 2
+  cellType: 3
   cellObject: {fileID: 6026770905291750190, guid: ac6e2812f259d064da040598b874a5e7, type: 3}
   positions: []
+  index: 0

@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 5360328980335979392, guid: aa438b4719faf3441b3f75f316458103, type: 3}
       propertyPath: petriDishData
       value: 
-      objectReference: {fileID: 11400000, guid: 289059afbf1b335489621393fb25e1e6, type: 2}
+      objectReference: {fileID: 11400000, guid: f5a7905a23a8c56a4b101e3f800538f3, type: 2}
     - target: {fileID: 8300149557802956594, guid: aa438b4719faf3441b3f75f316458103, type: 3}
       propertyPath: m_Name
       value: Fungus Variant
