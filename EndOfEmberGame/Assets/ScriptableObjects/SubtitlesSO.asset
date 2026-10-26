@@ -20,7 +20,6 @@ MonoBehaviour:
     - Mitochondria.
     - It's the powerhouse of the cell.
   - subtitleLines:
-    - Mitochondria.
-    - It's the powerhouse of the cell.
-  currentSubtitleIndex: 0
+    - There's nothing under the microscope.
+  currentSubtitleIndex: 2
   displayingSubtitles: 0
