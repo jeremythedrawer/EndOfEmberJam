@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27fb386d447c6c429b6583caec0f0bd, type: 3}
   m_Name: CursorSO
   m_EditorClassIdentifier: 
-  spritePoint: {fileID: -484035964, guid: c9d7dade38633fc48b37d9761f2ac00e, type: 3}
-  spriteHandDrag: {fileID: 1680024920, guid: c9d7dade38633fc48b37d9761f2ac00e, type: 3}
+  spritePoint:
+  - {fileID: 1896497820, guid: c1e32c96c3de4e8388ca93f15af4ebac, type: 3}
+  - {fileID: 685685653, guid: c1e32c96c3de4e8388ca93f15af4ebac, type: 3}
+  - {fileID: 1379127635, guid: c1e32c96c3de4e8388ca93f15af4ebac, type: 3}
+  spriteHandDrag:
+  - {fileID: -897401684, guid: c1e32c96c3de4e8388ca93f15af4ebac, type: 3}
+  - {fileID: -915625959, guid: c1e32c96c3de4e8388ca93f15af4ebac, type: 3}
+  - {fileID: 1357416848, guid: c1e32c96c3de4e8388ca93f15af4ebac, type: 3}
+  spriteHandOpen: {fileID: 1606908887, guid: c1e32c96c3de4e8388ca93f15af4ebac, type: 3}
+  spriteArrowUp: {fileID: -597149691, guid: c1e32c96c3de4e8388ca93f15af4ebac, type: 3}
+  spriteArrowDown: {fileID: -574248475, guid: c1e32c96c3de4e8388ca93f15af4ebac, type: 3}
+  spriteInspect: {fileID: 1410342915, guid: c1e32c96c3de4e8388ca93f15af4ebac, type: 3}
   curCursorSpriteType: 0
