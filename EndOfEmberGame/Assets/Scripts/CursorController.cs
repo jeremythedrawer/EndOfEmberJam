@@ -9,6 +9,7 @@ public enum CursorSpriteType : byte
     ArrowDown = 2,
     HandOpen = 3,
     HandDrag = 4,
+    Inspect = 5,
     MAX_COUNT
 }
 
@@ -21,6 +22,11 @@ public class CursorController : MonoBehaviour
 
     public GameEvent cursorHideEvent;
     public GameEvent cursorShowEvent;
+
+    private float ctr = 0f;
+    public float cursorAnimTime = 0.8f;
+    private int cursorAnimIndex = 0;
+    private int cursorAnimFrameMax = 3;
 
     private void Awake()
     {
@@ -41,6 +47,14 @@ public class CursorController : MonoBehaviour
 
     private void Update()
     {
+        if(ctr > cursorAnimTime)
+        {
+            ctr = 0;
+            cursorAnimIndex++;
+            if(cursorAnimIndex > cursorAnimFrameMax - 1) cursorAnimIndex = 0;
+        }
+        ctr += Time.deltaTime;
+
         // set cursor position
         cursorTransform.position = inputData.mouseScreenPos;
 
@@ -48,15 +62,37 @@ public class CursorController : MonoBehaviour
         {
             case CursorSpriteType.Point:
             {
-                cursorImage.sprite = cursorData.spritePoint;
+                cursorImage.sprite = cursorData.spritePoint[cursorAnimIndex];
+            }
+            break;
+            case CursorSpriteType.ArrowUp:
+            {
+                cursorImage.sprite = cursorData.spriteArrowUp;
+            }
+            break;
+            case CursorSpriteType.ArrowDown:
+            {
+                cursorImage.sprite = cursorData.spriteArrowDown;
+            }
+            break;
+            case CursorSpriteType.HandOpen:
+            {
+                cursorImage.sprite = cursorData.spriteHandOpen;
             }
             break;
             case CursorSpriteType.HandDrag:
             {
-                cursorImage.sprite = cursorData.spriteHandDrag;
+                cursorImage.sprite = cursorData.spriteHandDrag[cursorAnimIndex];
+            }
+            break;
+            case CursorSpriteType.Inspect:
+            {
+                cursorImage.sprite = cursorData.spriteInspect;
             }
             break;
         }
+
+
     }
 
     public void OnCursorHide()

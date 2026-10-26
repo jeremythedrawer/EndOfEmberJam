@@ -12,10 +12,14 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     private bool hovering;
     public bool persistentButton;
 
+    public CursorSpriteType cursorHoverType;
+    private CursorSpriteType prevCursorType;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         // change cursor data
-        cursorData.curCursorSpriteType = CursorSpriteType.HandDrag;
+        prevCursorType = cursorData.curCursorSpriteType;
+        cursorData.curCursorSpriteType = cursorHoverType;
 
         if(imagemat == null) return;
         hovering = true;
@@ -39,7 +43,7 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     private void UnHoverButton()
     {
         // change cursor to default and reset material
-        cursorData.curCursorSpriteType = CursorSpriteType.Point; //default
+        cursorData.curCursorSpriteType = prevCursorType; //default
 
         if(imagemat == null) return;
         hovering = false;
@@ -52,6 +56,7 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         if(hovering)
         {
             time += Time.deltaTime;
+            if(imagemat == null) return;
             imagemat.SetFloat(timeID, time);
         }
         else
