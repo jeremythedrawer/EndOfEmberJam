@@ -4,4 +4,6 @@ using UnityEngine;
 public class PlayerSO : ScriptableObject
 {
     public bool windowOpen;
+    public bool powerboxOpen;
+    public bool powerboxFixed;
 }
