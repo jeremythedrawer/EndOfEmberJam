@@ -98,7 +98,7 @@ public class SubtitleController : MonoBehaviour
     private IEnumerator PrintSubtitles()
     {
         typingSubtitles = true;
-        currentSubtitleString = subtitlesData.subtitles[subtitlesData.currentSubtitleIndex].subtitleLines[currentSubtitleLine]; // TODO: show each line in sequence
+        currentSubtitleString = subtitlesData.subtitles[subtitlesData.currentSubtitleIndex].subtitleLines[currentSubtitleLine];
         subtitlesTextTMP.text = string.Empty;
 
         float pitchOffsetLower = audioSourceStartPitch - charPrintPitchOffset;
