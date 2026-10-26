@@ -228,6 +228,94 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: tex_sprite_cursor_6
+      rect:
+        serializedVersion: 2
+        x: 2628
+        y: 0
+        width: 438
+        height: 783
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 203ec34ced7a005b7b1221514ec49fa3
+      internalID: 1410342915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tex_sprite_cursor_7
+      rect:
+        serializedVersion: 2
+        x: 3066
+        y: 0
+        width: 438
+        height: 783
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5255b9d8cd02d93aa45d4cea91ec84d
+      internalID: 1606908887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tex_sprite_cursor_8
+      rect:
+        serializedVersion: 2
+        x: 3504
+        y: 0
+        width: 438
+        height: 783
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad658d7a4a3bdce039855a88ca8f69b3
+      internalID: -574248475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tex_sprite_cursor_9
+      rect:
+        serializedVersion: 2
+        x: 3942
+        y: 0
+        width: 438
+        height: 783
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2871d9e566fdead308d796f99d5a6b31
+      internalID: -597149691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -248,6 +336,10 @@ TextureImporter:
       tex_sprite_cursor_3: -897401684
       tex_sprite_cursor_4: -915625959
       tex_sprite_cursor_5: 1357416848
+      tex_sprite_cursor_6: 1410342915
+      tex_sprite_cursor_7: 1606908887
+      tex_sprite_cursor_8: -574248475
+      tex_sprite_cursor_9: -597149691
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
