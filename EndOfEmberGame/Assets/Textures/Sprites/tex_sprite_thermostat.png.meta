@@ -118,7 +118,7 @@ TextureImporter:
         width: 913
         height: 773
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -140,7 +140,7 @@ TextureImporter:
         width: 89
         height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -149,6 +149,28 @@ TextureImporter:
       bones: []
       spriteID: cfff2d0dc4f9a4148933da64329204bb
       internalID: 470804763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tex_sprite_thermostat_2
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 1663
+        width: 98
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65692eca4bfc34620942bf917c5f5a3f
+      internalID: 946798349
       vertices: []
       indices: 
       edges: []
@@ -169,6 +191,7 @@ TextureImporter:
     nameFileIdTable:
       tex_sprite_thermostat_0: -1113837256
       tex_sprite_thermostat_1: 470804763
+      tex_sprite_thermostat_2: 946798349
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -23,7 +23,7 @@ public class PowerboxController : MonoBehaviour
         powerboxCloseEvent.RegisterListener(OnPowerboxClose);
     }
 
-    private void OnDistable()
+    private void OnDisable()
     {
         powerboxOpenEvent.UnregisterListener(OnPowerboxOpen);
         powerboxCloseEvent.UnregisterListener(OnPowerboxClose);
@@ -50,6 +50,8 @@ public class PowerboxController : MonoBehaviour
     public void OnPowerBoxFixed()
     {
         powerboxAudioSource.PlayOneShot(clipPowerboxFixed);
+
+        // TODO: affect the lighting in the room
 
         playerData.powerboxFixed = true;
     }
