@@ -12,7 +12,7 @@ public class MoldController : MonoBehaviour
         UpdateMoldStage();
     }
 
-    public void UpdateMoldStage()
+    private void UpdateMoldStage()
     {
         for (int i = 0; i < moldStages.Length; i++)
         {
@@ -25,5 +25,6 @@ public class MoldController : MonoBehaviour
     public void IncreaseMoldStage()
     {
         currentStage += 1;
+        UpdateMoldStage();
     }
 }
