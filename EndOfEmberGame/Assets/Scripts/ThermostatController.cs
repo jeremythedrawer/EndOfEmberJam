@@ -20,12 +20,12 @@ public class ThermostatController : MonoBehaviour
 
     public PlayerSO playerData;
 
-    private bool fanMode;
+    private bool fanMode = true;
 
-    void Awake()
+    void Start()
     {
-        coolingModeOutlineObj.SetActive(!fanMode);
-        heatingModeOutlineObj.SetActive(fanMode);
+        coolingModeOutlineObj.SetActive(fanMode);
+        heatingModeOutlineObj.SetActive(!fanMode);
     }
 
     private void OnEnable()
