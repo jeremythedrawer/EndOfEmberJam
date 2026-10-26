@@ -8,6 +8,10 @@ public class MicroscopeController : MonoBehaviour
     [SerializeField] MicroscopeViewData[] spriteDatas;
     private MicroscopeViewData currentData;
 
+    void OnEnable()
+    {
+        UpdateSprite();
+    }
     public void UpdateSprite()
     {
         currentData = Array.Find(spriteDatas, MatchType);
