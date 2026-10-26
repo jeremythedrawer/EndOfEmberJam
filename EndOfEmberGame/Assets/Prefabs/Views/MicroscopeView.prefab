@@ -121,11 +121,25 @@ MonoBehaviour:
   microscopeData: {fileID: 11400000, guid: 73d81dade7245492ab7a1d8d129e7e3f, type: 2}
   spriteDatas:
   - type: 1
-    sprites: []
+    sprites:
+    - {fileID: 137968839, guid: 80758b1ee1dd1db458ca521107f2261c, type: 3}
+    - {fileID: -2058204629, guid: 80758b1ee1dd1db458ca521107f2261c, type: 3}
+    - {fileID: -453515971, guid: 80758b1ee1dd1db458ca521107f2261c, type: 3}
+    - {fileID: 385104601, guid: 80758b1ee1dd1db458ca521107f2261c, type: 3}
   - type: 2
-    sprites: []
+    sprites:
+    - {fileID: -1446103002, guid: db5f3e0c0db8e48478be66fdd14a8612, type: 3}
+    - {fileID: 583794896, guid: db5f3e0c0db8e48478be66fdd14a8612, type: 3}
+    - {fileID: 1965105745, guid: db5f3e0c0db8e48478be66fdd14a8612, type: 3}
+    - {fileID: -909999356, guid: db5f3e0c0db8e48478be66fdd14a8612, type: 3}
   - type: 3
-    sprites: []
+    sprites:
+    - {fileID: -668396987, guid: 5d2788aa02ad3564fb85c57be12dae11, type: 3}
+    - {fileID: 594375951, guid: 5d2788aa02ad3564fb85c57be12dae11, type: 3}
+    - {fileID: -729272444, guid: 5d2788aa02ad3564fb85c57be12dae11, type: 3}
+    - {fileID: -1946187174, guid: 5d2788aa02ad3564fb85c57be12dae11, type: 3}
+  viewSprite: {fileID: 438741679941129982}
+  defaultFrameSpeed: 0.4
 --- !u!1 &2926488976748365030
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,8 +382,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080.0001}
+  m_AnchoredPosition: {x: -5, y: 0.00080872}
+  m_SizeDelta: {x: 1225.452, y: 1080.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2501783448603844301
 CanvasRenderer:
@@ -401,7 +415,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
