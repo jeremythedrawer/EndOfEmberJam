@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine.UI;
 using Proselyte.Sigils;
 using UnityEngine.EventSystems;
-using Newtonsoft.Json.Bson;
 
 public class WikiController : MonoBehaviour
 {
@@ -17,6 +16,8 @@ public class WikiController : MonoBehaviour
 
     public GameEvent confirmWikiPageEvent;
     public GameEvent subtitleConfirmEvent;
+
+    public GameEvent ResearchMitochondriaEvent;
 
     private void OnEnable()
     {
@@ -68,7 +69,9 @@ public class WikiController : MonoBehaviour
             case "powerhouse":
             case "power":
             {
+                ResearchMitochondriaEvent.Raise();
                 ShowPage(3);
+                foundResultImage.rectTransform.sizeDelta = foundResultImage.rectTransform.sizeDelta * 0.5f;
             }
             break;
             case "zoophthora":
