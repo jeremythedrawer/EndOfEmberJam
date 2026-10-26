@@ -16,6 +16,8 @@ MonoBehaviour:
   subtitles:
   - subtitleLines:
     - Mitochondria.
-    - It's the powerhouse.
-    - Of the cell.
+    - It's the powerhouse of the cell.
+  - subtitleLines:
+    - Mitochondria.
+    - It's the powerhouse of the cell.
   currentSubtitleIndex: 0
