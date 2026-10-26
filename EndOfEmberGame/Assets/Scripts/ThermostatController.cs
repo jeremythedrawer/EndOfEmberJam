@@ -7,6 +7,7 @@ public class ThermostatController : MonoBehaviour
     public TextMeshProUGUI thermostatText;
 
     public AudioSource thermostatAudioSource;
+    public AudioSource heatingAudioSource;
     public AudioClip clipButtonPress;
 
     public GameObject coolingModeOutlineObj;
@@ -67,6 +68,7 @@ public class ThermostatController : MonoBehaviour
             coolingModeOutlineObj.SetActive(true);
             heatingModeOutlineObj.SetActive(false);
             thermostatAudioSource.PlayOneShot(clipButtonPress);
+            heatingAudioSource.Stop();
 
             fanMode = true;
         }
@@ -75,6 +77,7 @@ public class ThermostatController : MonoBehaviour
             coolingModeOutlineObj.SetActive(false);
             heatingModeOutlineObj.SetActive(true);
             thermostatAudioSource.PlayOneShot(clipButtonPress);
+            heatingAudioSource.Play();
 
             fanMode = false;
         }
