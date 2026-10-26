@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TriggerSubtitlesEvent: {fileID: 11400000, guid: becc554863db0544199aeae23d6f4187, type: 2}
   subtitles:
-  - Mitochondria, the powerhouse of the cell.
+  - subtitleLines:
+    - Mitochondria.
+    - It's the powerhouse.
+    - Of the cell.
   currentSubtitleIndex: 0
