@@ -6,6 +6,7 @@ public static class Biology
     public const int CELL_COUNT = 64;
     public enum CellType
     {
+        None,
         Plant, // hexagon shape
         Mammal, // circle shape
         Fungus, //bean shape
