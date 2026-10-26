@@ -7,4 +7,5 @@ public class PlayerSO : ScriptableObject
     public bool powerboxOpen;
     public bool powerboxFixed;
     public bool fanMode;
+    public int currentRoomTemperature;
 }

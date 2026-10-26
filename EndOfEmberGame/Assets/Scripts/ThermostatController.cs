@@ -48,6 +48,8 @@ public class ThermostatController : MonoBehaviour
 
         thermostatAudioSource.PlayOneShot(clipButtonPress);
         thermostatText.text = currentRoomTemperature.ToString();
+
+        playerData.currentRoomTemperature = currentRoomTemperature;
     }
 
     public void DecreaseTemperature()
@@ -59,6 +61,8 @@ public class ThermostatController : MonoBehaviour
 
         thermostatAudioSource.PlayOneShot(clipButtonPress);
         thermostatText.text = currentRoomTemperature.ToString();
+
+        playerData.currentRoomTemperature = currentRoomTemperature;
     }
 
     public void SetThermostatMode()
