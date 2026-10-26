@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioMixer mixer;
     public AudioMixerGroup mixerGroup;
     public AudioSource ambienceAudioSource;
+    public AudioSource heaterAudioSource;
     public PlayerSO playerData;
 
     public float rainFadeInTime = 1f;
@@ -27,6 +28,9 @@ public class AudioManager : MonoBehaviour
     private const string ambVolID = "ambience_vol";
     private Coroutine rainCoroutine;
 
+    private const string heaterLowPassID = "heater_low_pass";
+    private const string heaterVolID = "heater_vol";
+    private Coroutine heaterCoroutine;
 
     private void Start()
     {
