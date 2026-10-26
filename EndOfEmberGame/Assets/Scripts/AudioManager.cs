@@ -66,8 +66,17 @@ public class AudioManager : MonoBehaviour
 
     public void HeaterRoomAmbience()
     {
-        if (heaterCoroutine != null) StopCoroutine(heaterCoroutine);
-        heaterCoroutine = StartCoroutine(FadeInHeaterRoomAmbience());
+        //if (heaterCoroutine != null) StopCoroutine(heaterCoroutine);
+        //heaterCoroutine = StartCoroutine(FadeInHeaterRoomAmbience());
+
+        if (playerData.fanMode == false)
+        {
+            heaterAudioSource.Play();
+        }
+        else
+        {
+            heaterAudioSource.Stop();
+        }
     }
 
     // Opening window in room
