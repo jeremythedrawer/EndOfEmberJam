@@ -113,12 +113,12 @@ TextureImporter:
       name: tex_sprite_microscope_0
       rect:
         serializedVersion: 2
-        x: 1067
+        x: 247
         y: 120
         width: 690
         height: 960
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -135,12 +135,12 @@ TextureImporter:
       name: tex_sprite_microscope_1
       rect:
         serializedVersion: 2
-        x: 1503
-        y: 75
-        width: 57
-        height: 4
+        x: 1126
+        y: 710
+        width: 578
+        height: 370
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -169,6 +169,8 @@ TextureImporter:
     nameFileIdTable:
       tex_sprite_microscope_0: -1248254389
       tex_sprite_microscope_1: -36323686
+      tex_sprite_microscope_2: 1230016409
+      tex_sprite_microscope_3: -2087434369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
