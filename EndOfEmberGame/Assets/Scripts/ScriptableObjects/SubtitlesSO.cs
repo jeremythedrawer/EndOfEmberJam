@@ -4,8 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SubtitlesSO", menuName = "ScriptableObjects / SubtitlesSO")]
 public class SubtitlesSO : ScriptableObject
 {
+    [System.Serializable]
+    public struct SubtitleData
+    {
+        public string[] subtitleLines;
+    }
+
     public GameEvent TriggerSubtitlesEvent;
-    public string[] subtitles = {"I've already printed that page."};
+    public SubtitleData[] subtitles;
     public int currentSubtitleIndex = -1;
 
     public void TriggerSubtitleFromIndex(int index)
