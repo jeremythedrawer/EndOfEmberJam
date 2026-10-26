@@ -6,5 +6,5 @@ public class PlayerSO : ScriptableObject
     public bool windowOpen;
     public bool powerboxOpen;
     public bool powerboxFixed;
-    public bool coolMode;
+    public bool fanMode;
 }

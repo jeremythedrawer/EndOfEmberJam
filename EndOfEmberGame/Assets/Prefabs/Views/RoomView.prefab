@@ -2708,7 +2708,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5576356748303538892}
         m_TargetAssemblyTypeName: ThermostatController, Assembly-CSharp
         m_MethodName: SetThermostatMode
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -20,14 +20,22 @@ public class ThermostatController : MonoBehaviour
 
     public PlayerSO playerData;
 
+    private bool fanMode;
+
+    void Awake()
+    {
+        coolingModeOutlineObj.SetActive(!fanMode);
+        heatingModeOutlineObj.SetActive(fanMode);
+    }
+
     private void OnEnable()
     {
-        //setThermostatModeEvent.RegisterListener(setThermostatModeEvent);
+        setThermostatModeEvent.RegisterListener(SetThermostatMode);
     }
 
     private void OnDisable()
     {
-        //setThermostatModeEvent.UnregisterListener(setThermostatModeEvent);
+        setThermostatModeEvent.UnregisterListener(SetThermostatMode);
     }
 
     public void IncreaseTemperature()
@@ -52,12 +60,25 @@ public class ThermostatController : MonoBehaviour
         thermostatText.text = currentRoomTemperature.ToString();
     }
 
-    public void SetThermostatMode(bool t)
+    public void SetThermostatMode()
     {
-        coolingModeOutlineObj.SetActive(t);
-        heatingModeOutlineObj.SetActive(!t);
-        thermostatAudioSource.PlayOneShot(clipButtonPress);
+        if (fanMode == false)
+        {
+            coolingModeOutlineObj.SetActive(true);
+            heatingModeOutlineObj.SetActive(false);
+            thermostatAudioSource.PlayOneShot(clipButtonPress);
 
-        playerData.coolMode = t;
+            fanMode = true;
+        }
+        else
+        {
+            coolingModeOutlineObj.SetActive(false);
+            heatingModeOutlineObj.SetActive(true);
+            thermostatAudioSource.PlayOneShot(clipButtonPress);
+
+            fanMode = false;
+        }
+
+        playerData.fanMode = fanMode;
     }
 }
