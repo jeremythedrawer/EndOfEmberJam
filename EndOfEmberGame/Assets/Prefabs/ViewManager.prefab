@@ -51,6 +51,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  viewGraphicRaycasters:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  hudGraphicRaycaster: {fileID: 0}
   currentViewType: 0
 --- !u!114 &6908940959825666889
 MonoBehaviour:
@@ -136,6 +143,38 @@ MonoBehaviour:
         - m_Target: {fileID: 8426220141210946333}
           m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
           m_MethodName: OpenViewAttic
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 5acf9a06d33555f4186fcd388e93eec4, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8426220141210946333}
+          m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
+          m_MethodName: OnInteractionEnable
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 95fdaf22091873b4e9a5d2edd85d8528, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8426220141210946333}
+          m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
+          m_MethodName: OnInteractionDisable
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
