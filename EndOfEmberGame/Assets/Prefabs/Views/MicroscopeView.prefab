@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1546259136053136173}
   - component: {fileID: 1805637250660761259}
   - component: {fileID: 2157981196392367079}
+  - component: {fileID: 5772443732367962331}
   m_Layer: 0
   m_Name: MicroscopeView
   m_TagString: Untagged
@@ -105,6 +106,26 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5772443732367962331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625268206687043352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f126b5bf790b7b45a1b1ab8fd8ad56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  microscopeData: {fileID: 11400000, guid: 73d81dade7245492ab7a1d8d129e7e3f, type: 2}
+  spriteDatas:
+  - type: 1
+    sprites: []
+  - type: 2
+    sprites: []
+  - type: 3
+    sprites: []
 --- !u!1 &2926488976748365030
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +153,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2926488976748365030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1830.5084}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99945754, y: 0.99945754, z: 0.99945754}
   m_ConstrainProportionsScale: 0
   m_Children:
