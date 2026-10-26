@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3071fa22f401d745a49a56728eb007b, type: 3}
   m_Name: WikiSO
   m_EditorClassIdentifier: 
-  pageSprites:
-  - {fileID: -932967856, guid: 02a79c2aabd4dc94da5184a20a040424, type: 3}
+  pageData:
+  - hasPrinted: 0
+    sprite: {fileID: -1769297657, guid: 5c1cede9f9ce0c340ae4d5b1e050bc1a, type: 3}
+  - hasPrinted: 0
+    sprite: {fileID: -35251181, guid: 5c1cede9f9ce0c340ae4d5b1e050bc1a, type: 3}
