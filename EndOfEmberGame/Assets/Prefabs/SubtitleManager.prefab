@@ -56,6 +56,7 @@ MonoBehaviour:
   cursorShowEvent: {fileID: 11400000, guid: 16047eebf62281648ae6af10ca8a96ad, type: 2}
   interactionEnableEvent: {fileID: 11400000, guid: 5acf9a06d33555f4186fcd388e93eec4, type: 2}
   interactionDisableEvent: {fileID: 11400000, guid: 95fdaf22091873b4e9a5d2edd85d8528, type: 2}
+  subtitleConfirmEvent: {fileID: 11400000, guid: 4cfda1519d0098b4ba475c1f541c4b23, type: 2}
   charPrintTimeWord: 0.05
   charPrintTimeSpace: 0.08
   charPrintTimeNewLine: 0.5

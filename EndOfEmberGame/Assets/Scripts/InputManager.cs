@@ -1,3 +1,4 @@
+using Proselyte.Sigils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,15 +10,25 @@ public class InputManager : MonoBehaviour
     public PlayerInput playerInput;
 
     public InputAction cursorLeftDownAction;
+    public InputAction anyKeyDownAction;
+
+    public GameEvent wikiConfirmPageEvent;
+    public GameEvent subtitleConfirmEvent;
 
     private void Awake()
     {
         // Init inputs
+        
         cursorLeftDownAction = playerInput.actions["Player/CursorLeftDown"];
         cursorLeftDownAction.started += OnStartLeftMouse;
         cursorLeftDownAction.performed += OnPerformLeftMouse;
         cursorLeftDownAction.canceled += OnCancelLeftMouse;
+
+        anyKeyDownAction = playerInput.actions["Player/AnyKeyDown"];
+        anyKeyDownAction.started += OnAnyKeyDownCool;
+
     }
+
     private void Start()
     {
         inputData.mouseScreenPos.z = 0.25f;
@@ -50,5 +61,11 @@ public class InputManager : MonoBehaviour
     {
         inputData.mouseLeftUp = true;
         inputData.mouseLeftHold = false;
+    }
+
+    private void OnAnyKeyDownCool(CallbackContext ctx)
+    {
+        wikiConfirmPageEvent.Raise();
+        subtitleConfirmEvent.Raise();
     }
 }

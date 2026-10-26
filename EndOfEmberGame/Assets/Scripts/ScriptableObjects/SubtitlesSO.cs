@@ -13,6 +13,7 @@ public class SubtitlesSO : ScriptableObject
     public GameEvent TriggerSubtitlesEvent;
     public SubtitleData[] subtitles;
     public int currentSubtitleIndex = -1;
+    public bool displayingSubtitles;
 
     public void TriggerSubtitleFromIndex(int index)
     {

@@ -1,19 +1,39 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Proselyte.Sigils;
+using UnityEngine.EventSystems;
+using Newtonsoft.Json.Bson;
 
 public class WikiController : MonoBehaviour
 {
     public TMP_InputField inputField;
     public Image foundResultImage;
+    public GameObject foundResultBackdropGO;
 
     public PlayerSO playerData;
     public WikiSO wikiData;
+    public SubtitlesSO subtitlesData;
+
+    public GameEvent confirmWikiPageEvent;
+    public GameEvent subtitleConfirmEvent;
+
+    private void OnEnable()
+    {
+        confirmWikiPageEvent.RegisterListener(OnConfirmWikiPage);
+    }
+
+    private void OnDisable()
+    {
+        confirmWikiPageEvent.UnregisterListener(OnConfirmWikiPage);
+    }
 
     public void Start()
     {
-        foundResultImage.gameObject.SetActive(false);
+        foundResultBackdropGO.SetActive(false);
     }
+
+
 
     public void HandleSearchFieldInput()
     {
@@ -24,39 +44,23 @@ public class WikiController : MonoBehaviour
             case "chytrid":
             case "chytridiomycota":
             {
-                foundResultImage.gameObject.SetActive(true);
-                foundResultImage.sprite = wikiData.pageData[0].sprite;
-                foundResultImage.SetNativeSize();
+                ShowPage(0);
             }
             break;
             case "aspergillus":
             case "aspergillosis":
+            case "mould":
+            case "mold":
             {
-                foundResultImage.gameObject.SetActive(true);
-                foundResultImage.sprite = wikiData.pageData[1].sprite;
-                foundResultImage.SetNativeSize();
+                ShowPage(1);
             }
             break;
             case "conidia":
+            case "conidium":
             case "spore":
             case "spores":
             {
-                WikiSO.PageData pageData = wikiData.pageData[2];
-                if(!pageData.hasPrinted)
-                {
-                    // page has not been printed yet print:
-                    // play animation on photocopier
-                    // play sfx
-                    // show hoverable & clickable region on page coming out of printer
-                    // then show full page on ui
-                }
-                else
-                {
-                    // just show page
-                    foundResultImage.gameObject.SetActive(true);
-                    foundResultImage.sprite = pageData.sprite;
-                    foundResultImage.SetNativeSize();
-                }
+                ShowPage(2);
             }
             break;
             case "mitochondria":
@@ -64,16 +68,119 @@ public class WikiController : MonoBehaviour
             case "powerhouse":
             case "power":
             {
-                foundResultImage.gameObject.SetActive(true);
-                foundResultImage.sprite = wikiData.pageData[3].sprite;
-                foundResultImage.SetNativeSize();
+                ShowPage(3);
+            }
+            break;
+            case "zoophthora":
+            {
+                ShowPage(4);
+            }
+            break;
+            case "parasite":
+            case "parasitism":
+            case "parasitoid":
+            {
+                ShowPage(4);
+            }
+            break;
+            case "thermophillic":
+            case "thermal":
+            case "heat":
+            {
+                ShowPage(5);
+            }
+            break;
+            case "dormant": 
+            case "dormancy": 
+            case "latency":
+            {
+                ShowPage(6);
+            }
+            break;
+            case "phototactic": 
+            case "phototaxis":
+            case "light sensitive":
+            case "photophobic":
+            {
+                ShowPage(6);
+            }
+            break;
+            case "hyphae":
+            case "mycelium":
+            case "hyphal":
+            {
+                ShowPage(6);
+            }
+            break;
+            case "saprobe":
+            case "saprotrophic":
+            case "saprotroph":
+            {
+                ShowPage(6);
+            }
+            break;
+            case "epithelial":
+            case "animal":
+            case "mammal":
+            case "epidermis":
+            case "skin":
+            {
+                ShowPage(6);
+            }
+            break;
+            case "":
+            {
+                // leave blank no input detected
+            }
+            break;
+            default: // handle invalid input
+            {
+                subtitlesData.TriggerSubtitleFromIndex(0);
+                DeactivateInputField();
             }
             break;
         }
+    }
 
+    public void ShowPage(int pageIndex)
+    {
+        foundResultBackdropGO.SetActive(true);
+        foundResultImage.sprite = wikiData.pageData[pageIndex].sprite;
+        foundResultImage.SetNativeSize();
+        wikiData.pageIsShowing = true;
 
         // clear input field
-        inputField.text = "";
-        inputField.ActivateInputField();
+
+        DeactivateInputField();
+    }
+
+    private void OnConfirmWikiPage()
+    {
+        if(wikiData.pageIsShowing)
+        {
+            subtitleConfirmEvent.Raise();
+            foundResultBackdropGO.SetActive(false);
+            inputField.ActivateInputField();
+            inputField.text = string.Empty;
+            wikiData.pageIsShowing = false;
+        }
+        else if (subtitlesData.displayingSubtitles)
+        {
+            // player confirmed subtitles while using the wiki, refocus the input field for the wiki
+            inputField.ActivateInputField();
+            inputField.text = string.Empty;
+        }
+    }
+
+    public void OnSelectInputField()
+    {
+        inputField.text = string.Empty;
+    }
+
+    private void DeactivateInputField()
+    {
+        inputField.DeactivateInputField();
+        var eventSystem = EventSystem.current;
+        if(!eventSystem.alreadySelecting) eventSystem.SetSelectedGameObject(null);
     }
 }

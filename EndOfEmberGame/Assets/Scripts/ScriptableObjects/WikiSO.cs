@@ -11,4 +11,5 @@ public class WikiSO : ScriptableObject
         public Sprite sprite;
     }
     public PageData[] pageData;
+    public bool pageIsShowing;
 }

@@ -17,6 +17,7 @@ public class SubtitleController : MonoBehaviour
     public GameEvent cursorShowEvent;
     public GameEvent interactionEnableEvent;
     public GameEvent interactionDisableEvent;
+    public GameEvent subtitleConfirmEvent;
 
     public float charPrintTimeWord = 0.075f;
     public float charPrintTimeSpace = 0.1f;
@@ -24,6 +25,7 @@ public class SubtitleController : MonoBehaviour
     public float charPrintPitchOffset = 0.3f;
 
     private bool typingSubtitles = false;
+
     private WaitForSeconds waitForSecondsWord;
     private WaitForSeconds waitForSecondsSpace;
     private Coroutine currentSubtitlesCoroutine;
@@ -32,7 +34,6 @@ public class SubtitleController : MonoBehaviour
     private int currentSubtitleLine = 0;
 
     private float audioSourceStartPitch;
-
 
     private void Awake()
     {
@@ -48,15 +49,18 @@ public class SubtitleController : MonoBehaviour
     private void OnEnable()
     {
         triggerSubtitlesEvent.RegisterListener(OnTriggerSubtitles);
+        subtitleConfirmEvent.RegisterListener(OnConfirmSubtitles);
     }
 
     private void OnDisable()
     {
         triggerSubtitlesEvent.UnregisterListener(OnTriggerSubtitles);
+        subtitleConfirmEvent.UnregisterListener(OnConfirmSubtitles);
     }
 
     public void OnTriggerSubtitles()
     {
+        subtitlesData.displayingSubtitles = true;
         cursorHideEvent.Raise();
         interactionDisableEvent.Raise();
         subtitlesOverlayCanvasGO.SetActive(true);
@@ -66,6 +70,11 @@ public class SubtitleController : MonoBehaviour
 
     public void OnConfirmSubtitles()
     {
+        if(!subtitlesData.displayingSubtitles)
+        {
+            return;
+        }
+
         if(typingSubtitles && currentSubtitlesCoroutine != null)
         {
             // skipping animation: stop coroutine, complete message
@@ -91,6 +100,7 @@ public class SubtitleController : MonoBehaviour
                 subtitlesOverlayCanvasGO.SetActive(false);
                 cursorShowEvent.Raise();
                 interactionEnableEvent.Raise();
+                subtitlesData.displayingSubtitles = false;
             }
         }
     }
@@ -107,13 +117,14 @@ public class SubtitleController : MonoBehaviour
         int ctr = 0;
         int charTarget = currentSubtitleString.Length;
 
+        // print characters one at a time with audio
         while(ctr < charTarget)
         {
             subtitlesTextTMP.text = currentSubtitleString[..ctr];
             audioSource.pitch = Random.Range(pitchOffsetLower, pitchOffsetUpper);
             audioSource.PlayOneShot(audioClipPrintCharacter);
 
-            if(currentSubtitleString[ctr] == ' ')
+            if(currentSubtitleString[ctr++] == ' ')
             {
                 yield return waitForSecondsSpace;
             }

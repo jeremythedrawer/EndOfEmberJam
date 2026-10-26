@@ -86,3 +86,14 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  anyKeyDownAction:
+    m_Name: Any Key Down
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2d31a366-71ff-4c88-8dd4-17d11818c667
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  wikiConfirmPageEvent: {fileID: 11400000, guid: 4cfda1519d0098b4ba475c1f541c4b23, type: 2}
+  subtitleConfirmEvent: {fileID: 11400000, guid: 4e348332f599b8949a94fad1c1c6d156, type: 2}

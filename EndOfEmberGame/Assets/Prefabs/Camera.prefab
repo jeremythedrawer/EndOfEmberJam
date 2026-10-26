@@ -245,6 +245,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1419836267881511009, guid: 83b71efb694532c4a92a67e06be3fc68, type: 3}
+      propertyPath: subtitleConfirmEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 4e348332f599b8949a94fad1c1c6d156, type: 2}
     - target: {fileID: 1422660395773476242, guid: 83b71efb694532c4a92a67e06be3fc68, type: 3}
       propertyPath: m_Name
       value: HUDCanvas

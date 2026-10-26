@@ -15,9 +15,12 @@ MonoBehaviour:
   TriggerSubtitlesEvent: {fileID: 11400000, guid: becc554863db0544199aeae23d6f4187, type: 2}
   subtitles:
   - subtitleLines:
+    - Nothing matching the topic.
+  - subtitleLines:
     - Mitochondria.
     - It's the powerhouse of the cell.
   - subtitleLines:
     - Mitochondria.
     - It's the powerhouse of the cell.
   currentSubtitleIndex: 0
+  displayingSubtitles: 0
