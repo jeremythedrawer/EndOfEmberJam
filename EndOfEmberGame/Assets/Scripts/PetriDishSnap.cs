@@ -11,7 +11,7 @@ public class PetriDishSnap : MonoBehaviour
         instance = this;
     }
 
-    public void DetectDish(PetriDishDragable dish)
+    public bool DetectDish(PetriDishDragable dish)
     {
         //snap if current dish is within range
         Vector2 dishPosition = dish.transform.localPosition;
@@ -23,6 +23,7 @@ public class PetriDishSnap : MonoBehaviour
             {
                 dish.transform.position = transform.position;
                 microscopeSO.curCellType = dish.petriDishData.cellType;
+                return true;
             }
         }
         // remove the current dish
@@ -33,5 +34,6 @@ public class PetriDishSnap : MonoBehaviour
                 microscopeSO.curCellType = Biology.CellType.None;
             }
         }
+        return false;
     }
 }
