@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 484595543560506208}
   - component: {fileID: 3778368571061796717}
   - component: {fileID: 1682592453903810348}
+  - component: {fileID: 8579420850065767298}
   m_Layer: 0
   m_Name: SpriteMicroscopeOverlay
   m_TagString: Untagged
@@ -298,6 +299,29 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &8579420850065767298
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5027157324347695993}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &5899369806723785092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,34 +1196,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4719889198067257805, guid: 1b1a9a09dc51d9a4e80915f28eb75d81, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2086066423076782489}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b1a9a09dc51d9a4e80915f28eb75d81, type: 3}
 --- !u!224 &1268588517155508544 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4448043373850153710, guid: 1b1a9a09dc51d9a4e80915f28eb75d81, type: 3}
   m_PrefabInstance: {fileID: 3179666033798529966}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7899343840017863267 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4719889198067257805, guid: 1b1a9a09dc51d9a4e80915f28eb75d81, type: 3}
-  m_PrefabInstance: {fileID: 3179666033798529966}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2086066423076782489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7899343840017863267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9e59edd85e1506479f4767addfef777, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorData: {fileID: 11400000, guid: bd1893e4bd189d84d8960ebe73d31bc8, type: 2}
-  imagemat: {fileID: 0}
-  persistentButton: 0
-  cursorHoverType: 0
