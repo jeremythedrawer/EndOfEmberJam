@@ -13,7 +13,7 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CellType currentCellType = microData.curCellType;
+        CellType currentCellType = MicroscopeSO.curCellType;
 
         inspectButton.onClick.RemoveAllListeners();
 
