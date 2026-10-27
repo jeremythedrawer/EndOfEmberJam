@@ -86,11 +86,12 @@ public class WikiController : MonoBehaviour
                 ShowPage(4);
             }
             break;
-            case "thermophillic":
+            case "thermophilic":
             case "thermal":
             case "heat":
             {
-                ShowPage(5);
+                playerData.researchedThermophilic = true;
+                //ShowPage(5); // NOTE(Jazz): placeholder until page is in project
             }
             break;
             case "dormant": 
