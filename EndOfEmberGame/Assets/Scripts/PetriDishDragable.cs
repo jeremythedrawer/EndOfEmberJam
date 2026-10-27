@@ -25,6 +25,10 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public void OnPointerExit(PointerEventData eventData)
     {
         StopCoroutine(trackingFunction);
+        if (MicroscopeSO.curCellType != petriDishData.cellType)
+        {
+            returnFunction = StartCoroutine(ReturnToOrigin());
+        }
     }
 
     private IEnumerator TrackDraggingInput()
@@ -61,7 +65,8 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         while (true)
         {
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, origin, 1000f*Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, origin, 1000f * Time.deltaTime);
+            print("returning");
             if (transform.localPosition == origin)
             {
                 break;
