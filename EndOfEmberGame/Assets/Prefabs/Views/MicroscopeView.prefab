@@ -752,6 +752,7 @@ GameObject:
   - component: {fileID: 6141410972779573974}
   - component: {fileID: 8116853120717339062}
   - component: {fileID: 8937793754218245274}
+  - component: {fileID: 782830835075354657}
   m_Layer: 0
   m_Name: InspectMicroscopeButton
   m_TagString: Untagged
@@ -888,6 +889,22 @@ MonoBehaviour:
   imagemat: {fileID: 0}
   persistentButton: 0
   cursorHoverType: 5
+--- !u!114 &782830835075354657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6932829052707376652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950933cd492849544a95e1ff228f3a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  microData: {fileID: 11400000, guid: 73d81dade7245492ab7a1d8d129e7e3f, type: 2}
+  playerData: {fileID: 11400000, guid: 8641ad54672092346a4d2bab986f28fc, type: 2}
+  subtitleData: {fileID: 11400000, guid: f075c4f5a9a119848a56348cccb9405c, type: 2}
+  inspectButton: {fileID: 8116853120717339062}
 --- !u!1 &7404441505765365355
 GameObject:
   m_ObjectHideFlags: 0
