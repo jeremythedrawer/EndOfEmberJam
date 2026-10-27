@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
+public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerMoveHandler
 {
     public CursorSO cursorData;
 
@@ -13,12 +13,9 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public bool persistentButton;
 
     public CursorSpriteType cursorHoverType;
-    private CursorSpriteType prevCursorType;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // change cursor data
-        prevCursorType = cursorData.curCursorSpriteType;
         cursorData.curCursorSpriteType = cursorHoverType;
 
         if(imagemat == null) return;
@@ -27,9 +24,23 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         imagemat.SetFloat(timeID, time);
     }
 
+    public void ApplyCursorType()
+    {
+        cursorData.curCursorSpriteType = cursorHoverType;
+    }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         UnHoverButton();
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        cursorData.curCursorSpriteType = cursorHoverType;
+        if(imagemat == null) return;
+        hovering = true;
+        imagemat.SetFloat(hoveringID, 1f);
+        imagemat.SetFloat(timeID, time);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -43,7 +54,7 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     private void UnHoverButton()
     {
         // change cursor to default and reset material
-        cursorData.curCursorSpriteType = prevCursorType; //default
+        cursorData.curCursorSpriteType = CursorSpriteType.Point; //default
 
         if(imagemat == null) return;
         hovering = false;
@@ -53,6 +64,7 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     private void Update()
     {
+        // Hovering flashing material effect
         if(hovering)
         {
             time += Time.deltaTime;
