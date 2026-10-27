@@ -15,11 +15,17 @@ MonoBehaviour:
   TriggerSubtitlesEvent: {fileID: 11400000, guid: becc554863db0544199aeae23d6f4187, type: 2}
   subtitles:
   - subtitleLines:
-    - Nothing matching the topic.
+    - There was nothing pertinent.
   - subtitleLines:
     - Mitochondria.
     - It's the powerhouse of the cell.
   - subtitleLines:
     - There's nothing under the microscope.
-  currentSubtitleIndex: 2
+  - subtitleLines:
+    - The fungus isn't responding to the plant cells.
+  - subtitleLines:
+    - The control specimen.
+  - subtitleLines:
+    - The fungus is stimulated by the presence of the mammal cells.
+  currentSubtitleIndex: 4
   displayingSubtitles: 0
