@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PetriDishSnap : MonoBehaviour
 {
     public static PetriDishSnap instance;
+    [SerializeField] GameObject overlayObject;
 
     void Awake()
     {
@@ -21,6 +22,8 @@ public class PetriDishSnap : MonoBehaviour
             if (withinRange)
             {
                 dish.transform.position = transform.position;
+                //overlayLayer.enabled = true;
+                overlayObject.transform.SetAsLastSibling();
                 MicroscopeSO.curCellType = dish.petriDishData.cellType;
                 return true;
             }
