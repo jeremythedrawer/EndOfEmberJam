@@ -1,4 +1,5 @@
 using System.Collections;
+using NUnit.Framework.Interfaces;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,6 +9,13 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
     [SerializeField] CursorSO cursorData;
     public PetriDishSO petriDishData;
     private Coroutine trackingFunction;
+    private Coroutine returnFunction;
+    private Vector3 origin;
+
+    void Awake()
+    {
+        origin = transform.localPosition;
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -28,6 +36,10 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
             {
                 transform.SetAsLastSibling();
                 spriteOffset = transform.position - inputSO.mouseWorldPos;
+                if (returnFunction != null)
+                {
+                    StopCoroutine(returnFunction);
+                }
             }
             if (inputSO.mouseLeftHold && spriteOffset != Vector3.zero)
             {
@@ -36,7 +48,23 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
             if (inputSO.mouseLeftUp)
             {
                 spriteOffset = Vector3.zero;
-                PetriDishSnap.instance.DetectDish(this);
+                if (!PetriDishSnap.instance.DetectDish(this))
+                {
+                    returnFunction = StartCoroutine(ReturnToOrigin());
+                }
+            }
+            yield return null;
+        }
+    }
+
+    private IEnumerator ReturnToOrigin()
+    {
+        while (true)
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, origin, 1000f*Time.deltaTime);
+            if (transform.localPosition == origin)
+            {
+                break;
             }
             yield return null;
         }
