@@ -7,6 +7,7 @@ public class SubtitlesSO : ScriptableObject
     [System.Serializable]
     public struct SubtitleData
     {
+        [TextArea(2,4)]
         public string[] subtitleLines;
     }
 
