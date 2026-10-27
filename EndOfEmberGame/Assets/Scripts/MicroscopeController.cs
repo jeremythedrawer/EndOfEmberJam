@@ -12,6 +12,13 @@ public class MicroscopeController : MonoBehaviour
     [SerializeField] float defaultFrameSpeed = 0.2f;
     private MicroscopeViewData currentData;
 
+#if UNITY_EDITOR
+    private void Start()
+    {
+        microscopeData.curCellType = CellType.None;
+    }
+#endif
+
     void OnEnable()
     {
         UpdateSprite();
