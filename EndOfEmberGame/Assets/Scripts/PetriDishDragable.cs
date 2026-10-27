@@ -8,7 +8,6 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
     [SerializeField] CursorSO cursorData;
     public PetriDishSO petriDishData;
     private Coroutine trackingFunction;
-    private Coroutine returnFunction;
     private Vector3 origin;
 
     public AudioSource petriDishAudioSource;
@@ -35,7 +34,7 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
         onHover.cursorHoverType = CursorSpriteType.HandOpen;
         if (MicroscopeSO.curCellType != petriDishData.cellType)
         {
-            returnFunction = StartCoroutine(ReturnToOrigin());
+            ReturnToOrigin();
         }
     }
 
@@ -48,10 +47,6 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
             {
                 transform.SetAsLastSibling();
                 spriteOffset = transform.position - inputSO.mouseWorldPos;
-                if (returnFunction != null)
-                {
-                    StopCoroutine(returnFunction);
-                }
                 onHover.cursorHoverType = CursorSpriteType.HandDrag;
                 onHover.ApplyCursorType();
             }
@@ -65,7 +60,7 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
                 spriteOffset = Vector3.zero;
                 if (!PetriDishSnap.instance.DetectDish(this))
                 {
-                    returnFunction = StartCoroutine(ReturnToOrigin());
+                    ReturnToOrigin();
                 }
                 else
                 {
@@ -78,21 +73,10 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
         }
     }
 
-    private IEnumerator ReturnToOrigin()
+    private void ReturnToOrigin()
     {
-        while (true)
-        {
-            // NOTE(Jazz): snap on return instead
-            transform.localPosition = origin;
-            petriDishAudioSource.PlayOneShot(clipDropTable);
-            break;
-
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, origin, 1000f*Time.deltaTime);
-            if (transform.localPosition == origin)
-            {
-                break;
-            }
-            yield return null;
-        }
+        // NOTE(Jazz): snap on return instead
+        transform.localPosition = origin;
+        petriDishAudioSource.PlayOneShot(clipDropTable);
     }
 }
