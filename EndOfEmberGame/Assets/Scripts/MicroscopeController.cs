@@ -15,7 +15,7 @@ public class MicroscopeController : MonoBehaviour
 #if UNITY_EDITOR
     private void Awake()
     {
-        microscopeData.curCellType = CellType.None;
+        MicroscopeSO.curCellType = CellType.None;
     }
 #endif
 
@@ -44,7 +44,7 @@ public class MicroscopeController : MonoBehaviour
 
     private bool MatchType(MicroscopeViewData data)
     {
-        return data.type == microscopeData.curCellType;
+        return data.type == MicroscopeSO.curCellType;
     }
 
     private IEnumerator playAnination()
