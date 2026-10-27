@@ -13,7 +13,7 @@ public class MicroscopeController : MonoBehaviour
     private MicroscopeViewData currentData;
 
 #if UNITY_EDITOR
-    private void Start()
+    private void Awake()
     {
         microscopeData.curCellType = CellType.None;
     }
