@@ -37,12 +37,14 @@ public class CursorController : MonoBehaviour
     {
         cursorShowEvent.RegisterListener(OnCursorShow);
         cursorHideEvent.RegisterListener(OnCursorHide);
+        SettingSO.onApplySetting += UpdateCursorSize;
     }
 
     private void OnDisable()
     {
         cursorShowEvent.UnregisterListener(OnCursorShow);
         cursorHideEvent.UnregisterListener(OnCursorHide);
+        SettingSO.onApplySetting -= UpdateCursorSize;
     }
 
     private void Update()
@@ -103,5 +105,10 @@ public class CursorController : MonoBehaviour
     public void OnCursorShow()
     {
         cursorImage.enabled = true;
+    }
+
+    void UpdateCursorSize()
+    {
+        cursorTransform.localScale = Vector3.one * SettingSO.cursorSize * 0.025f;
     }
 }
