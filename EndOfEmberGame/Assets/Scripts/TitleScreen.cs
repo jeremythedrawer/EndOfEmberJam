@@ -9,4 +9,9 @@ public class TitleScreen : MonoBehaviour, IPointerClickHandler
     {
         SceneManager.LoadScene(1);
     }
+
+    public void OpenSetting()
+    {
+        SceneManager.LoadScene("Setting", LoadSceneMode.Additive);
+    }
 }
