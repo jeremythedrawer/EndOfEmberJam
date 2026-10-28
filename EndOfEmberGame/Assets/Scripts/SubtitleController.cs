@@ -23,6 +23,7 @@ public class SubtitleController : MonoBehaviour
     public float charPrintTimeSpace = 0.1f;
     public float charPrintTimeNewLine = 0.5f;
     public float charPrintPitchOffset = 0.3f;
+    private float charPrintTimeScale = 1;
 
     private bool typingSubtitles = false;
 
@@ -37,8 +38,8 @@ public class SubtitleController : MonoBehaviour
 
     private void Awake()
     {
-        waitForSecondsWord =  new WaitForSeconds(charPrintTimeWord);
-        waitForSecondsSpace = new WaitForSeconds(charPrintTimeSpace);
+        waitForSecondsWord = new WaitForSeconds(charPrintTimeWord * charPrintTimeScale);
+        waitForSecondsSpace = new WaitForSeconds(charPrintTimeSpace * charPrintTimeScale);
     }
 
     private void Start()
@@ -50,12 +51,14 @@ public class SubtitleController : MonoBehaviour
     {
         triggerSubtitlesEvent.RegisterListener(OnTriggerSubtitles);
         subtitleConfirmEvent.RegisterListener(OnConfirmSubtitles);
+        SettingSO.onApplySetting += UpdateSpeed;
     }
 
     private void OnDisable()
     {
         triggerSubtitlesEvent.UnregisterListener(OnTriggerSubtitles);
         subtitleConfirmEvent.UnregisterListener(OnConfirmSubtitles);
+        SettingSO.onApplySetting -= UpdateSpeed;
     }
 
     public void OnTriggerSubtitles()
@@ -137,5 +140,11 @@ public class SubtitleController : MonoBehaviour
 
         subtitlesTextTMP.text = currentSubtitleString;
         typingSubtitles = false;
+    }
+
+    void UpdateSpeed()
+    {
+        charPrintTimeScale = 2f-SettingSO.subtitleSpeed;
+        Awake();
     }
 }
