@@ -25,7 +25,27 @@ MonoBehaviour:
     - The fungus isn't responding to the plant cells.
   - subtitleLines:
     - The control specimen.
+    - Judging by the cell structures it appears to be a fungus.
+    - The conidia appear to be dormant, however.
   - subtitleLines:
-    - The fungus is stimulated by the presence of the mammal cells.
-  currentSubtitleIndex: 4
+    - The fungal cells are stimulated by the presence of the mammal cells.
+  - subtitleLines:
+    - There's nothing under the microscope.
+    - I should place one of the petri dishes underneath.
+  - subtitleLines:
+    - The control petri dish for the specimen.
+    - The conidia appear to be activated by the heating.
+    - Perhaps they are thermophilic?
+  - subtitleLines:
+    - The conidia are thermophilic.
+  - subtitleLines:
+    - It looks like a fungus with dormant conidia.
+  - subtitleLines:
+    - The fungal cells could be thermophilic.
+    - I should try adjusting the heating in here to confirm.
+  - subtitleLines:
+    - The conidia could be thermophilic.
+  - subtitleLines:
+    - Some fresh air.
+  currentSubtitleIndex: 5
   displayingSubtitles: 0

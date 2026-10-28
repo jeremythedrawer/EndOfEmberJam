@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e25b774c486c2e4ea234fc50504bacc, type: 3}
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
-  curState: 1
+  currentRoomTemperature: 26
+  minFungalHeatTemperature: 25
+  windowOpen: 0
+  windowOpenedAtLeastOnce: 1
+  powerboxOpen: 0
+  powerboxFixed: 1
+  fanMode: 0
+  placedPetriDishOnMicroscopeAtLeastOnce: 0
+  inspectedCellsPlant: 0
+  inspectedCellsFungus: 1
+  inspectedCellsFungusHeated: 1
+  inspectedCellsMammal: 0
+  researchedThermophilic: 1

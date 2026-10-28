@@ -14,6 +14,7 @@ public class WindowController : MonoBehaviour
     public GameEvent windowCloseEvent;
 
     public PlayerSO playerData;
+    public SubtitlesSO subtitlesData;
 
     private void OnEnable()
     {
@@ -29,6 +30,11 @@ public class WindowController : MonoBehaviour
 
     public void OnWindowOpen()
     {
+        if(!playerData.windowOpenedAtLeastOnce)
+        {
+            subtitlesData.TriggerSubtitleFromIndex(12);
+            playerData.windowOpenedAtLeastOnce = true;
+        }
         windowClosedObj.SetActive(false);
         windowOpenObj.SetActive(true);
         windowAudioSource.PlayOneShot(clipWindowOpen);

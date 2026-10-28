@@ -6,6 +6,7 @@ public class PlayerSO : ScriptableObject
     public int currentRoomTemperature;
     public int minFungalHeatTemperature = 25;
     public bool windowOpen;
+    public bool windowOpenedAtLeastOnce;
     public bool powerboxOpen;
     public bool powerboxFixed;
     public bool fanMode;
