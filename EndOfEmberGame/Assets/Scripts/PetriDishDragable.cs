@@ -58,7 +58,8 @@ public class PetriDishDragable : MonoBehaviour, IPointerEnterHandler, IPointerEx
             if (inputSO.mouseLeftUp)
             {
                 spriteOffset = Vector3.zero;
-                if (!PetriDishSnap.instance.DetectDish(this))
+                PetriDishSnap.instance.DetectDish(this);
+                if (MicroscopeSO.curCellType != petriDishData.cellType)
                 {
                     ReturnToOrigin();
                 }
