@@ -189,8 +189,29 @@ public class AudioManager : MonoBehaviour
         {
             heaterAudioSource.Stop();
         }
-        
+
         yield return null;
+    }
+
+    void OnEnable()
+    {
+        SettingSO.onApplySetting += UpdateVolume;
+    }
+    void OnDisable()
+    {
+        SettingSO.onApplySetting -= UpdateVolume;
+    }
+
+    void UpdateVolume()
+    {
+        mixer.SetFloat("MasterVolume", LinearToDec(SettingSO.masterVolume));
+        mixer.SetFloat("MusicVolume", LinearToDec(SettingSO.musicVolume));
+        mixer.SetFloat("SFXVolume", LinearToDec(SettingSO.SFXVolume));
+    }
+
+    float LinearToDec(float linear_value)
+    {
+        return 20 * Mathf.Log10(Mathf.Clamp(linear_value, 0.001f, 1));
     }
 }
 

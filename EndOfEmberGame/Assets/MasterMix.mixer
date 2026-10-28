@@ -91,6 +91,12 @@ AudioMixerController:
     name: heater_vol
   - guid: d9cf32a32863eaec1bfa1a3ae8fa1e0c
     name: heater_low_pass
+  - guid: b06f91fa6204c364d920b2c3852c318f
+    name: MasterVolume
+  - guid: d5cb796b084903941a95abd276778fac
+    name: MusicVolume
+  - guid: 7f23160335e4fcd4e91e66233c203d6a
+    name: SFXVolume
   m_AudioMixerGroupViews:
   - guids:
     - d46b8c907d296b241b99c4743d3f89e0
