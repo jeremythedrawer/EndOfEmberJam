@@ -157,6 +157,7 @@ MonoBehaviour:
   cursorImage: {fileID: 3152487757032564751}
   cursorHideEvent: {fileID: 11400000, guid: 58ba27b5b1806a048b7642072435d3a1, type: 2}
   cursorShowEvent: {fileID: 11400000, guid: 16047eebf62281648ae6af10ca8a96ad, type: 2}
+  cursorAnimTime: 0.8
 --- !u!1001 &3734552947684501550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -252,6 +253,10 @@ PrefabInstance:
     - target: {fileID: 1422660395773476242, guid: 83b71efb694532c4a92a67e06be3fc68, type: 3}
       propertyPath: m_Name
       value: HUDCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1468490654134544427, guid: 83b71efb694532c4a92a67e06be3fc68, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
