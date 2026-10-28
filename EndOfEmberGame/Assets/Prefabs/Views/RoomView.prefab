@@ -1556,6 +1556,7 @@ MonoBehaviour:
   windowOpenEvent: {fileID: 11400000, guid: ac38a19930d9b2642928366836a13262, type: 2}
   windowCloseEvent: {fileID: 11400000, guid: dfbb4ff8ff74ee740ac35560cf7a7e29, type: 2}
   playerData: {fileID: 11400000, guid: 8641ad54672092346a4d2bab986f28fc, type: 2}
+  subtitlesData: {fileID: 11400000, guid: f075c4f5a9a119848a56348cccb9405c, type: 2}
 --- !u!1 &4905803307698658189
 GameObject:
   m_ObjectHideFlags: 0
