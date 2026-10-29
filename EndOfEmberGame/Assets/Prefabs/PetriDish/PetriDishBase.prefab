@@ -92,6 +92,11 @@ MonoBehaviour:
   inputSO: {fileID: 11400000, guid: b5b25f15e5ffd59ce9956fd0fc013698, type: 2}
   cursorData: {fileID: 11400000, guid: bd1893e4bd189d84d8960ebe73d31bc8, type: 2}
   petriDishData: {fileID: 0}
+  petriDishAudioSource: {fileID: 0}
+  clipHover: {fileID: 0}
+  clipDropTable: {fileID: 0}
+  clipDropMicroscope: {fileID: 0}
+  onHover: {fileID: 0}
 --- !u!114 &172024155020338376
 MonoBehaviour:
   m_ObjectHideFlags: 0

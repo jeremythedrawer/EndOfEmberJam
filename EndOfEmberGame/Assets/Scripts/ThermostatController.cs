@@ -12,7 +12,8 @@ public class ThermostatController : MonoBehaviour
     public GameObject coolingModeOutlineObj;
     public GameObject heatingModeOutlineObj;
 
-    public GameEvent setThermostatModeEvent;
+    public GameEvent SetCoolMode;
+    public GameEvent SetHeatMode;
     
     public int currentRoomTemperature;
     private int maxRoomTemperature = 40;
@@ -30,12 +31,14 @@ public class ThermostatController : MonoBehaviour
 
     private void OnEnable()
     {
-        setThermostatModeEvent.RegisterListener(SetThermostatMode);
+        SetCoolMode.RegisterListener(SetCoolingMode);
+        SetHeatMode.RegisterListener(SetHeatingMode);
     }
 
     private void OnDisable()
     {
-        setThermostatModeEvent.UnregisterListener(SetThermostatMode);
+        SetCoolMode.UnregisterListener(SetCoolingMode);
+        SetHeatMode.UnregisterListener(SetHeatingMode);
     }
 
     public void IncreaseTemperature()
@@ -68,21 +71,31 @@ public class ThermostatController : MonoBehaviour
     {
         if (fanMode == false)
         {
-            coolingModeOutlineObj.SetActive(true);
-            heatingModeOutlineObj.SetActive(false);
-            thermostatAudioSource.PlayOneShot(clipButtonPress);
-
-            fanMode = true;
+            SetCoolingMode();
         }
         else
         {
-            coolingModeOutlineObj.SetActive(false);
-            heatingModeOutlineObj.SetActive(true);
-            thermostatAudioSource.PlayOneShot(clipButtonPress);
-
-            fanMode = false;
+            SetHeatingMode();
         }
 
         playerData.fanMode = fanMode;
     }
+    public void SetCoolingMode()
+    {
+        coolingModeOutlineObj.SetActive(true);
+        heatingModeOutlineObj.SetActive(false);
+        thermostatAudioSource.PlayOneShot(clipButtonPress);
+
+        fanMode = true;
+    }
+
+    public void SetHeatingMode()
+    {
+        coolingModeOutlineObj.SetActive(false);
+        heatingModeOutlineObj.SetActive(true);
+        thermostatAudioSource.PlayOneShot(clipButtonPress);
+
+        fanMode = false;
+    }
 }
+

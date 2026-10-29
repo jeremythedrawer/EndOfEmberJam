@@ -548,7 +548,23 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3455897608137214536}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: HeaterRoomAmbience
+          m_MethodName: HeaterOff
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 623a640c1ed0cc491a4c06a41403943e, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3455897608137214536}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: HeaterOn
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -64,19 +64,14 @@ public class AudioManager : MonoBehaviour
         rainCoroutine = StartCoroutine(FadeInRainAtticAmbience());
     }
 
-    public void HeaterRoomAmbience()
+    public void HeaterOn()
     {
-        //if (heaterCoroutine != null) StopCoroutine(heaterCoroutine);
-        //heaterCoroutine = StartCoroutine(FadeInHeaterRoomAmbience());
+        heaterAudioSource.Play();
+    }
 
-        if (playerData.fanMode == false)
-        {
-            heaterAudioSource.Play();
-        }
-        else
-        {
-            heaterAudioSource.Stop();
-        }
+    public void HeaterOff()
+    {
+        heaterAudioSource.Stop();
     }
 
     // Opening window in room
@@ -177,20 +172,6 @@ public class AudioManager : MonoBehaviour
 
         rainLowPassCursorPosition = targetPos;
         mixer.SetFloat(ambLowPassID, targetPos);
-    }
-    
-    private IEnumerator FadeInHeaterRoomAmbience()
-    {
-        if (playerData.fanMode == false)
-        {
-            heaterAudioSource.Play();
-        }
-        else
-        {
-            heaterAudioSource.Stop();
-        }
-
-        yield return null;
     }
 
     void OnEnable()
