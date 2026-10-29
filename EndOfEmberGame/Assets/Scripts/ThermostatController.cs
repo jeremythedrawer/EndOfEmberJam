@@ -27,7 +27,6 @@ public class ThermostatController : MonoBehaviour
     {
         coolingModeOutlineObj.SetActive(fanMode);
         heatingModeOutlineObj.SetActive(!fanMode);
-        playerData.fanMode = true;
     }
 
     public void IncreaseTemperature()
