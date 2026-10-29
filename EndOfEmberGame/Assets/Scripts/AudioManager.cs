@@ -64,14 +64,19 @@ public class AudioManager : MonoBehaviour
         rainCoroutine = StartCoroutine(FadeInRainAtticAmbience());
     }
 
-    public void HeaterOn()
+    public void HeaterModeAudio()
     {
-        heaterAudioSource.Play();
-    }
-
-    public void HeaterOff()
-    {
-        heaterAudioSource.Stop();
+        if (playerData.fanMode == true)
+        {
+            if (heaterAudioSource.isPlaying)
+            {
+                heaterAudioSource.Pause();
+            }
+        }
+        else if (playerData.fanMode == false)
+        {
+            heaterAudioSource.Play();
+        }
     }
 
     // Opening window in room

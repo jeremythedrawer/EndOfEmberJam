@@ -67,19 +67,6 @@ public class ThermostatController : MonoBehaviour
         playerData.currentRoomTemperature = currentRoomTemperature;
     }
 
-    public void SetThermostatMode()
-    {
-        if (fanMode == false)
-        {
-            SetCoolingMode();
-        }
-        else
-        {
-            SetHeatingMode();
-        }
-
-        playerData.fanMode = fanMode;
-    }
     public void SetCoolingMode()
     {
         coolingModeOutlineObj.SetActive(true);
@@ -87,6 +74,8 @@ public class ThermostatController : MonoBehaviour
         thermostatAudioSource.PlayOneShot(clipButtonPress);
 
         fanMode = true;
+
+        playerData.fanMode = fanMode;
     }
 
     public void SetHeatingMode()
@@ -96,6 +85,8 @@ public class ThermostatController : MonoBehaviour
         thermostatAudioSource.PlayOneShot(clipButtonPress);
 
         fanMode = false;
+
+        playerData.fanMode = fanMode;
     }
 }
 
