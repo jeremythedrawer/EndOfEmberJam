@@ -29,18 +29,6 @@ public class ThermostatController : MonoBehaviour
         heatingModeOutlineObj.SetActive(!fanMode);
     }
 
-    private void OnEnable()
-    {
-        SetCoolMode.RegisterListener(SetCoolingMode);
-        SetHeatMode.RegisterListener(SetHeatingMode);
-    }
-
-    private void OnDisable()
-    {
-        SetCoolMode.UnregisterListener(SetCoolingMode);
-        SetHeatMode.UnregisterListener(SetHeatingMode);
-    }
-
     public void IncreaseTemperature()
     {
         if (currentRoomTemperature < maxRoomTemperature)
@@ -75,7 +63,9 @@ public class ThermostatController : MonoBehaviour
 
         fanMode = true;
 
-        playerData.fanMode = fanMode;
+        playerData.fanMode = true;
+
+        SetCoolMode.Raise();
     }
 
     public void SetHeatingMode()
@@ -86,7 +76,9 @@ public class ThermostatController : MonoBehaviour
 
         fanMode = false;
 
-        playerData.fanMode = fanMode;
+        playerData.fanMode = false;
+
+        SetHeatMode.Raise();
     }
 }
 
