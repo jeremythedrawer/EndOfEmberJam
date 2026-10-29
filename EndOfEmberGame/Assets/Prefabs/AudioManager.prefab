@@ -548,7 +548,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3455897608137214536}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: HeaterAudioOff
+          m_MethodName: HeaterOffAudio
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -564,7 +564,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3455897608137214536}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: HeaterAudioOn
+          m_MethodName: HeaterOnAudio
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

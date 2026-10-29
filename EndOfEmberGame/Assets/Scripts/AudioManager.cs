@@ -30,7 +30,9 @@ public class AudioManager : MonoBehaviour
 
     private const string heaterLowPassID = "heater_low_pass";
     private const string heaterVolID = "heater_vol";
-    private Coroutine heaterCoroutine;
+    private float heaterVolAttic = -40f;
+    private float heaterVolRoom = 0f;
+
 
     private void Start()
     {
@@ -64,14 +66,30 @@ public class AudioManager : MonoBehaviour
         rainCoroutine = StartCoroutine(FadeInRainAtticAmbience());
     }
 
-    public void HeaterAudioOn()
+    public void HeaterOffAudio()
     {
         heaterAudioSource.Stop();
     }
 
-    public void HeaterAudioOff()
+    public void HeaterOnAudio()
     {
         heaterAudioSource.Play();
+    }
+
+    public void HeaterInAttic()
+    {
+        if (playerData.fanMode == false)
+        {
+            mixer.SetFloat(heaterVolID, heaterVolAttic);
+        }
+    }
+
+    public void HeaterOutAttic()
+    {
+        if (playerData.fanMode == false)
+        {
+            mixer.SetFloat(heaterVolID, heaterVolRoom);
+        }
     }
 
     // Opening window in room
