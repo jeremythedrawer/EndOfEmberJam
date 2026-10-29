@@ -32,9 +32,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4175195419574181342}
+  - {fileID: 1368570520273482330}
   - {fileID: 7948487359065253374}
   - {fileID: 8739698686923584073}
-  - {fileID: 1368570520273482330}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 1368570520273482330}
   - component: {fileID: 1274924031484411743}
   - component: {fileID: 4556653541179995103}
+  - component: {fileID: 3261915976645591300}
   m_Layer: 0
   m_Name: SpritePowerOutage
   m_TagString: Untagged
@@ -449,6 +450,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3261915976645591300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645999459626032450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6cfff9ab21c6a4a96ae7e99fbd6e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerOutageMaterial: {fileID: 2100000, guid: bfbfe3f600ba9c843ab2dec2bf52535c, type: 2}
+  overlayImage: {fileID: 4556653541179995103}
+  playerData: {fileID: 11400000, guid: 8641ad54672092346a4d2bab986f28fc, type: 2}
+  inputData: {fileID: 11400000, guid: b5b25f15e5ffd59ce9956fd0fc013698, type: 2}
+  powerOutageEvent: {fileID: 11400000, guid: 652b0f481902d4d47930447835e0c1d3, type: 2}
 --- !u!1 &8278127451130905320
 GameObject:
   m_ObjectHideFlags: 0
