@@ -467,6 +467,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 8641ad54672092346a4d2bab986f28fc, type: 2}
   inputData: {fileID: 11400000, guid: b5b25f15e5ffd59ce9956fd0fc013698, type: 2}
   powerOutageEvent: {fileID: 11400000, guid: 652b0f481902d4d47930447835e0c1d3, type: 2}
+  powerRestoredEvent: {fileID: 11400000, guid: cf731d44fda59d94eaac461415555040, type: 2}
 --- !u!1 &8278127451130905320
 GameObject:
   m_ObjectHideFlags: 0

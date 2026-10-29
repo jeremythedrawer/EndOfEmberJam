@@ -9,6 +9,7 @@ public class PlayerSO : ScriptableObject
     public bool windowOpenedAtLeastOnce;
     public bool powerboxOpen;
     public bool powerboxFixed;
+    public bool powerOut;
     public bool fanMode;
 
     public bool placedPetriDishOnMicroscopeAtLeastOnce;
