@@ -33,7 +33,7 @@ public class DisplaySettings : MonoBehaviour
     }
     void OnDisable()
     {
-        input.actions["UI/Setting"].performed -= OpenSetting;
+        if(input != null) input.actions["UI/Setting"].performed -= OpenSetting;
         SettingSO.onApplySetting -= UpdateBrightness;
     }
 
