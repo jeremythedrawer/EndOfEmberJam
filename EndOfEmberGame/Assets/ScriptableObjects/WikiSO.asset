@@ -18,7 +18,19 @@ MonoBehaviour:
   - hasPrinted: 0
     sprite: {fileID: -35251181, guid: 5c1cede9f9ce0c340ae4d5b1e050bc1a, type: 3}
   - hasPrinted: 0
-    sprite: {fileID: -35251181, guid: 5c1cede9f9ce0c340ae4d5b1e050bc1a, type: 3}
+    sprite: {fileID: 937076883, guid: 5c1cede9f9ce0c340ae4d5b1e050bc1a, type: 3}
   - hasPrinted: 0
     sprite: {fileID: 21300000, guid: 654d6d8960a80f94abb3445c07f88c66, type: 3}
+  - hasPrinted: 0
+    sprite: {fileID: 2093313239, guid: f6c25a0ae5926a840a4322b5d394d58d, type: 3}
+  - hasPrinted: 0
+    sprite: {fileID: 167461394, guid: 5c1cede9f9ce0c340ae4d5b1e050bc1a, type: 3}
+  - hasPrinted: 0
+    sprite: {fileID: 196089169, guid: 5c1cede9f9ce0c340ae4d5b1e050bc1a, type: 3}
+  - hasPrinted: 0
+    sprite: {fileID: -575277933, guid: f6c25a0ae5926a840a4322b5d394d58d, type: 3}
+  - hasPrinted: 0
+    sprite: {fileID: -1506432190, guid: 5c1cede9f9ce0c340ae4d5b1e050bc1a, type: 3}
+  - hasPrinted: 0
+    sprite: {fileID: 1682582943, guid: f6c25a0ae5926a840a4322b5d394d58d, type: 3}
   pageIsShowing: 0
