@@ -1,3 +1,4 @@
+using Proselyte.Sigils;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerSO", menuName = "Custom / Player SO")]
@@ -12,6 +13,8 @@ public class PlayerSO : ScriptableObject
     public bool powerOut;
     public bool fanMode;
 
+    public int moldStageCurrent;
+
     public bool placedPetriDishOnMicroscopeAtLeastOnce;
     
     public bool inspectedCellsPlant;
@@ -21,4 +24,12 @@ public class PlayerSO : ScriptableObject
 
     public bool researchedThermophilic;
 
+    public GameEvent moldStageIncreaseEvent;
+
+    public void IncreaseMoldStage()
+    {
+        moldStageCurrent += 1;
+        if(moldStageCurrent > 7) moldStageCurrent = 7;
+        moldStageIncreaseEvent.Raise();
+    }
 }

@@ -1,3 +1,4 @@
+using Proselyte.Sigils;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -9,7 +10,12 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup mixerGroup;
     public AudioSource ambienceAudioSource;
     public AudioSource heaterAudioSource;
+    public AudioSource moldAudioSource;
     public PlayerSO playerData;
+
+    public GameEvent moldStageIncreaseEvent;
+
+    public AudioClip[] moldClips;
 
     public float rainFadeInTime = 1f;
     public float rainFadeOutTime = 1f;
@@ -31,6 +37,17 @@ public class AudioManager : MonoBehaviour
     private const string heaterLowPassID = "heater_low_pass";
     private const string heaterVolID = "heater_vol";
     private Coroutine heaterCoroutine;
+
+    void OnEnable()
+    {
+        SettingSO.onApplySetting += UpdateVolume;
+        moldStageIncreaseEvent.RegisterListener(PlayMoldProgressionAudio);
+    }
+    void OnDisable()
+    {
+        SettingSO.onApplySetting -= UpdateVolume;
+        moldStageIncreaseEvent.UnregisterListener(PlayMoldProgressionAudio);
+    }
 
     private void Start()
     {
@@ -174,15 +191,6 @@ public class AudioManager : MonoBehaviour
         mixer.SetFloat(ambLowPassID, targetPos);
     }
 
-    void OnEnable()
-    {
-        SettingSO.onApplySetting += UpdateVolume;
-    }
-    void OnDisable()
-    {
-        SettingSO.onApplySetting -= UpdateVolume;
-    }
-
     void UpdateVolume()
     {
         mixer.SetFloat("MasterVolume", LinearToDec(SettingSO.masterVolume));
@@ -194,5 +202,9 @@ public class AudioManager : MonoBehaviour
     {
         return 20 * Mathf.Log10(Mathf.Clamp(linear_value, 0.001f, 1));
     }
-}
 
+    public void PlayMoldProgressionAudio()
+    {
+        moldAudioSource.PlayOneShot(moldClips[playerData.moldStageCurrent]);
+    }
+}
