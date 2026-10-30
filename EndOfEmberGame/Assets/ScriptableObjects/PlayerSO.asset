@@ -12,20 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e25b774c486c2e4ea234fc50504bacc, type: 3}
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
-  currentRoomTemperature: 26
+  currentRoomTemperature: 0
   minFungalHeatTemperature: 25
-  windowOpen: 0
-  windowOpenedAtLeastOnce: 1
-  powerboxOpen: 0
-  powerboxFixed: 1
-  powerOut: 0
-  fanMode: 1
   moldStageCurrent: 0
+  introCompleted: 0
+  windowOpen: 0
+  windowOpenedAtLeastOnce: 0
+  powerboxOpen: 0
+  powerboxFixed: 0
+  powerOut: 0
+  fanMode: 0
   placedPetriDishOnMicroscopeAtLeastOnce: 0
   inspectedCellsPlant: 0
-  inspectedCellsFungus: 1
-  inspectedCellsFungusHeated: 1
+  inspectedCellsFungus: 0
+  inspectedCellsFungusHeated: 0
   inspectedCellsMammal: 0
-  researchedThermophilic: 1
+  microscopeCompleted: 0
+  researchedThermophilic: 0
   researchedMitochondria: 0
+  researchedPhototactic: 0
+  discoveredSpecimenIsMold: 0
+  discoveredSpecimenIsAerobic: 0
+  discoveredSpecimenIsThermophilic: 0
+  discoveredSpecimenIsPhototactic: 0
   moldStageIncreaseEvent: {fileID: 0}
