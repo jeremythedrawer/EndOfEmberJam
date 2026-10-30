@@ -133,7 +133,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 7a4628966afba774997a9ce695ddd1ea, type: 2}
+      - m_Target: {fileID: 11400000, guid: 872f84f118e6c5b9688677ab903499af, type: 2}
         m_TargetAssemblyTypeName: Proselyte.Sigils.GameEvent, Proselyte.Sigils
         m_MethodName: Raise
         m_Mode: 1

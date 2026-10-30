@@ -35,6 +35,9 @@ public class AudioManager : MonoBehaviour
     public float ambienceVolRoom = 0.5f;
     public float ambienceVolWindowOpen = 1.0f;
 
+    public GameEvent fromRoomToAttic;
+    public GameEvent fromAtticToRoom;
+
     //public float rainLowPassCursorPosition;
     
     //private const string ambLowPassID = "ambience_low_pass";
@@ -49,11 +52,15 @@ public class AudioManager : MonoBehaviour
     {
         SettingSO.onApplySetting += UpdateVolume;
         moldStageIncreaseEvent.RegisterListener(PlayMoldProgressionAudio);
+        fromRoomToAttic.RegisterListener(RainInAttic);
+        fromAtticToRoom.RegisterListener(RainInRoom);
     }
     void OnDisable()
     {
         SettingSO.onApplySetting -= UpdateVolume;
         moldStageIncreaseEvent.UnregisterListener(PlayMoldProgressionAudio);
+        fromRoomToAttic.UnregisterListener(RainInAttic);
+        fromAtticToRoom.UnregisterListener(RainInRoom);
     }
 
     private void Start()
