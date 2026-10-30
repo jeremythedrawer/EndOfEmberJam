@@ -153,6 +153,94 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: tex_sprite_wikipages_001_2
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 1168
+        width: 619
+        height: 872
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a199b96cd12243546be3cef52a11e4c2
+      internalID: 937076883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tex_sprite_wikipages_001_3
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 272
+        width: 620
+        height: 874
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2820da9c83423e34a800ed6d2b5024f1
+      internalID: -1506432190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tex_sprite_wikipages_001_4
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 276
+        width: 620
+        height: 874
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50ea3c9df9addc143acee7a23be56043
+      internalID: 167461394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tex_sprite_wikipages_001_5
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 276
+        width: 620
+        height: 874
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ec471cbac5f620488738309c3206c57
+      internalID: 196089169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -169,6 +257,10 @@ TextureImporter:
     nameFileIdTable:
       tex_sprite_wikipages_001_0: -1769297657
       tex_sprite_wikipages_001_1: -35251181
+      tex_sprite_wikipages_001_2: 937076883
+      tex_sprite_wikipages_001_3: -1506432190
+      tex_sprite_wikipages_001_4: 167461394
+      tex_sprite_wikipages_001_5: 196089169
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
