@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3301547754718508694, guid: 8ef15fee3cb92334286e75bc30423a18, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: e0ce00506ff26254d9a4cd619a53eddd, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -576,13 +576,13 @@ MonoBehaviour:
   moldStageIncreaseEvent: {fileID: 11400000, guid: 2c75ddcf3066e584b9c89177ec64da66, type: 2}
   moldClips:
   - {fileID: 8300000, guid: 373811d07d1b64ceb843ed97ae4495a8, type: 3}
-  - {fileID: 8300000, guid: 373811d07d1b64ceb843ed97ae4495a8, type: 3}
-  - {fileID: 8300000, guid: 373811d07d1b64ceb843ed97ae4495a8, type: 3}
-  - {fileID: 8300000, guid: 373811d07d1b64ceb843ed97ae4495a8, type: 3}
-  - {fileID: 8300000, guid: 373811d07d1b64ceb843ed97ae4495a8, type: 3}
-  - {fileID: 8300000, guid: 373811d07d1b64ceb843ed97ae4495a8, type: 3}
-  - {fileID: 8300000, guid: 373811d07d1b64ceb843ed97ae4495a8, type: 3}
-  - {fileID: 8300000, guid: 373811d07d1b64ceb843ed97ae4495a8, type: 3}
+  - {fileID: 8300000, guid: 9c442db0d6483c2d29a833a5a2bed0a1, type: 3}
+  - {fileID: 8300000, guid: ea01063834c0e4d42a87feb8e868ecef, type: 3}
+  - {fileID: 8300000, guid: 99c18ad7b7b29b046a76560b21d751a3, type: 3}
+  - {fileID: 8300000, guid: 4cafabfba2cc4008f80b1376afb77941, type: 3}
+  - {fileID: 8300000, guid: 68350e4962e1ff872a99b2771a245141, type: 3}
+  - {fileID: 8300000, guid: 68350e4962e1ff872a99b2771a245141, type: 3}
+  - {fileID: 8300000, guid: 5488b08a9b864cc1b9664e4c14a170b4, type: 3}
   rainFadeInTime: 0.8
   rainFadeOutTime: 0.2
   rainAtticFadeOutTime: 0.4
