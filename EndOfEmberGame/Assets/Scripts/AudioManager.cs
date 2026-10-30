@@ -27,22 +27,23 @@ public class AudioManager : MonoBehaviour
     public float rainFadeOutTime = 1f;
     public float rainAtticFadeOutTime = 0.4f;
     
-    public float lowPassAtticMin = 450f;
-    public float lowPassRoomMin = 750f;
-    public float lowPassRoomMax = 4500f;
+    //public float lowPassAtticMin = 450f;
+    //public float lowPassRoomMin = 750f;
+    //public float lowPassRoomMax = 4500f;
 
-    public float ambienceVolAttic = -15f;
-    private float ambienceVolRoom = 0.00f;
+    public float ambienceVolAttic = -20f;
+    private float ambienceVolRoom = -15f;
+    public float ambienceVolWindowOpen = 0.0f;
 
-    public float rainLowPassCursorPosition;
+    //public float rainLowPassCursorPosition;
     
-    private const string ambLowPassID = "ambience_low_pass";
+    //private const string ambLowPassID = "ambience_low_pass";
     private const string ambVolID = "ambience_vol";
     private Coroutine rainCoroutine;
 
     // heater audio
     public AudioSource heaterAudioSource;
-    private const string heaterLowPassID = "heater_low_pass";
+    //private const string heaterLowPassID = "heater_low_pass";
     private const string heaterVolID = "heater_vol";
 
     void OnEnable()
@@ -58,12 +59,27 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        mixer.SetFloat(ambLowPassID, lowPassRoomMin);
-        mixer.SetFloat(ambVolID, 0.00f);
-        rainLowPassCursorPosition = lowPassRoomMin;
+        mixer.SetFloat(ambVolID, ambienceVolRoom);
+        // rainLowPassCursorPosition = lowPassRoomMin;
         ambienceAudioSource.Play();
     }
 
+    public void RainInRoomWindowClosed()
+    {
+        mixer.SetFloat(ambVolID, ambienceVolRoom);
+    }
+
+    public void RainInRoomWindowOpen()
+    {
+        mixer.SetFloat(ambVolID, ambienceVolWindowOpen);
+    }
+
+    public void RainInAttic()
+    {
+        mixer.SetFloat(ambVolID, ambienceVolAttic);
+    }
+    
+    /*
     public void RainFadeInRoom()
     {
         if(rainCoroutine != null) StopCoroutine(rainCoroutine);
@@ -87,6 +103,7 @@ public class AudioManager : MonoBehaviour
         if(rainCoroutine != null) StopCoroutine(rainCoroutine);
         rainCoroutine = StartCoroutine(FadeInRainAtticAmbience());
     }
+    */
 
     public void HeaterAudioOff()
     {
@@ -114,12 +131,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /*
     // Opening window in room
     private IEnumerator FadeInRainRoomAmbience()
     {
         float ctr = 0;
         float cursorStartPos = rainLowPassCursorPosition;
-        float remainingTime = 1 - Mathf.InverseLerp(lowPassRoomMin, lowPassRoomMax, cursorStartPos);
+        float remainingTime = 1 - Mathf.InverseLerp(vol, lowPassRoomMax, cursorStartPos);
         remainingTime *= rainFadeInTime;
 
         while(ctr < remainingTime)
@@ -213,7 +231,8 @@ public class AudioManager : MonoBehaviour
         rainLowPassCursorPosition = targetPos;
         mixer.SetFloat(ambLowPassID, targetPos);
     }
-
+    */
+    
     void UpdateVolume()
     {
         mixer.SetFloat("MasterVolume", LinearToDec(SettingSO.masterVolume));

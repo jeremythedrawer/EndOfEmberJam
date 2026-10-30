@@ -718,11 +718,8 @@ MonoBehaviour:
   rainFadeInTime: 0.8
   rainFadeOutTime: 0.2
   rainAtticFadeOutTime: 0.4
-  lowPassAtticMin: 600
-  lowPassRoomMin: 850
-  lowPassRoomMax: 4500
   ambienceVolAttic: -4
-  rainLowPassCursorPosition: 0
+  ambienceVolWindowOpen: 0
   heaterAudioSource: {fileID: 1441807060540045808}
 --- !u!114 &4350094629917914553
 MonoBehaviour:
@@ -743,7 +740,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3455897608137214536}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: RainFadeOutRoom
+          m_MethodName: RainInRoomWindowClosed
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -759,7 +756,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3455897608137214536}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: RainFadeInRoom
+          m_MethodName: RainInRoomWindowOpen
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -791,7 +788,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3455897608137214536}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: RainFadeOutAttic
+          m_MethodName: RainInAttic
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -813,13 +810,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - gameEvent: {fileID: 11400000, guid: 7a4628966afba774997a9ce695ddd1ea, type: 2}
-    response:
-      m_PersistentCalls:
-        m_Calls:
         - m_Target: {fileID: 3455897608137214536}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: RainFadeInAttic
+          m_MethodName: HeaterAudioOff
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -892,6 +885,38 @@ MonoBehaviour:
         - m_Target: {fileID: 3455897608137214536}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
           m_MethodName: PlayMoldProgressionAudio
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 5087626fcf947fb4b8e50383a4dea6c8, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8906099158532753923}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: d219f157f7afd5a4cbda5f9778a5f7b8, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: a66b7be089e28ce438b79b7e07348324, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3455897608137214536}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: HeaterAudioOn
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

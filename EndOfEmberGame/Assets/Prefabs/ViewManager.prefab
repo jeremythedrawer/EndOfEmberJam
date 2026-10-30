@@ -76,18 +76,6 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3455897608137214536, guid: f67cb3d9c128a594eb90d4a5a2a058d2, type: 3}
-          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: HeaterAudioOn
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 8426220141210946333}
           m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
           m_MethodName: OpenViewRoom
@@ -152,18 +140,6 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3455897608137214536, guid: f67cb3d9c128a594eb90d4a5a2a058d2, type: 3}
-          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: HeaterAudioOff
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 8426220141210946333}
           m_TargetAssemblyTypeName: ViewManager, Assembly-CSharp
           m_MethodName: OpenViewAttic
