@@ -23,6 +23,7 @@ public class PlayerSO : ScriptableObject
     public bool inspectedCellsMammal;
 
     public bool researchedThermophilic;
+    public bool researchedMitochondria;
 
     public GameEvent moldStageIncreaseEvent;
 

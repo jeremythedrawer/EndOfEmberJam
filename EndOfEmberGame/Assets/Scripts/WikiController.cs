@@ -17,8 +17,6 @@ public class WikiController : MonoBehaviour
     public GameEvent confirmWikiPageEvent;
     public GameEvent subtitleConfirmEvent;
 
-    public GameEvent ResearchMitochondriaEvent;
-
     private void OnEnable()
     {
         confirmWikiPageEvent.RegisterListener(OnConfirmWikiPage);
@@ -69,7 +67,7 @@ public class WikiController : MonoBehaviour
             case "powerhouse":
             case "power":
             {
-                ResearchMitochondriaEvent.Raise();
+                playerData.researchedMitochondria = true;
                 ShowPage(3);
                 foundResultImage.rectTransform.sizeDelta = foundResultImage.rectTransform.sizeDelta * 0.5f;
             }
