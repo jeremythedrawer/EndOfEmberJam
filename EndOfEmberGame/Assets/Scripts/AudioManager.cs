@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
     public float ambienceVolAttic = 0.4f;
     public float ambienceVolRoom = 0.6f;
     public float ambienceVolWindowOpen = 1.0f;
+    private float ambienceVolCurrent;
 
     //public float rainLowPassCursorPosition;
     
@@ -61,22 +62,39 @@ public class AudioManager : MonoBehaviour
     {
         //mixer.SetFloat(ambVolID, ambienceVolRoom);
         // rainLowPassCursorPosition = lowPassRoomMin;
+        ambienceVolCurrent = ambienceVolRoom;
         ambienceAudioSource.Play();
     }
 
-    public void RainInRoomWindowClosed()
+    public void RainInRoom()
     {
-        ambienceAudioSource.volume = ambienceVolRoom;
+        if (ambienceVolCurrent == ambienceVolRoom)
+        {
+            RainInRoomWindowClosed();
+        }
+        
+        if (ambienceVolCurrent == ambienceVolWindowOpen)
+        {
+            RainInRoomWindowOpen();
+        }
     }
 
-    public void RainInRoomWindowOpen()
+    private void RainInRoomWindowClosed()
     {
-        ambienceAudioSource.volume = ambienceVolWindowOpen;
+        mixer.SetFloat(ambVolID, LinearToDec(ambienceVolRoom));
+        ambienceVolCurrent = ambienceVolRoom;
+    }
+
+    private void RainInRoomWindowOpen()
+    {
+        mixer.SetFloat(ambVolID, LinearToDec(ambienceVolWindowOpen));
+        ambienceVolCurrent = ambienceVolWindowOpen;
     }
 
     public void RainInAttic()
     {
-        ambienceAudioSource.volume = ambienceVolAttic;
+        mixer.SetFloat(ambVolID, LinearToDec(ambienceVolAttic));
+        ambienceVolCurrent = ambienceVolAttic;
     }
 
     /*
