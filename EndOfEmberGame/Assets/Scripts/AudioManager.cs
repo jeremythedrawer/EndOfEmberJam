@@ -95,7 +95,10 @@ public class AudioManager : MonoBehaviour
 
     public void HeaterAudioOn()
     {
-        heaterAudioSource.Play();
+        if (playerData.fanMode == false)
+        {
+            heaterAudioSource.Play();
+        }
     }
 
     public void HeartbeatToMoldStage()
