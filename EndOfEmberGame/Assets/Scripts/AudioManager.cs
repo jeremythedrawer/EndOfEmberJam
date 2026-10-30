@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource heartbeatAudioSource;
     private const string heartbeatVolID = "heartbeat_vol";
     public float heartbeatVolIncrement = 5.0f;
+    public AudioSource revealAudioSource;
 
     public PlayerSO playerData;
 
@@ -100,6 +101,14 @@ public class AudioManager : MonoBehaviour
     public void HeartbeatToMoldStage()
     {
         heartbeatAudioSource.volume = playerData.moldStageCurrent * heartbeatVolIncrement;
+    }
+
+    public void RevealBodyAudio()
+    {
+        if (playerData.moldStageCurrent == 7)
+        {
+            revealAudioSource.Play();
+        }
     }
 
     // Opening window in room
