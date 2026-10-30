@@ -245,9 +245,9 @@ TextureImporter:
       name: tex_sprite_cursor_6
       rect:
         serializedVersion: 2
-        x: 2628
+        x: 2632
         y: 0
-        width: 438
+        width: 434
         height: 783
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
