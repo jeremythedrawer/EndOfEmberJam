@@ -15,7 +15,7 @@ MonoBehaviour:
   TriggerSubtitlesEvent: {fileID: 11400000, guid: becc554863db0544199aeae23d6f4187, type: 2}
   subtitles:
   - subtitleLines:
-    - There was nothing pertinent.
+    - I could find nothing pertinent.
   - subtitleLines:
     - Mitochondria.
     - It's the powerhouse of the cell.
@@ -26,9 +26,12 @@ MonoBehaviour:
   - subtitleLines:
     - The control specimen.
     - Judging by the cell structures it appears to be a fungus.
+    - Perhaps come kind of mold?
     - The conidia appear to be dormant, however.
   - subtitleLines:
-    - The fungal cells are stimulated by the presence of the mammal cells.
+    - An epithelial tissue sample contaminated by the target specimen.
+    - There's some motile behaviour however,
+    - I should try isolating the specimen in the control petri dish first.
   - subtitleLines:
     - There's nothing under the microscope.
     - I should place one of the petri dishes underneath.
@@ -47,5 +50,30 @@ MonoBehaviour:
     - The conidia could be thermophilic.
   - subtitleLines:
     - Some fresh air.
+  - subtitleLines:
+    - It's epithelial tissue contaminated with the specimen.
+    - There's some motile movement of the cells.
+    - I should check the fungal specimen in the control petri dish.
+  - subtitleLines:
+    - It's epithelial tissue contaminated with the fungal cells.
+    - The fungal cells appear to be avoiding the light of the microscope.
+    - Could they be phototactic?
+  - subtitleLines:
+    - It's epithelial tissue contaminated with the specimen.
+    - Could the fungal cells be phototactic?
+  - subtitleLines:
+    - It's epithelial tissue contaminated with the specimen.
+    - The fungal cells are phototactic.
+  - subtitleLines:
+    - It's the plant cells contaminated with the specimen.
+    - There isn't much motile activity.
+    - I should check the control petri dish first to isolate the specimen.
+  - subtitleLines:
+    - It's the plant cells cultured with the fungus.
+    - There isn't much motile activity.
+    - I should check the control petri dish first to differentiate the cells.
+  - subtitleLines:
+    - The plant cells are contaminated with the specimen.
+    - I should check the control.
   currentSubtitleIndex: 5
   displayingSubtitles: 0
