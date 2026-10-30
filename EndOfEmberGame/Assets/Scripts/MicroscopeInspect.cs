@@ -62,11 +62,14 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
                     {
                         inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(9));
                     }
-                    if(!playerData.inspectedCellsFungusHeated && playerData.researchedThermophilic)
+                    else if(!playerData.inspectedCellsFungusHeated && playerData.researchedThermophilic)
                     {
                         inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(10));
                     }
-
+                    else
+                    {
+                        inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(20));
+                    }
                 }
             }
             break;

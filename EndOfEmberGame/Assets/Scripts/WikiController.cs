@@ -63,6 +63,7 @@ public class WikiController : MonoBehaviour
                 ShowPage(2);
             }
             break;
+            case "cell":
             case "mitochondria":
             case "mitocondria":
             case "powerhouse":
