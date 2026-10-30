@@ -1,5 +1,5 @@
-using Proselyte.Sigils;
 using System.Collections;
+using Proselyte.Sigils;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -32,20 +32,18 @@ public class AudioManager : MonoBehaviour
     //public float lowPassRoomMax = 4500f;
 
     public float ambienceVolAttic = 0.3f;
-    public float ambienceVolRoom = 0.9f;
+    public float ambienceVolRoom = 0.5f;
     public float ambienceVolWindowOpen = 1.0f;
-    private float ambienceVolCurrent;
 
     //public float rainLowPassCursorPosition;
     
     //private const string ambLowPassID = "ambience_low_pass";
     private const string ambVolID = "ambience_vol";
-    private Coroutine rainCoroutine;
 
     // heater audio
     public AudioSource heaterAudioSource;
     //private const string heaterLowPassID = "heater_low_pass";
-    private const string heaterVolID = "heater_vol";
+    //private const string heaterVolID = "heater_vol";
 
     void OnEnable()
     {
@@ -62,39 +60,36 @@ public class AudioManager : MonoBehaviour
     {
         //mixer.SetFloat(ambVolID, ambienceVolRoom);
         // rainLowPassCursorPosition = lowPassRoomMin;
-        ambienceVolCurrent = ambienceVolRoom;
+        mixer.SetFloat(ambVolID, LinearToDec(ambienceVolRoom));
         ambienceAudioSource.Play();
     }
 
     public void RainInRoom()
     {
-        if (ambienceVolCurrent == ambienceVolWindowOpen)
-        {
-            RainInRoomWindowClosed();
-        }
-        
-        if (ambienceVolCurrent == ambienceVolRoom)
+        if (playerData.windowOpen == false)
         {
             RainInRoomWindowOpen();
+        }
+        
+        if (playerData.windowOpen == true)
+        {
+            RainInRoomWindowClosed();
         }
     }
 
     private void RainInRoomWindowClosed()
     {
         mixer.SetFloat(ambVolID, LinearToDec(ambienceVolRoom));
-        ambienceVolCurrent = ambienceVolRoom;
     }
 
     private void RainInRoomWindowOpen()
     {
         mixer.SetFloat(ambVolID, LinearToDec(ambienceVolWindowOpen));
-        ambienceVolCurrent = ambienceVolWindowOpen;
     }
 
     public void RainInAttic()
     {
-        mixer.SetFloat(ambVolID, LinearToDec(ambienceVolAttic));
-        ambienceVolCurrent = ambienceVolAttic;
+        mixer.SetFloat(ambVolID, 10 * Mathf.Log10(ambienceVolAttic));
     }
 
     /*
@@ -138,7 +133,7 @@ public class AudioManager : MonoBehaviour
 
     public void HeartbeatToMoldStage()
     {
-        heartbeatAudioSource.volume = playerData.moldStageCurrent * heartbeatVolIncrement;
+        mixer.SetFloat(heartbeatVolID, playerData.moldStageCurrent * heartbeatVolIncrement);
     }
 
     public void RevealBodyAudio()
@@ -250,7 +245,7 @@ public class AudioManager : MonoBehaviour
         mixer.SetFloat(ambLowPassID, targetPos);
     }
     */
-    
+
     void UpdateVolume()
     {
         mixer.SetFloat("MasterVolume", LinearToDec(SettingSO.masterVolume));

@@ -718,9 +718,9 @@ MonoBehaviour:
   rainFadeInTime: 0.8
   rainFadeOutTime: 0.2
   rainAtticFadeOutTime: 0.4
-  ambienceVolAttic: -4
-  ambienceVolRoom: 0.6
-  ambienceVolWindowOpen: 0
+  ambienceVolAttic: 0.1
+  ambienceVolRoom: 0.5
+  ambienceVolWindowOpen: 1
   heaterAudioSource: {fileID: 1441807060540045808}
 --- !u!114 &4350094629917914553
 MonoBehaviour:
