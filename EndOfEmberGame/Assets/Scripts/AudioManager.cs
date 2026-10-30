@@ -31,8 +31,8 @@ public class AudioManager : MonoBehaviour
     //public float lowPassRoomMin = 750f;
     //public float lowPassRoomMax = 4500f;
 
-    public float ambienceVolAttic = 0.4f;
-    public float ambienceVolRoom = 0.6f;
+    public float ambienceVolAttic = 0.3f;
+    public float ambienceVolRoom = 0.9f;
     public float ambienceVolWindowOpen = 1.0f;
     private float ambienceVolCurrent;
 
@@ -68,12 +68,12 @@ public class AudioManager : MonoBehaviour
 
     public void RainInRoom()
     {
-        if (ambienceVolCurrent == ambienceVolRoom)
+        if (ambienceVolCurrent == ambienceVolWindowOpen)
         {
             RainInRoomWindowClosed();
         }
         
-        if (ambienceVolCurrent == ambienceVolWindowOpen)
+        if (ambienceVolCurrent == ambienceVolRoom)
         {
             RainInRoomWindowOpen();
         }

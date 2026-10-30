@@ -1,55 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!244 &-8237640469296478603
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: adcd360c7340d4848992415fb3a067f1
-  m_EffectName: Distortion
-  m_MixLevel: 3008d21cda84161e0b5ed65b4b605ea1
-  m_Parameters:
-  - m_ParameterName: Level
-    m_GUID: 370b567b212aaac529e823686c8e0d4b
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
---- !u!244 &-5025966681308034393
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: 6987e4a49546a5d41a43d4c60dcc2ef2
-  m_EffectName: Lowpass
-  m_MixLevel: dc1feed3a3b59d74fbda86d9d5818225
-  m_Parameters:
-  - m_ParameterName: Cutoff freq
-    m_GUID: a6d0dce1884c23d44ac633b1db2a54e7
-  - m_ParameterName: Resonance
-    m_GUID: 8431d35075002ab48bcffd7db43da8d4
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
---- !u!244 &-4971507108283544729
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: b6ab40d080b931761a18c8d8aace1d1d
-  m_EffectName: Lowpass Simple
-  m_MixLevel: 913ce29ffecce120482c07bec37da95b
-  m_Parameters:
-  - m_ParameterName: Cutoff freq
-    m_GUID: d9cf32a32863eaec1bfa1a3ae8fa1e0c
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!244 &-4643522374868730766
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -115,14 +65,10 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 9c180ae4d18f9b340ad580fbbcafe602
     name: ambience_vol
-  - guid: a6d0dce1884c23d44ac633b1db2a54e7
-    name: ambience_low_pass
   - guid: 33c139c2cee2f956c9e2b4bef7669c49
     name: heartbeat_vol
   - guid: 4f1df4480e35e0207a7162ca6f9740a9
     name: heater_vol
-  - guid: d9cf32a32863eaec1bfa1a3ae8fa1e0c
-    name: heater_low_pass
   - guid: b06f91fa6204c364d920b2c3852c318f
     name: MasterVolume
   - guid: d5cb796b084903941a95abd276778fac
@@ -224,7 +170,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 1230569159166242802}
-  - {fileID: -5025966681308034393}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -243,7 +188,6 @@ AudioMixerGroupController:
   m_Pitch: 33bde3067851fd01495aedc8076bca53
   m_Send: 00000000000000000000000000000000
   m_Effects:
-  - {fileID: -4971507108283544729}
   - {fileID: 6286483017238343995}
   m_UserColorIndex: 0
   m_Mute: 0
@@ -313,7 +257,6 @@ AudioMixerGroupController:
   m_Pitch: 1528f0022f02b7cbfa0c0fe00d5a5d1d
   m_Send: 00000000000000000000000000000000
   m_Effects:
-  - {fileID: -8237640469296478603}
   - {fileID: -1798974524563256130}
   m_UserColorIndex: 0
   m_Mute: 0
