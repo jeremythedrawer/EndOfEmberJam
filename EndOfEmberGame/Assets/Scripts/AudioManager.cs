@@ -88,12 +88,12 @@ public class AudioManager : MonoBehaviour
         rainCoroutine = StartCoroutine(FadeInRainAtticAmbience());
     }
 
-    public void HeaterAudioOn()
+    public void HeaterAudioOff()
     {
         heaterAudioSource.Stop();
     }
 
-    public void HeaterAudioOff()
+    public void HeaterAudioOn()
     {
         heaterAudioSource.Play();
     }

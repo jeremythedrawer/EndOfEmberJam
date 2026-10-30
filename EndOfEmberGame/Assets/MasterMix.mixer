@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-8237640469296478603
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: adcd360c7340d4848992415fb3a067f1
+  m_EffectName: Distortion
+  m_MixLevel: 3008d21cda84161e0b5ed65b4b605ea1
+  m_Parameters:
+  - m_ParameterName: Level
+    m_GUID: 370b567b212aaac529e823686c8e0d4b
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-5025966681308034393
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -101,6 +117,8 @@ AudioMixerController:
     name: ambience_vol
   - guid: a6d0dce1884c23d44ac633b1db2a54e7
     name: ambience_low_pass
+  - guid: 33c139c2cee2f956c9e2b4bef7669c49
+    name: heartbeat_vol
   - guid: 4f1df4480e35e0207a7162ca6f9740a9
     name: heater_vol
   - guid: d9cf32a32863eaec1bfa1a3ae8fa1e0c
@@ -168,10 +186,13 @@ AudioMixerSnapshotController:
   m_SnapshotID: a036814d029bc91428a7354ea8d378cd
   m_FloatValues:
     a6d0dce1884c23d44ac633b1db2a54e7: 8074
+    1528f0022f02b7cbfa0c0fe00d5a5d1d: 0.7
+    33c139c2cee2f956c9e2b4bef7669c49: 0
     7f23160335e4fcd4e91e66233c203d6a: 0
     79723a635da4c5f498322f2b96548e5e: 800
     50c44dc411b116241ac566f53d91027a: 1276
     9c180ae4d18f9b340ad580fbbcafe602: -0.0004934631
+    370b567b212aaac529e823686c8e0d4b: 0.6
     c8f7baafc49d92f41833614d5988b753: 1
   m_TransitionOverrides: {}
 --- !u!244 &1230569159166242802
@@ -292,6 +313,7 @@ AudioMixerGroupController:
   m_Pitch: 1528f0022f02b7cbfa0c0fe00d5a5d1d
   m_Send: 00000000000000000000000000000000
   m_Effects:
+  - {fileID: -8237640469296478603}
   - {fileID: -1798974524563256130}
   m_UserColorIndex: 0
   m_Mute: 0
