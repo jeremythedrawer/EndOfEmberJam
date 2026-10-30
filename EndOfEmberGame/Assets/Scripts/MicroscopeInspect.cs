@@ -53,6 +53,7 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
                     else
                     {
                         inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(8));
+                        playerData.discoveredSpecimenIsThermophilic = true;
                     }
                 }
                 else
@@ -71,12 +72,56 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
             break;
             case CellType.Mammal:
             {
-                inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(5));
+                if(!playerData.inspectedCellsFungus && !playerData.inspectedCellsMammal)
+                {
+                    inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(5));
+                    playerData.inspectedCellsMammal = true;
+                }
+                else if (!playerData.inspectedCellsFungus && playerData.inspectedCellsMammal)
+                {
+                    inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(13));
+                }
+                else if (playerData.inspectedCellsFungus && !playerData.inspectedCellsMammal)
+                {
+                    inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(14));
+                    playerData.inspectedCellsMammal = true;
+                }
+                else if (playerData.inspectedCellsFungus && playerData.inspectedCellsMammal)
+                {
+                    inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(14));
+
+                    if(!playerData.researchedPhototactic)
+                    {
+                        inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(16));
+                    }
+                    else
+                    {
+                        inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(15));
+                        playerData.discoveredSpecimenIsPhototactic = true;
+                    }
+                }
             }
             break;
             case CellType.Plant:
             {
-                inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(3));
+                if(!playerData.inspectedCellsPlant && !playerData.inspectedCellsFungus)
+                {
+                    inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(17));
+                    playerData.inspectedCellsPlant = true;
+                }
+                else if(!playerData.inspectedCellsPlant && playerData.inspectedCellsFungus)
+                {
+                    inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(18));
+                    playerData.inspectedCellsPlant = true;
+                }
+                else if(playerData.inspectedCellsPlant && !playerData.inspectedCellsFungus)
+                {
+                    inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(19));
+                }
+                else
+                {
+                    inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(3));
+                }
             }
             break;
         }

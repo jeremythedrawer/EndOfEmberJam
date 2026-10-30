@@ -16,6 +16,7 @@ public class WikiController : MonoBehaviour
 
     public GameEvent confirmWikiPageEvent;
     public GameEvent subtitleConfirmEvent;
+    public GameEvent powerRestoredEvent;
 
     private void OnEnable()
     {
@@ -89,7 +90,7 @@ public class WikiController : MonoBehaviour
             case "heat":
             {
                 playerData.researchedThermophilic = true;
-                //ShowPage(5); // NOTE(Jazz): placeholder until page is in project
+                ShowPage(5);
             }
             break;
             case "dormant": 
@@ -103,13 +104,22 @@ public class WikiController : MonoBehaviour
             case "phototaxis":
             case "light sensitive":
             case "photophobic":
+            case "motile":
             {
                 ShowPage(6);
+                powerRestoredEvent.Raise();
             }
             break;
             case "hyphae":
             case "mycelium":
             case "hyphal":
+            case "filamentous":
+            case "mycostructures":
+            case "mycostructure":
+            case "permeable":
+            case "enzyme":
+            case "enzymes":
+            case "growth":
             {
                 ShowPage(6);
             }
@@ -122,6 +132,7 @@ public class WikiController : MonoBehaviour
             }
             break;
             case "epithelial":
+            case "epithelial tissue":
             case "animal":
             case "mammal":
             case "epidermis":
