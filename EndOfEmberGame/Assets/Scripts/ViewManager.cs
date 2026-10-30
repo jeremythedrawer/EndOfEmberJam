@@ -7,6 +7,9 @@ public class ViewManager : MonoBehaviour
     public GameObject[] viewPrefabs;
     public GraphicRaycaster[] viewGraphicRaycasters;
     public GraphicRaycaster hudGraphicRaycaster;
+    public GraphicRaycaster introGraphicRaycaster;
+
+    public PlayerSO playerData;
 
     public enum ViewType
     {
@@ -47,6 +50,22 @@ public class ViewManager : MonoBehaviour
             gRaycaster.enabled = false;
         }
         hudGraphicRaycaster.enabled = true;
+    }
+
+    public void OnIntroEnable()
+    {
+        if(!playerData.introCompleted)
+        {
+            introGraphicRaycaster.gameObject.SetActive(true);
+            introGraphicRaycaster.enabled = true;
+        }
+    }
+
+    public void OnIntroDisable()
+    {
+        playerData.introCompleted = true;
+        introGraphicRaycaster.enabled = false;
+        introGraphicRaycaster.gameObject.SetActive(false);
     }
 
     private void EnableView(ViewType view)
