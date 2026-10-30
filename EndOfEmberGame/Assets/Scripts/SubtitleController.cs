@@ -20,7 +20,8 @@ public class SubtitleController : MonoBehaviour
     public GameEvent subtitleConfirmEvent;
 
     public float charPrintTimeWord = 0.075f;
-    public float charPrintTimeSpace = 0.1f;
+    public float charPrintTimeSpace = 0.075f;
+    public float charPrintTimeFullStop = 0.15f;
     public float charPrintTimeNewLine = 0.5f;
     public float charPrintPitchOffset = 0.3f;
     private float charPrintTimeScale = 1;
@@ -29,6 +30,7 @@ public class SubtitleController : MonoBehaviour
 
     private WaitForSeconds waitForSecondsWord;
     private WaitForSeconds waitForSecondsSpace;
+    private WaitForSeconds waitForSecondsFullStop;
     private Coroutine currentSubtitlesCoroutine;
 
     private string currentSubtitleString = string.Empty;
@@ -40,6 +42,7 @@ public class SubtitleController : MonoBehaviour
     {
         waitForSecondsWord = new WaitForSeconds(charPrintTimeWord * charPrintTimeScale);
         waitForSecondsSpace = new WaitForSeconds(charPrintTimeSpace * charPrintTimeScale);
+        waitForSecondsFullStop = new WaitForSeconds(charPrintTimeFullStop * charPrintTimeScale);
     }
 
     private void Start()
@@ -127,9 +130,13 @@ public class SubtitleController : MonoBehaviour
             audioSource.pitch = Random.Range(pitchOffsetLower, pitchOffsetUpper);
             audioSource.PlayOneShot(audioClipPrintCharacter);
 
-            if(currentSubtitleString[ctr++] == ' ')
+            if(currentSubtitleString[ctr] == ' ')
             {
                 yield return waitForSecondsSpace;
+            }
+            else if(currentSubtitleString[ctr] == '.')
+            {
+                yield return waitForSecondsFullStop;
             }
             else
             {
