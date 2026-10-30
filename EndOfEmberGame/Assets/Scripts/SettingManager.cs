@@ -10,6 +10,7 @@ public class SettingManager : MonoBehaviour
     [SerializeField] Slider brightness;
     [SerializeField] Slider cursorSize;
     [SerializeField] Slider subtitleSpeed;
+    [SerializeField] GameObject returnToStartButton;
 
     void Start()
     {
@@ -19,6 +20,11 @@ public class SettingManager : MonoBehaviour
         brightness.value = SettingSO.brightness;
         cursorSize.value = SettingSO.cursorSize;
         subtitleSpeed.value = SettingSO.subtitleSpeed;
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0))
+        {
+            returnToStartButton.SetActive(false);
+        }
     }
     public void SetMasterVolume(float value)
     {
@@ -54,6 +60,5 @@ public class SettingManager : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync(2);
     }
-
 
 }
