@@ -1126,6 +1126,16 @@ MonoBehaviour:
   - {fileID: 5545949124260635684}
   - {fileID: 4905803307698658189}
   currentStage: 0
+  moldAudioSource: {fileID: 0}
+  audioClips:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!82 &1360509639920625744
 AudioSource:
   m_ObjectHideFlags: 0
