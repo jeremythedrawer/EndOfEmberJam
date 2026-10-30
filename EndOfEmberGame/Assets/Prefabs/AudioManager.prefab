@@ -41,11 +41,11 @@ AudioSource:
   m_GameObject: {fileID: 1110895084230126801}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -3301547754718508694, guid: 8ef15fee3cb92334286e75bc30423a18, type: 2}
+  OutputAudioMixerGroup: {fileID: 7106582771423140074, guid: 8ef15fee3cb92334286e75bc30423a18, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: e0ce00506ff26254d9a4cd619a53eddd, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -570,8 +570,9 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: 8ef15fee3cb92334286e75bc30423a18, type: 2}
   mixerGroup: {fileID: 1618259454548960827, guid: 8ef15fee3cb92334286e75bc30423a18, type: 2}
   ambienceAudioSource: {fileID: 224018073815026279}
-  heaterAudioSource: {fileID: 1441807060540045808}
   moldAudioSource: {fileID: 6749713203022457172}
+  heartbeatAudioSource: {fileID: 10757846601693784}
+  heartbeatVolIncrement: 5
   playerData: {fileID: 11400000, guid: 8641ad54672092346a4d2bab986f28fc, type: 2}
   moldStageIncreaseEvent: {fileID: 11400000, guid: 2c75ddcf3066e584b9c89177ec64da66, type: 2}
   moldClips:
@@ -591,6 +592,7 @@ MonoBehaviour:
   lowPassRoomMax: 4500
   ambienceVolAttic: -4
   rainLowPassCursorPosition: 0
+  heaterAudioSource: {fileID: 1441807060540045808}
 --- !u!114 &4350094629917914553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,6 +721,22 @@ MonoBehaviour:
         - m_Target: {fileID: 3455897608137214536}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
           m_MethodName: HeaterAudioOn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 2c75ddcf3066e584b9c89177ec64da66, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3455897608137214536}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: HeartbeatToMoldStage
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

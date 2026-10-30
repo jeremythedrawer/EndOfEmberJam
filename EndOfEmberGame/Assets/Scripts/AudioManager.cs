@@ -9,8 +9,13 @@ public class AudioManager : MonoBehaviour
     public AudioMixer mixer;
     public AudioMixerGroup mixerGroup;
     public AudioSource ambienceAudioSource;
-    public AudioSource heaterAudioSource;
+    
+    // drama audio sources
     public AudioSource moldAudioSource;
+    public AudioSource heartbeatAudioSource;
+    private const string heartbeatVolID = "heartbeat_vol";
+    public float heartbeatVolIncrement = 5.0f;
+
     public PlayerSO playerData;
 
     public GameEvent moldStageIncreaseEvent;
@@ -34,9 +39,10 @@ public class AudioManager : MonoBehaviour
     private const string ambVolID = "ambience_vol";
     private Coroutine rainCoroutine;
 
+    // heater audio
+    public AudioSource heaterAudioSource;
     private const string heaterLowPassID = "heater_low_pass";
     private const string heaterVolID = "heater_vol";
-    private Coroutine heaterCoroutine;
 
     void OnEnable()
     {
@@ -89,6 +95,11 @@ public class AudioManager : MonoBehaviour
     public void HeaterAudioOff()
     {
         heaterAudioSource.Play();
+    }
+
+    public void HeartbeatToMoldStage()
+    {
+        heartbeatAudioSource.volume = playerData.moldStageCurrent * heartbeatVolIncrement;
     }
 
     // Opening window in room
