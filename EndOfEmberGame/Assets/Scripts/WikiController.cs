@@ -73,11 +73,6 @@ public class WikiController : MonoBehaviour
                 foundResultImage.rectTransform.sizeDelta = foundResultImage.rectTransform.sizeDelta * 0.5f;
             }
             break;
-            case "zoophthora":
-            {
-                ShowPage(4);
-            }
-            break;
             case "parasite":
             case "parasitism":
             case "parasitoid":
@@ -106,7 +101,7 @@ public class WikiController : MonoBehaviour
             case "photophobic":
             case "motile":
             {
-                ShowPage(6);
+                ShowPage(7);
                 powerRestoredEvent.Raise();
             }
             break;
@@ -120,27 +115,27 @@ public class WikiController : MonoBehaviour
             case "enzyme":
             case "enzymes":
             case "growth":
-            {
-                ShowPage(6);
-            }
-            break;
-            case "saprobe":
-            case "saprotrophic":
-            case "saprotroph":
-            {
-                ShowPage(6);
-            }
-            break;
             case "epithelial":
             case "epithelial tissue":
-            case "animal":
-            case "mammal":
-            case "epidermis":
-            case "skin":
+            case "epithelial tissues":
+            case "tissue":
             {
-                ShowPage(6);
+                ShowPage(8);
             }
             break;
+            case "zoophthora":
+            {
+                ShowPage(9);
+            }
+            break;
+            // TODO(Jazz): create saprotroph page
+            //case "saprobe":
+            //case "saprotrophic":
+            //case "saprotroph":
+            //{
+            //    ShowPage(6);
+            //}
+            //break;
             case "":
             {
                 // leave blank no input detected
