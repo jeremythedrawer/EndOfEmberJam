@@ -31,9 +31,9 @@ public class AudioManager : MonoBehaviour
     //public float lowPassRoomMin = 750f;
     //public float lowPassRoomMax = 4500f;
 
-    public float ambienceVolAttic = -20f;
-    private float ambienceVolRoom = -15f;
-    public float ambienceVolWindowOpen = 0.0f;
+    public float ambienceVolAttic = 0.1f;
+    private float ambienceVolRoom = 0.4f;
+    public float ambienceVolWindowOpen = 0.6f;
 
     //public float rainLowPassCursorPosition;
     
@@ -66,19 +66,19 @@ public class AudioManager : MonoBehaviour
 
     public void RainInRoomWindowClosed()
     {
-        mixer.SetFloat(ambVolID, ambienceVolRoom);
+        ambienceAudioSource.volume = ambienceVolRoom;
     }
 
     public void RainInRoomWindowOpen()
     {
-        mixer.SetFloat(ambVolID, ambienceVolWindowOpen);
+        ambienceAudioSource.volume = ambienceVolWindowOpen;
     }
 
     public void RainInAttic()
     {
-        mixer.SetFloat(ambVolID, ambienceVolAttic);
+        ambienceAudioSource.volume = ambienceVolAttic;
     }
-    
+
     /*
     public void RainFadeInRoom()
     {

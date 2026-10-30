@@ -18,10 +18,14 @@ MonoBehaviour:
   windowOpenedAtLeastOnce: 1
   powerboxOpen: 0
   powerboxFixed: 1
-  fanMode: 0
+  powerOut: 0
+  fanMode: 1
+  moldStageCurrent: 0
   placedPetriDishOnMicroscopeAtLeastOnce: 0
   inspectedCellsPlant: 0
   inspectedCellsFungus: 1
   inspectedCellsFungusHeated: 1
   inspectedCellsMammal: 0
   researchedThermophilic: 1
+  researchedMitochondria: 0
+  moldStageIncreaseEvent: {fileID: 0}
