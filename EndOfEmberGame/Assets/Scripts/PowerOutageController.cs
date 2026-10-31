@@ -29,6 +29,7 @@ public class PowerOutageController : MonoBehaviour
     {
         powerOutageEvent.UnregisterListener(TriggerPowerOutageOverlay);
         powerRestoredEvent.UnregisterListener(TriggerPowerRestored);
+        powerOutageMaterial.SetVector(mousePosID, new Vector4());
     }
 
     private void TriggerPowerOutageOverlay()
