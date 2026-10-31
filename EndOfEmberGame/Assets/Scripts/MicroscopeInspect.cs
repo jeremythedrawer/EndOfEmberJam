@@ -16,9 +16,27 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
 
     public GameEvent openViewRoomEvent;
     public GameEvent powerOutageEvent;
+    public GameEvent openViewMicroscopeEvent;
 
     public Image videoPlayerImage;
     public SpriteAnimator spriteAnimator;
+
+    private void OnEnable()
+    {
+        OnOpenMicroscopeView();
+    }
+
+    private void OnOpenMicroscopeView()
+    {
+        if(playerData.discoveredSpecimenIsFungus && playerData.discoveredSpecimenIsPhototactic)
+        {
+            StartCoroutine(PowerOutageSequence());
+        }
+        else if(playerData.discoveredSpecimenIsFungus && playerData.discoveredSpecimenIsThermophilic)
+        {
+            StartCoroutine(PowerOutageSequence());
+        }
+    }
 
     private IEnumerator PowerOutageSequence()
     {
@@ -99,10 +117,7 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
                     {
                         inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(8));
                         playerData.discoveredSpecimenIsThermophilic = true;
-                        if(playerData.discoveredSpecimenIsFungus && playerData.discoveredSpecimenIsPhototactic)
-                        {
-                            StartCoroutine(PowerOutageSequence());
-                        }
+
                     }
                 }
                 else
@@ -150,10 +165,7 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
                     {
                         inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(15));
                         playerData.discoveredSpecimenIsPhototactic = true;
-                        if(playerData.discoveredSpecimenIsFungus && playerData.discoveredSpecimenIsThermophilic)
-                        {
-                            StartCoroutine(PowerOutageSequence());
-                        }
+
                     }
                 }
             }
