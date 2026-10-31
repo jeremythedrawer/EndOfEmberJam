@@ -103,6 +103,7 @@ public class WikiController : MonoBehaviour
             case "photophobic":
             case "motile":
             {
+                playerData.researchedPhototactic = true;
                 ShowPage(7);
                 powerRestoredEvent.Raise();
             }
