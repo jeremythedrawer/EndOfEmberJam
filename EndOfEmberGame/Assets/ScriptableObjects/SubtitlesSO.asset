@@ -26,7 +26,7 @@ MonoBehaviour:
   - subtitleLines:
     - The control specimen.
     - Judging by the cell structures it appears to be a fungus.
-    - Perhaps come kind of mold?
+    - Perhaps some kind of mold?
     - The conidia appear to be dormant, however.
   - subtitleLines:
     - An epithelial tissue sample contaminated by the target specimen.
@@ -75,5 +75,7 @@ MonoBehaviour:
   - subtitleLines:
     - The plant cells are contaminated with the specimen.
     - I should check the control.
+  - subtitleLines:
+    - The fungal cells have returned to a dormant state due to the drop in temperature.
   currentSubtitleIndex: 5
   displayingSubtitles: 0
