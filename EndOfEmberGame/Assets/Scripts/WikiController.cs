@@ -17,6 +17,7 @@ public class WikiController : MonoBehaviour
     public GameEvent confirmWikiPageEvent;
     public GameEvent subtitleConfirmEvent;
     public GameEvent powerRestoredEvent;
+    public GameEvent wikiPageSuccessEvent;
 
     private void OnEnable()
     {
@@ -157,6 +158,7 @@ public class WikiController : MonoBehaviour
         foundResultImage.sprite = wikiData.pageData[pageIndex].sprite;
         foundResultImage.SetNativeSize();
         wikiData.pageIsShowing = true;
+        wikiPageSuccessEvent.Raise();
 
         // clear input field
 

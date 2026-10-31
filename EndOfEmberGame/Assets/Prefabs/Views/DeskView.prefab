@@ -363,7 +363,8 @@ MonoBehaviour:
   subtitlesData: {fileID: 11400000, guid: f075c4f5a9a119848a56348cccb9405c, type: 2}
   confirmWikiPageEvent: {fileID: 11400000, guid: 4cfda1519d0098b4ba475c1f541c4b23, type: 2}
   subtitleConfirmEvent: {fileID: 11400000, guid: 4e348332f599b8949a94fad1c1c6d156, type: 2}
-  powerRestoredEvent: {fileID: 0}
+  powerRestoredEvent: {fileID: 11400000, guid: cf731d44fda59d94eaac461415555040, type: 2}
+  wikiPageSuccessEvent: {fileID: 11400000, guid: 22b25403ac1503142b50f0024a609fca, type: 2}
 --- !u!1 &1632169316406032477
 GameObject:
   m_ObjectHideFlags: 0
