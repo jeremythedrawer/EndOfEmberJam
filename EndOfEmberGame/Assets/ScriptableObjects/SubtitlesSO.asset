@@ -79,5 +79,9 @@ MonoBehaviour:
     - The fungal cells have returned to a dormant state due to the drop in temperature.
   - subtitleLines:
     - I should check the breaker box in the attic first.
-  currentSubtitleIndex: 1
+  - subtitleLines:
+    - The powerbox.
+  - subtitleLines:
+    - The power is already running again.
+  currentSubtitleIndex: 21
   displayingSubtitles: 0
