@@ -162,6 +162,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &781714763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1434843663031885700, guid: 48bf14079ef319642a2849d0417292a0, type: 3}
+  m_PrefabInstance: {fileID: 4819744953526737481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &923238775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -368,6 +379,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1713987719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2091767157974635512, guid: 48bf14079ef319642a2849d0417292a0, type: 3}
+  m_PrefabInstance: {fileID: 4819744953526737481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!20 &1855993744 stripped
@@ -678,6 +700,22 @@ PrefabInstance:
       propertyPath: eventResponses.Array.data[2].response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 327203824}
+    - target: {fileID: 8426220141210946333, guid: 37d9094f459f16147b15e67ec0335903, type: 3}
+      propertyPath: subtitleData
+      value: 
+      objectReference: {fileID: 11400000, guid: f075c4f5a9a119848a56348cccb9405c, type: 2}
+    - target: {fileID: 8426220141210946333, guid: 37d9094f459f16147b15e67ec0335903, type: 3}
+      propertyPath: gotoButtonLab
+      value: 
+      objectReference: {fileID: 1713987719}
+    - target: {fileID: 8426220141210946333, guid: 37d9094f459f16147b15e67ec0335903, type: 3}
+      propertyPath: gotoButtonDesk
+      value: 
+      objectReference: {fileID: 781714763}
+    - target: {fileID: 8426220141210946333, guid: 37d9094f459f16147b15e67ec0335903, type: 3}
+      propertyPath: powerOutageEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 652b0f481902d4d47930447835e0c1d3, type: 2}
     - target: {fileID: 8426220141210946333, guid: 37d9094f459f16147b15e67ec0335903, type: 3}
       propertyPath: hudGraphicRaycaster
       value: 
