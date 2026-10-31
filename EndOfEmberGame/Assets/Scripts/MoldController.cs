@@ -4,7 +4,7 @@ using Proselyte.Sigils;
 
 public class MoldController : MonoBehaviour
 {
-    public GameObject[] moldStages = new GameObject[8];
+    public GameObject[] moldStages = new GameObject[7];
     public PlayerSO playerData;
     public GameEvent moldStageIncreaseEvent;
 
