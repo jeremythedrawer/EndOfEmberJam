@@ -19,6 +19,10 @@ public class ViewManager : MonoBehaviour
     public GameEvent OpenViewLabEvent;
     public GameEvent OpenViewDeskEvent;
 
+    public GameObject thermostatBackgroundGO;
+    public Button thermostatWallButton;
+    public GameEvent SetCoolModeEvent;
+
     public enum ViewType
     {
         Room,           // 0
@@ -34,6 +38,7 @@ public class ViewManager : MonoBehaviour
         gotoButtonLab.onClick.AddListener(OpenViewLabEvent.Raise);
         gotoButtonDesk.onClick.AddListener(OpenViewDeskEvent.Raise);
         powerOutageEvent.RegisterListener(OnPowerOutageEvent);
+        thermostatWallButton.onClick.AddListener(() => thermostatBackgroundGO.SetActive(true));
     }
 
     private void OnDisable()
@@ -102,12 +107,17 @@ public class ViewManager : MonoBehaviour
 
     private void OnPowerOutageEvent()
     {
-        // remove all event callbacks from desk and lab
+        // remove all event callbacks from desk, lab, thermostat
         gotoButtonDesk.onClick.RemoveAllListeners();
         gotoButtonLab.onClick.RemoveAllListeners();
+        thermostatWallButton.onClick.RemoveAllListeners();
 
         // apply subtitle callbacks
         gotoButtonDesk.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(21));
         gotoButtonLab.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(21));
+        thermostatWallButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(21));
+
+        // turn heating off
+        SetCoolModeEvent.Raise();
     }
 }
