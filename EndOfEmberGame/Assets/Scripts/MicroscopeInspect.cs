@@ -17,10 +17,13 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
     public GameEvent openViewRoomEvent;
     public GameEvent powerOutageEvent;
 
+    public Image videoPlayerImage;
+    public SpriteAnimator spriteAnimator;
+
     private IEnumerator PowerOutageSequence()
     {
         // disable exiting from the microscope view
-        foreach(var button in microscopeExitButtons)
+        foreach (var button in microscopeExitButtons)
         {
             button.SetActive(false);
         }
@@ -29,14 +32,21 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
         inspectButton.enabled = false;
 
         // play animation
-        float ctr = 0;
-        float clipLength = 0.5f; 
-        while(ctr < clipLength)
+        videoPlayerImage.enabled = true;
+        /*float ctr = 0;
+        float clipLength = 0.5f;
+        while (ctr < clipLength)
         {
             // let animation finish
             ctr += Time.deltaTime;
             yield return null;
+        }*/
+        StartCoroutine(spriteAnimator.playAnimation());
+        while (spriteAnimator.isPlaying)
+        {
+            yield return null;
         }
+        videoPlayerImage.enabled = false;
 
         // trigger power outage event
         powerOutageEvent.Raise();
