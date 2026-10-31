@@ -1017,6 +1017,7 @@ MonoBehaviour:
   inspectButton: {fileID: 8116853120717339062}
   videoPlayer: {fileID: 6059839168840210436}
   videoClip: {fileID: 32900000, guid: c13f8aa39f3ae3343922161ebaa123aa, type: 3}
+  videoRenderer: {fileID: 8780516276892333787}
   microscopeExitButtons:
   - {fileID: 5218139412924710878}
   - {fileID: 704595485884836277}
