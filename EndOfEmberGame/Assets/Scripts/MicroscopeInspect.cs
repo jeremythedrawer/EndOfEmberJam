@@ -15,6 +15,7 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
     public Button inspectButton;
     public VideoPlayer videoPlayer;
     public VideoClip videoClip;
+    public RawImage videoRenderer;
     public GameObject[] microscopeExitButtons;
 
     public GameEvent openViewRoomEvent;
@@ -51,13 +52,14 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
         inspectButton.enabled = false;
 
         // play video
+        videoRenderer.enabled = true;
         videoPlayer.Play();
         while(videoPlayer.isPlaying)
         {
             // let video finish
             yield return null;
         }
-
+        videoRenderer.enabled = false;
 
         // trigger power outage event
         powerOutageEvent.Raise();
