@@ -1,5 +1,6 @@
 using UnityEngine;
 using Proselyte.Sigils;
+using UnityEngine.UI;
 
 public class PowerboxController : MonoBehaviour
 {
@@ -14,22 +15,34 @@ public class PowerboxController : MonoBehaviour
     public GameEvent powerboxOpenEvent;
     public GameEvent powerboxCloseEvent;
     public GameEvent powerboxFixedEvent;
+    public GameEvent powerOutageEvent;
+    public GameEvent powerRestoredEvent;
+
+    public Button buttonBoxOpened;
+    public Button buttonBoxClosed;
 
     public PlayerSO playerData;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void OnEnable() 
+    public SubtitlesSO subtitleData;
+
+    public OnHover hoverPowerboxOpened;
+    public OnHover hoverPowerboxClosed;
+
+    private void OnEnable()
     {
-        powerboxOpenEvent.RegisterListener(OnPowerboxOpen);
-        powerboxCloseEvent.RegisterListener(OnPowerboxClose);
+        powerOutageEvent.RegisterListener(OnPowerOutage);
+        buttonBoxClosed.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(22));
+        hoverPowerboxClosed.cursorHoverType = CursorSpriteType.Inspect;
     }
 
-    private void OnDisable()
+    private void OnPowerOutage()
     {
-        powerboxOpenEvent.UnregisterListener(OnPowerboxOpen);
-        powerboxCloseEvent.UnregisterListener(OnPowerboxClose);
+        buttonBoxClosed.onClick.RemoveAllListeners();
+        buttonBoxClosed.onClick.AddListener(OnPowerBoxOpen);
+        buttonBoxOpened.onClick.AddListener(OnPowerBoxFixed);
+        hoverPowerboxClosed.cursorHoverType = CursorSpriteType.HandOpen;
     }
 
-    public void OnPowerboxOpen()
+    private void OnPowerBoxOpen()
     {
         powerboxCloseObj.SetActive(false);
         powerboxOpenObj.SetActive(true);
@@ -38,21 +51,27 @@ public class PowerboxController : MonoBehaviour
         playerData.powerboxOpen = true;
     }
 
-    public void OnPowerboxClose()
+    private void OnPowerBoxClose()
     {
         powerboxCloseObj.SetActive(true);
         powerboxOpenObj.SetActive(false);
         powerboxAudioSource.PlayOneShot(clipPowerboxClose);
 
         playerData.powerboxOpen = false;
+        buttonBoxClosed.onClick.RemoveAllListeners();
+        buttonBoxClosed.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(23));
+        hoverPowerboxClosed.cursorHoverType = CursorSpriteType.Inspect;
     }
 
-    public void OnPowerBoxFixed()
+    private void OnPowerBoxFixed()
     {
         powerboxAudioSource.PlayOneShot(clipPowerboxFixed);
 
         // TODO: affect the lighting in the room
 
         playerData.powerboxFixed = true;
+        powerRestoredEvent.Raise();
+        buttonBoxOpened.onClick.RemoveAllListeners();
+        buttonBoxOpened.onClick.AddListener(OnPowerBoxClose);
     }
 }

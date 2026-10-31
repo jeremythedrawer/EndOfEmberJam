@@ -281,19 +281,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 299454936353080549}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5711913884312278222}
-        m_TargetAssemblyTypeName: PowerboxController, Assembly-CSharp
-        m_MethodName: OnPowerboxClose
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4741637022071467599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +297,7 @@ MonoBehaviour:
   cursorData: {fileID: 11400000, guid: bd1893e4bd189d84d8960ebe73d31bc8, type: 2}
   imagemat: {fileID: 2100000, guid: d6646b1617e318fc18f495e1334eaddd, type: 2}
   persistentButton: 0
-  cursorHoverType: 0
+  cursorHoverType: 3
 --- !u!1 &4757870975586806253
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +537,14 @@ MonoBehaviour:
   powerboxOpenEvent: {fileID: 11400000, guid: 2cc256be03bfae2768c67fa5af498b03, type: 2}
   powerboxCloseEvent: {fileID: 11400000, guid: 23725c645af9717a19c04fbe7761fb66, type: 2}
   powerboxFixedEvent: {fileID: 11400000, guid: d7c22d9de1e658d3d8453acc6ab732df, type: 2}
+  powerOutageEvent: {fileID: 11400000, guid: 652b0f481902d4d47930447835e0c1d3, type: 2}
+  powerRestoredEvent: {fileID: 11400000, guid: cf731d44fda59d94eaac461415555040, type: 2}
+  buttonBoxOpened: {fileID: 2994166884734343360}
+  buttonBoxClosed: {fileID: 277951699353713238}
   playerData: {fileID: 11400000, guid: 8641ad54672092346a4d2bab986f28fc, type: 2}
+  subtitleData: {fileID: 11400000, guid: f075c4f5a9a119848a56348cccb9405c, type: 2}
+  hoverPowerboxOpened: {fileID: 4741637022071467599}
+  hoverPowerboxClosed: {fileID: 7558305335322641879}
 --- !u!82 &4813905425405576203
 AudioSource:
   m_ObjectHideFlags: 0
@@ -767,19 +762,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5559827868144421459}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5711913884312278222}
-        m_TargetAssemblyTypeName: PowerboxController, Assembly-CSharp
-        m_MethodName: OnPowerboxOpen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &7558305335322641879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,4 +778,4 @@ MonoBehaviour:
   cursorData: {fileID: 11400000, guid: bd1893e4bd189d84d8960ebe73d31bc8, type: 2}
   imagemat: {fileID: 2100000, guid: d6646b1617e318fc18f495e1334eaddd, type: 2}
   persistentButton: 0
-  cursorHoverType: 0
+  cursorHoverType: 5
