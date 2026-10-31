@@ -178,14 +178,14 @@ VideoPlayer:
   m_DataSource: 1
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
+  m_AudioOutputMode: 0
   m_TargetAudioSources: []
   m_DirectAudioVolumes: []
   m_Url: Assets/StreamingAssets/tex_video_titleDecor.ogv
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 1
   m_WaitForFirstFrame: 1
@@ -447,6 +447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f93d2f271da79943ac1d0adb12b7537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 2065921541}
+  videoPlayer: {fileID: 120277690}
 --- !u!1 &517339372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,7 +1124,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Click to Continue
+  m_text: Loading
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a2c44721da772ac46b910225e713abdd, type: 2}
   m_sharedMaterial: {fileID: -4711467800295328802, guid: a2c44721da772ac46b910225e713abdd, type: 2}

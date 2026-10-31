@@ -1,5 +1,6 @@
 using Proselyte.Sigils;
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -25,7 +26,7 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         videoPlayer.source = VideoSource.Url;
-        videoPlayer.url = Application.streamingAssetsPath + "cell_multiplication.mp4";
+        videoPlayer.url = Path.Combine(Application.streamingAssetsPath + "/cell_multiplication.mp4");
 #else
         videoPlayer.source = VideoSource.VideoClip;
         videoPlayer.clip = videoClip;
