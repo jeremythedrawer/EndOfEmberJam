@@ -1322,19 +1322,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2048044559619994542}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 5087626fcf947fb4b8e50383a4dea6c8, type: 2}
-        m_TargetAssemblyTypeName: Proselyte.Sigils.GameEvent, Proselyte.Sigils
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &7480274617930343165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,19 +1459,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2821329508492511996}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 7d57b626ef9353246b4772dd36888112, type: 2}
-        m_TargetAssemblyTypeName: Proselyte.Sigils.GameEvent, Proselyte.Sigils
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8367467856908107557
 MonoBehaviour:
   m_ObjectHideFlags: 0
