@@ -718,7 +718,7 @@ MonoBehaviour:
   rainFadeInTime: 0.8
   rainFadeOutTime: 0.2
   rainAtticFadeOutTime: 0.4
-  ambienceVolAttic: 0.1
+  ambienceVolAttic: 0.05
   ambienceVolRoom: 0.5
   ambienceVolWindowOpen: 1
   fromRoomToAttic: {fileID: 11400000, guid: 5b9e58f897bcc81a8b35d43639847987, type: 2}
