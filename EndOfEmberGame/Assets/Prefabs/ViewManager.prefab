@@ -62,10 +62,17 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 8641ad54672092346a4d2bab986f28fc, type: 2}
   subtitleData: {fileID: 11400000, guid: f075c4f5a9a119848a56348cccb9405c, type: 2}
   powerOutageEvent: {fileID: 11400000, guid: 652b0f481902d4d47930447835e0c1d3, type: 2}
+  powerRestoredEvent: {fileID: 11400000, guid: cf731d44fda59d94eaac461415555040, type: 2}
   gotoButtonLab: {fileID: 0}
   gotoButtonDesk: {fileID: 0}
   OpenViewLabEvent: {fileID: 11400000, guid: 7d57b626ef9353246b4772dd36888112, type: 2}
   OpenViewDeskEvent: {fileID: 11400000, guid: 5087626fcf947fb4b8e50383a4dea6c8, type: 2}
+  thermostatBackgroundGO: {fileID: 0}
+  thermostatWallButton: {fileID: 0}
+  SetCoolModeEvent: {fileID: 11400000, guid: b73b792b185a45bc49a18509944178d1, type: 2}
+  SetHeatModeEvent: {fileID: 11400000, guid: 623a640c1ed0cc491a4c06a41403943e, type: 2}
+  introConfirmEvent: {fileID: 11400000, guid: e8825e4bcfff7b544905a7313794921c, type: 2}
+  endScreenEvent: {fileID: 11400000, guid: 71f870f0f5224464ca2020bc4350b69e, type: 2}
   currentViewType: 0
 --- !u!114 &6908940959825666889
 MonoBehaviour:

@@ -270,6 +270,8 @@ MonoBehaviour:
   - {fileID: -717411157, guid: d36100ad8b1357a4d993a5e3e9071456, type: 3}
   - {fileID: 2124955200, guid: d36100ad8b1357a4d993a5e3e9071456, type: 3}
   loop: 1
+  m_image: {fileID: 120277694}
+  isPlaying: 0
 --- !u!114 &120277694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,8 +285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4, g: 0.4, b: 0.4, a: 0.101960786}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0.40392157}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1000,10 +1002,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 330765508}
-  - {fileID: 120277689}
-  - {fileID: 517339373}
   - {fileID: 2065921540}
   - {fileID: 174191412}
+  - {fileID: 120277689}
+  - {fileID: 517339373}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

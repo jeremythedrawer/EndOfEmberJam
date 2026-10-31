@@ -12,6 +12,7 @@ public class PowerOutageController : MonoBehaviour
 
     public GameEvent powerOutageEvent;
     public GameEvent powerRestoredEvent;
+    public GameEvent flickerLightsEvent;
 
     private Vector3 mousePosParam;
     private readonly int mousePosID = Shader.PropertyToID("_MousePos");
@@ -22,13 +23,15 @@ public class PowerOutageController : MonoBehaviour
     private void OnEnable()
     {
         powerOutageEvent.RegisterListener(TriggerPowerOutageOverlay);
-        powerRestoredEvent.RegisterListener(TriggerPowerRestored);
+        powerRestoredEvent.RegisterListener(TriggerLightFlicker);
+        flickerLightsEvent.RegisterListener(TriggerLightFlicker);
     }
 
     private void OnDisable()
     {
         powerOutageEvent.UnregisterListener(TriggerPowerOutageOverlay);
-        powerRestoredEvent.UnregisterListener(TriggerPowerRestored);
+        powerRestoredEvent.UnregisterListener(TriggerLightFlicker);
+        flickerLightsEvent.UnregisterListener(TriggerLightFlicker);
         powerOutageMaterial.SetVector(mousePosID, new Vector4());
     }
 
@@ -37,7 +40,7 @@ public class PowerOutageController : MonoBehaviour
         overlayImage.color = new Color(0, 0, 0, 0.9f);
     }
 
-    private void TriggerPowerRestored()
+    private void TriggerLightFlicker()
     {
         if(flickerCoroutine != null) StopCoroutine(flickerCoroutine);
         flickerCoroutine = StartCoroutine(LightFlicker());

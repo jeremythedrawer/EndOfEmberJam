@@ -73,5 +73,7 @@ public class PowerboxController : MonoBehaviour
         powerRestoredEvent.Raise();
         buttonBoxOpened.onClick.RemoveAllListeners();
         buttonBoxOpened.onClick.AddListener(OnPowerBoxClose);
+
+        playerData.IncreaseMoldStage();
     }
 }

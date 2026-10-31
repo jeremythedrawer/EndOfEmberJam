@@ -13,8 +13,10 @@ public class ViewManager : MonoBehaviour
     public PlayerSO playerData;
     public SubtitlesSO subtitleData;
     public GameEvent powerOutageEvent;
+    public GameEvent powerRestoredEvent;
     public Button gotoButtonLab;
     public Button gotoButtonDesk;
+    public Button moldAdvanceButton;
 
     public GameEvent OpenViewLabEvent;
     public GameEvent OpenViewDeskEvent;
@@ -22,6 +24,9 @@ public class ViewManager : MonoBehaviour
     public GameObject thermostatBackgroundGO;
     public Button thermostatWallButton;
     public GameEvent SetCoolModeEvent;
+    public GameEvent SetHeatModeEvent;
+    public GameEvent introConfirmEvent;
+    public GameEvent endScreenEvent;
 
     public enum ViewType
     {
@@ -37,15 +42,21 @@ public class ViewManager : MonoBehaviour
     {
         gotoButtonLab.onClick.AddListener(OpenViewLabEvent.Raise);
         gotoButtonDesk.onClick.AddListener(OpenViewDeskEvent.Raise);
+        powerRestoredEvent.RegisterListener(OnPowerRestoredEvent);
         powerOutageEvent.RegisterListener(OnPowerOutageEvent);
         thermostatWallButton.onClick.AddListener(() => thermostatBackgroundGO.SetActive(true));
+        endScreenEvent.RegisterListener(OnInteractionDisableEndGame);
+        introConfirmEvent.RegisterListener(OnInteractionEnable);
     }
 
     private void OnDisable()
     {
         gotoButtonLab.onClick.RemoveListener(OpenViewLabEvent.Raise);
         gotoButtonDesk.onClick.RemoveListener(OpenViewDeskEvent.Raise);
+        powerRestoredEvent.UnregisterListener(OnPowerRestoredEvent);
         powerOutageEvent.UnregisterListener(OnPowerOutageEvent);
+        endScreenEvent.UnregisterListener(OnInteractionDisableEndGame);
+        introConfirmEvent.UnregisterListener(OnInteractionEnable);
     }
 
     private void Start()
@@ -53,6 +64,7 @@ public class ViewManager : MonoBehaviour
         currentViewType = ViewType.Room;
         DisableAllViews();
         EnableView(currentViewType);
+        OnInteractionDisable();
     }
 
     public void OpenViewRoom()       { DisableAllViews(); EnableView(ViewType.Room); }
@@ -77,6 +89,15 @@ public class ViewManager : MonoBehaviour
             gRaycaster.enabled = false;
         }
         hudGraphicRaycaster.enabled = true;
+    }
+
+    public void OnInteractionDisableEndGame()
+    {
+        foreach(var gRaycaster in viewGraphicRaycasters)
+        {
+            gRaycaster.enabled = false;
+        }
+        hudGraphicRaycaster.enabled = false;
     }
 
     public void OnIntroEnable()
@@ -119,5 +140,24 @@ public class ViewManager : MonoBehaviour
 
         // turn heating off
         SetCoolModeEvent.Raise();
+    }
+
+    private void OnPowerRestoredEvent()
+    {
+        // change subtitles for desk, lab, and thermostat
+        if(playerData.fanMode == false)
+        {
+            SetHeatModeEvent.Raise();
+        }
+
+        gotoButtonDesk.onClick.RemoveAllListeners();
+        gotoButtonLab.onClick.RemoveAllListeners();
+        thermostatWallButton.onClick.RemoveAllListeners();
+
+        gotoButtonDesk.onClick.AddListener(() =>       subtitleData.TriggerSubtitleFromIndex(24));
+        gotoButtonLab.onClick.AddListener(() =>        subtitleData.TriggerSubtitleFromIndex(24));
+        thermostatWallButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(24));
+
+        moldAdvanceButton.enabled = true;
     }
 }

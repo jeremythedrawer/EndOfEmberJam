@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e25b774c486c2e4ea234fc50504bacc, type: 3}
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
-  currentRoomTemperature: 0
+  currentRoomTemperature: 10
   minFungalHeatTemperature: 25
   moldStageCurrent: 0
   introCompleted: 0
@@ -27,12 +27,14 @@ MonoBehaviour:
   inspectedCellsFungus: 0
   inspectedCellsFungusHeated: 0
   inspectedCellsMammal: 0
-  microscopeCompleted: 0
   researchedThermophilic: 0
   researchedMitochondria: 0
   researchedPhototactic: 0
-  discoveredSpecimenIsMold: 0
+  discoveredSpecimenIsFungus: 0
   discoveredSpecimenIsAerobic: 0
   discoveredSpecimenIsThermophilic: 0
   discoveredSpecimenIsPhototactic: 0
-  moldStageIncreaseEvent: {fileID: 0}
+  moldTriggeredByDiscoveryFungus: 0
+  moldTriggeredByDiscoveryThermophilic: 0
+  moldTriggeredByDiscoveryPhototactic: 0
+  moldStageIncreaseEvent: {fileID: 11400000, guid: 2c75ddcf3066e584b9c89177ec64da66, type: 2}

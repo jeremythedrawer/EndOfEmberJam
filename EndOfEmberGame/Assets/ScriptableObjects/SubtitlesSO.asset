@@ -60,10 +60,10 @@ MonoBehaviour:
     - Could they be phototactic?
   - subtitleLines:
     - It's epithelial tissue contaminated with the specimen.
-    - Could the fungal cells be phototactic?
+    - The fungal cells are phototactic..
   - subtitleLines:
     - It's epithelial tissue contaminated with the specimen.
-    - The fungal cells are phototactic.
+    - Could the fungal cells be phototactic?
   - subtitleLines:
     - It's the plant cells contaminated with the specimen.
     - There isn't much motile activity.
@@ -78,10 +78,13 @@ MonoBehaviour:
   - subtitleLines:
     - The fungal cells have returned to a dormant state due to the drop in temperature.
   - subtitleLines:
+    - The power is out.
     - I should check the breaker box in the attic first.
   - subtitleLines:
     - The powerbox.
   - subtitleLines:
-    - The power is already running again.
-  currentSubtitleIndex: 21
+    - The power is running again.
+  - subtitleLines:
+    - What's that on the wall?
+  currentSubtitleIndex: 17
   displayingSubtitles: 0

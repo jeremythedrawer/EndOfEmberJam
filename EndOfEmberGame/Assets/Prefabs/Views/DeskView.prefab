@@ -365,6 +365,7 @@ MonoBehaviour:
   subtitleConfirmEvent: {fileID: 11400000, guid: 4e348332f599b8949a94fad1c1c6d156, type: 2}
   powerRestoredEvent: {fileID: 11400000, guid: cf731d44fda59d94eaac461415555040, type: 2}
   wikiPageSuccessEvent: {fileID: 11400000, guid: 22b25403ac1503142b50f0024a609fca, type: 2}
+  flickerLightsEvent: {fileID: 11400000, guid: 62f7a6fe1b52253409ae8491fe944171, type: 2}
 --- !u!1 &1632169316406032477
 GameObject:
   m_ObjectHideFlags: 0

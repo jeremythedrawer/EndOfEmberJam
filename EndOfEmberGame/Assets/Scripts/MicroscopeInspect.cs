@@ -28,18 +28,31 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
 
     private void OnOpenMicroscopeView()
     {
-        if(playerData.discoveredSpecimenIsFungus && playerData.discoveredSpecimenIsPhototactic)
+        if(playerData.discoveredSpecimenIsFungus && playerData.discoveredSpecimenIsPhototactic && playerData.discoveredSpecimenIsThermophilic)
         {
             StartCoroutine(PowerOutageSequence());
         }
-        else if(playerData.discoveredSpecimenIsFungus && playerData.discoveredSpecimenIsThermophilic)
+        else if(playerData.discoveredSpecimenIsFungus && !playerData.moldTriggeredByDiscoveryFungus)
         {
-            StartCoroutine(PowerOutageSequence());
+            playerData.IncreaseMoldStage();
+            playerData.moldTriggeredByDiscoveryFungus = true;
+        }
+        else if(playerData.discoveredSpecimenIsPhototactic && !playerData.moldTriggeredByDiscoveryPhototactic)
+        {
+            playerData.IncreaseMoldStage();
+            playerData.moldTriggeredByDiscoveryPhototactic = true;
+        }
+        else if(playerData.discoveredSpecimenIsThermophilic && !playerData.moldTriggeredByDiscoveryThermophilic)
+        {
+            playerData.IncreaseMoldStage();
+            playerData.moldTriggeredByDiscoveryThermophilic = true;
         }
     }
 
     private IEnumerator PowerOutageSequence()
     {
+        playerData.IncreaseMoldStage();
+
         // disable exiting from the microscope view
         foreach (var button in microscopeExitButtons)
         {
@@ -102,7 +115,7 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
                     playerData.inspectedCellsFungus = true;
                     playerData.discoveredSpecimenIsFungus = true;
                 }
-                else if(playerData.currentRoomTemperature > playerData.minFungalHeatTemperature)
+                else if(playerData.currentRoomTemperature >= playerData.minFungalHeatTemperature)
                 {
                     if(!playerData.inspectedCellsFungusHeated && !playerData.researchedThermophilic)
                     {
@@ -117,7 +130,6 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
                     {
                         inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(8));
                         playerData.discoveredSpecimenIsThermophilic = true;
-
                     }
                 }
                 else
@@ -155,8 +167,6 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
                 }
                 else if (playerData.inspectedCellsFungus && playerData.inspectedCellsMammal)
                 {
-                    inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(14));
-
                     if(!playerData.researchedPhototactic)
                     {
                         inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(16));

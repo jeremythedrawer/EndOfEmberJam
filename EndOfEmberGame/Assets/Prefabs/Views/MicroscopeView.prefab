@@ -148,7 +148,7 @@ MonoBehaviour:
   cursorData: {fileID: 11400000, guid: bd1893e4bd189d84d8960ebe73d31bc8, type: 2}
   imagemat: {fileID: 0}
   persistentButton: 0
-  cursorHoverType: 1
+  cursorHoverType: 2
 --- !u!1 &625268206687043352
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
   cursorData: {fileID: 11400000, guid: bd1893e4bd189d84d8960ebe73d31bc8, type: 2}
   imagemat: {fileID: 0}
   persistentButton: 0
-  cursorHoverType: 1
+  cursorHoverType: 2
 --- !u!1 &4555762985208091816
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +699,7 @@ MonoBehaviour:
   cursorData: {fileID: 11400000, guid: bd1893e4bd189d84d8960ebe73d31bc8, type: 2}
   imagemat: {fileID: 0}
   persistentButton: 0
-  cursorHoverType: 1
+  cursorHoverType: 2
 --- !u!1 &6660615754725867227
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +848,7 @@ MonoBehaviour:
   cursorData: {fileID: 11400000, guid: bd1893e4bd189d84d8960ebe73d31bc8, type: 2}
   imagemat: {fileID: 0}
   persistentButton: 0
-  cursorHoverType: 1
+  cursorHoverType: 2
 --- !u!1 &6932829052707376652
 GameObject:
   m_ObjectHideFlags: 0

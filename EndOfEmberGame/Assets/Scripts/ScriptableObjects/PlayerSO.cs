@@ -16,15 +16,12 @@ public class PlayerSO : ScriptableObject
     public bool powerOut;
     public bool fanMode;
 
-
     public bool placedPetriDishOnMicroscopeAtLeastOnce;
     
     public bool inspectedCellsPlant;
     public bool inspectedCellsFungus;
     public bool inspectedCellsFungusHeated;
     public bool inspectedCellsMammal;
-
-    public bool microscopeCompleted;
 
     public bool researchedThermophilic;
     public bool researchedMitochondria;
@@ -34,6 +31,10 @@ public class PlayerSO : ScriptableObject
     public bool discoveredSpecimenIsAerobic;
     public bool discoveredSpecimenIsThermophilic;
     public bool discoveredSpecimenIsPhototactic;
+
+    public bool moldTriggeredByDiscoveryFungus;
+    public bool moldTriggeredByDiscoveryThermophilic;
+    public bool moldTriggeredByDiscoveryPhototactic;
 
     public GameEvent moldStageIncreaseEvent;
 

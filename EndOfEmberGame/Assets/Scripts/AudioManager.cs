@@ -267,6 +267,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMoldProgressionAudio()
     {
-        moldAudioSource.PlayOneShot(moldClips[playerData.moldStageCurrent]);
+        if(playerData.moldStageCurrent > 2)
+        {
+            moldAudioSource.PlayOneShot(moldClips[playerData.moldStageCurrent]);
+        }
     }
 }

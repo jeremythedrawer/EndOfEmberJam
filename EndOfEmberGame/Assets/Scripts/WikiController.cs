@@ -18,6 +18,7 @@ public class WikiController : MonoBehaviour
     public GameEvent subtitleConfirmEvent;
     public GameEvent powerRestoredEvent;
     public GameEvent wikiPageSuccessEvent;
+    public GameEvent flickerLightsEvent;
 
     private void OnEnable()
     {
@@ -105,7 +106,7 @@ public class WikiController : MonoBehaviour
             {
                 playerData.researchedPhototactic = true;
                 ShowPage(7);
-                powerRestoredEvent.Raise();
+                flickerLightsEvent.Raise();
             }
             break;
             case "hyphae":
