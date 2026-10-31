@@ -60,6 +60,12 @@ MonoBehaviour:
   hudGraphicRaycaster: {fileID: 0}
   introGraphicRaycaster: {fileID: 0}
   playerData: {fileID: 11400000, guid: 8641ad54672092346a4d2bab986f28fc, type: 2}
+  subtitleData: {fileID: 11400000, guid: f075c4f5a9a119848a56348cccb9405c, type: 2}
+  powerOutageEvent: {fileID: 11400000, guid: 652b0f481902d4d47930447835e0c1d3, type: 2}
+  gotoButtonLab: {fileID: 0}
+  gotoButtonDesk: {fileID: 0}
+  OpenViewLabEvent: {fileID: 11400000, guid: 7d57b626ef9353246b4772dd36888112, type: 2}
+  OpenViewDeskEvent: {fileID: 11400000, guid: 5087626fcf947fb4b8e50383a4dea6c8, type: 2}
   currentViewType: 0
 --- !u!114 &6908940959825666889
 MonoBehaviour:
