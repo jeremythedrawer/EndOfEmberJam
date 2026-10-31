@@ -30,7 +30,7 @@ public class PlayerSO : ScriptableObject
     public bool researchedMitochondria;
     public bool researchedPhototactic;
 
-    public bool discoveredSpecimenIsMold;
+    public bool discoveredSpecimenIsFungus;
     public bool discoveredSpecimenIsAerobic;
     public bool discoveredSpecimenIsThermophilic;
     public bool discoveredSpecimenIsPhototactic;
