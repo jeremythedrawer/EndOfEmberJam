@@ -1,6 +1,9 @@
+using Proselyte.Sigils;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using static Biology;
 
 public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
@@ -10,6 +13,58 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
     public SubtitlesSO subtitleData;
 
     public Button inspectButton;
+    public VideoPlayer videoPlayer;
+    public VideoClip videoClip;
+    public GameObject[] microscopeExitButtons;
+
+    public GameEvent openViewRoomEvent;
+    public GameEvent powerOutageEvent;
+
+    private void Start()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        videoPlayer.source = VideoSource.Url;
+        videoPlayer.url = Application.streamingAssetsPath + "cell_multiplication.mp4";
+#else
+        videoPlayer.source = VideoSource.VideoClip;
+        videoPlayer.clip = videoClip;
+#endif
+        videoPlayer.playOnAwake = false;
+        videoPlayer.Prepare();
+        videoPlayer.prepareCompleted += StartPowerOutageSequence;
+    }
+
+    private void StartPowerOutageSequence(VideoPlayer source)
+    {
+        StartCoroutine(PowerOutageSequence());
+    }
+
+    private IEnumerator PowerOutageSequence()
+    {
+        // disable exiting from the microscope view
+        foreach(var button in microscopeExitButtons)
+        {
+            button.SetActive(false);
+        }
+
+        // disable interaction with the microscope inspect button
+        inspectButton.enabled = false;
+
+        // play video
+        videoPlayer.Play();
+        while(videoPlayer.isPlaying)
+        {
+            // let video finish
+            yield return null;
+        }
+
+
+        // trigger power outage event
+        powerOutageEvent.Raise();
+
+        // kick player out into room
+        openViewRoomEvent.Raise();
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -38,6 +93,7 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
                     // initial inspection of fungus
                     inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(4));
                     playerData.inspectedCellsFungus = true;
+                    playerData.discoveredSpecimenIsFungus = true;
                 }
                 else if(playerData.currentRoomTemperature > playerData.minFungalHeatTemperature)
                 {
@@ -54,6 +110,10 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
                     {
                         inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(8));
                         playerData.discoveredSpecimenIsThermophilic = true;
+                        if(playerData.discoveredSpecimenIsFungus && playerData.discoveredSpecimenIsPhototactic)
+                        {
+                            StartCoroutine(PowerOutageSequence());
+                        }
                     }
                 }
                 else
@@ -101,6 +161,10 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
                     {
                         inspectButton.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(15));
                         playerData.discoveredSpecimenIsPhototactic = true;
+                        if(playerData.discoveredSpecimenIsFungus && playerData.discoveredSpecimenIsThermophilic)
+                        {
+                            StartCoroutine(PowerOutageSequence());
+                        }
                     }
                 }
             }

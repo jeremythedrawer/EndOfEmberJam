@@ -130,18 +130,9 @@ public class SubtitleController : MonoBehaviour
             audioSource.pitch = Random.Range(pitchOffsetLower, pitchOffsetUpper);
             audioSource.PlayOneShot(audioClipPrintCharacter);
 
-            if(currentSubtitleString[ctr] == ' ')
-            {
-                yield return waitForSecondsSpace;
-            }
-            else if(currentSubtitleString[ctr] == '.')
-            {
-                yield return waitForSecondsFullStop;
-            }
-            else
-            {
-                yield return waitForSecondsWord;
-            }
+
+            yield return waitForSecondsWord;
+            
             ctr++;
         }
 

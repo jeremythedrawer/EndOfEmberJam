@@ -1,3 +1,4 @@
+using Proselyte.Sigils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,10 @@ public class ViewManager : MonoBehaviour
     public GraphicRaycaster introGraphicRaycaster;
 
     public PlayerSO playerData;
+    public SubtitlesSO subtitleData;
+    public GameEvent powerOutageEvent;
+    public Button gotoButtonLab;
+    public Button gotoButtonDesk;
 
     public enum ViewType
     {
@@ -20,6 +25,16 @@ public class ViewManager : MonoBehaviour
         Attic,          // 4
         MAX_COUNT
     } public ViewType currentViewType;
+
+    private void OnEnable()
+    {
+        powerOutageEvent.RegisterListener(OnPowerOutageEvent);
+    }
+
+    private void OnDisable()
+    {
+        powerOutageEvent.UnregisterListener(OnPowerOutageEvent);
+    }
 
     private void Start()
     {
@@ -76,5 +91,21 @@ public class ViewManager : MonoBehaviour
     private void DisableAllViews()
     {
         foreach(var view in viewPrefabs) view.SetActive(false);
+    }
+
+    //TODO(Jazz): needs to respond to the poweroutageEvent to prevent navigation into the desk and lab views
+    //            should also swap out the OnClick interactions for those buttons to trigger unique subtitles
+    //            hinting to get the power back on.
+    private void OnPowerOutageEvent()
+    {
+        // remove all event callbacks from desk and lab
+        gotoButtonDesk.onClick.RemoveAllListeners();
+        gotoButtonLab.onClick.RemoveAllListeners();
+
+        // apply subtitle callbacks
+        gotoButtonDesk.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(21));
+        gotoButtonLab.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(21));
+
+        // allow powerbox to be fixed
     }
 }
