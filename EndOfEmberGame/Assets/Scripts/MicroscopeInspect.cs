@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.Video;
 using static Biology;
 
 public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
@@ -13,32 +12,10 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
     public SubtitlesSO subtitleData;
 
     public Button inspectButton;
-    public VideoPlayer videoPlayer;
-    public VideoClip videoClip;
-    public RawImage videoRenderer;
     public GameObject[] microscopeExitButtons;
 
     public GameEvent openViewRoomEvent;
     public GameEvent powerOutageEvent;
-
-    private void Start()
-    {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        videoPlayer.source = VideoSource.Url;
-        videoPlayer.url = Application.streamingAssetsPath + "cell_multiplication.mp4";
-#else
-        videoPlayer.source = VideoSource.VideoClip;
-        videoPlayer.clip = videoClip;
-#endif
-        videoPlayer.playOnAwake = false;
-        videoPlayer.Prepare();
-        videoPlayer.prepareCompleted += StartPowerOutageSequence;
-    }
-
-    private void StartPowerOutageSequence(VideoPlayer source)
-    {
-        StartCoroutine(PowerOutageSequence());
-    }
 
     private IEnumerator PowerOutageSequence()
     {
@@ -51,15 +28,15 @@ public class MicroscopeInspect : MonoBehaviour, IPointerEnterHandler
         // disable interaction with the microscope inspect button
         inspectButton.enabled = false;
 
-        // play video
-        videoRenderer.enabled = true;
-        videoPlayer.Play();
-        while(videoPlayer.isPlaying)
+        // play animation
+        float ctr = 0;
+        float clipLength = 0.5f; 
+        while(ctr < clipLength)
         {
-            // let video finish
+            // let animation finish
+            ctr += Time.deltaTime;
             yield return null;
         }
-        videoRenderer.enabled = false;
 
         // trigger power outage event
         powerOutageEvent.Raise();

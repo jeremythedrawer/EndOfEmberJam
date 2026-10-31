@@ -16,6 +16,9 @@ public class ViewManager : MonoBehaviour
     public Button gotoButtonLab;
     public Button gotoButtonDesk;
 
+    public GameEvent OpenViewLabEvent;
+    public GameEvent OpenViewDeskEvent;
+
     public enum ViewType
     {
         Room,           // 0
@@ -28,11 +31,15 @@ public class ViewManager : MonoBehaviour
 
     private void OnEnable()
     {
+        gotoButtonLab.onClick.AddListener(OpenViewLabEvent.Raise);
+        gotoButtonDesk.onClick.AddListener(OpenViewDeskEvent.Raise);
         powerOutageEvent.RegisterListener(OnPowerOutageEvent);
     }
 
     private void OnDisable()
     {
+        gotoButtonLab.onClick.RemoveListener(OpenViewLabEvent.Raise);
+        gotoButtonDesk.onClick.RemoveListener(OpenViewDeskEvent.Raise);
         powerOutageEvent.UnregisterListener(OnPowerOutageEvent);
     }
 
@@ -93,9 +100,6 @@ public class ViewManager : MonoBehaviour
         foreach(var view in viewPrefabs) view.SetActive(false);
     }
 
-    //TODO(Jazz): needs to respond to the poweroutageEvent to prevent navigation into the desk and lab views
-    //            should also swap out the OnClick interactions for those buttons to trigger unique subtitles
-    //            hinting to get the power back on.
     private void OnPowerOutageEvent()
     {
         // remove all event callbacks from desk and lab
@@ -105,7 +109,5 @@ public class ViewManager : MonoBehaviour
         // apply subtitle callbacks
         gotoButtonDesk.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(21));
         gotoButtonLab.onClick.AddListener(() => subtitleData.TriggerSubtitleFromIndex(21));
-
-        // allow powerbox to be fixed
     }
 }
