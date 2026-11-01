@@ -1,0 +1,80 @@
+Zoophthora Walkthrough
+
+              :--#%%@@@@#****+*#*               
+             -----*%@@#@****++**+           
+           :--------*++*=++===+**              
+          :-----%%*-*+++...:-=+**         
+         :----:::%%%%#**...:-=+**         
+        ------%%@@%%###%  ++**@***#*     
+        ----#*             %=.@@:-#+            
+        ---#*          %   *%@% +.*#%           
+        ---**               -##   -*#*             
+        ---**               -##    @=              
+        ---*+      +  +++=                                                                  
+        ---++=   **#+*******************                                                    
+        :---***######%%%%%%%%%%%%%%@@@@@%                                                   
+         -----%%@%@%@%@*##%@%%%%%%@%%@@@@                                                   
+          -::::-=--*@#   **%%%%%@@                                                          
+           ::*%%#=#*@#   %%@@@@@%@                                                          
+            #%%@@##*@#                                                                      
+           --==+**#*@#                                                                      
+          --------**@# :. - =                                                               
+       --:-:------**@@##@%.*%======*++                                                      
+     --:::::::::::#*#**####****#%@****                                                      
+     ..--------:::#*#                                                                       
+     .....:----========+                                                                    
+       :....::::-=====================                                                      
+           :::::::::::::----------=--+*                                                     
+                 :::::::---------=+==**                                                     
+                                   =+*                                                      
+                                                         
+---------------------
+*** SPOILER ALERT ***
+---------------------
+The following contains a walkthrough guide for the game:
+
+- Click to dismiss the letter.
+
+- Click on the table with the microscope.
+
+- Click and drag the left-most petri dish under the microscope. This is the control.
+
+- Click on the microscope to look through it.
+
+- Click on the view to investigate the culture. This will trigger some dialogue. The character will say it reminds them of a fungus.
+
+- Click away from the microscope view to exit the microscope.
+
+- Replace the fungal specimen under the petri dish with the middle one.
+
+- Go into the microscope view and examine the new petri dish. The character will say it looks as if the fungal cells are phototactic.
+
+- Go back to the main room view and click on the books on the table.
+
+- Click on the search bar to type "conidia" into the search bar. A page will appear.
+
+- Hit the return key or click to close the page and type "dormant" into the search bar.
+
+- Close the page and type "thermophilic".
+
+- Close the thermophilic page and return to the lab view on the other table.
+
+- Look at the control petri dish under the microscope. The character will say it could be thermophilic.
+
+- Go back to the room view and click on the thermostat on the wall.
+
+- Increase its temperature to 25 degrees and change the mode to heating.
+
+- Go back to the microscope and observe the control petri dish again. The character will confirm that they are indeed thermophilic.
+
+- Place another petri dish under the microscope.
+
+- Go into the attic by clicking on the hatch on the ceiling and interact with the powerbox to get the power back on.
+
+- Go back to the main room and click on the mold on the wall.
+
+-------------------------------------------------------------
+
+Thanks for playing!
+
+-------------------------------------------------------------
